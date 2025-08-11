@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_focus_fun_tv_demo/model/tv_page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/intro_page.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/resolution_page.dart';
+import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/intro/intro_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/resolution/resolution_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/summary_page.dart';
 
 class MobileApp extends StatelessWidget {
@@ -11,7 +11,7 @@ class MobileApp extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onNavItemTapped;
   final ValueChanged<int> onPageChanged;
-  final List<TvPageUiModel> pageScrollStates;
+  final List<PageUiModel> pageModels;
 
   const MobileApp({
     super.key,
@@ -19,7 +19,7 @@ class MobileApp extends StatelessWidget {
     required this.selectedIndex,
     required this.onNavItemTapped,
     required this.onPageChanged,
-    required this.pageScrollStates,
+    required this.pageModels,
   });
 
   @override
@@ -32,15 +32,15 @@ class MobileApp extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           ChangeNotifierProvider.value(
-            value: pageScrollStates[0],
+            value: pageModels[0],
             child: const IntroPage(),
           ),
           ChangeNotifierProvider.value(
-            value: pageScrollStates[1],
+            value: pageModels[1],
             child: const ResolutionPage(),
           ),
           ChangeNotifierProvider.value(
-            value: pageScrollStates[2],
+            value: pageModels[2],
             child: const SummaryPage(),
           ),
         ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/intro_mobile_page.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/intro_tv_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/intro/intro_mobile_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/intro/intro_tv_page.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:provider/provider.dart';
 

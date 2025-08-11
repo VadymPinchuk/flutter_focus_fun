@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
-import 'package:provider/provider.dart';
 
 class DynamicBackground extends StatelessWidget {
   const DynamicBackground({super.key});
@@ -10,7 +9,7 @@ class DynamicBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: context.read<TvPageUiModel>().focusedItem,
+      valueListenable: context.pageUiModel.focusedItem,
       builder:
           (_, focusedItem, __) => Stack(
             children: [

@@ -16,7 +16,7 @@ class _RailWrapperState extends State<RailWrapper> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<int>(
-      valueListenable: context.tvPageUiModel.focusedRailIndex,
+      valueListenable: context.pageUiModel.focusedRailIndex,
       builder: (context, focusedRailIndex, child) {
         // A rail is visible if its index is the same as or after the focused rail.
         final bool isVisible = widget.railIndex >= focusedRailIndex;

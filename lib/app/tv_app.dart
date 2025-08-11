@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app/header/left_nav_rail.dart';
 import 'package:flutter_focus_fun_tv_demo/app/header/top_nav_rail.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/intro_page.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/resolution_page.dart';
+import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
+import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/tv_screen_model.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/intro/intro_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/resolution/resolution_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/summary_page.dart';
 import 'package:flutter_focus_fun_tv_demo/scaffold/tv_screen_scaffold.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class TvApp extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onNavItemTapped;
   final ValueChanged<int> onPageChanged;
-  final List<TvPageUiModel> pageScrollStates;
+  final List<PageUiModel> pageModels;
 
   const TvApp({
     super.key,
@@ -22,7 +23,7 @@ class TvApp extends StatelessWidget {
     required this.selectedIndex,
     required this.onNavItemTapped,
     required this.onPageChanged,
-    required this.pageScrollStates,
+    required this.pageModels,
   });
 
   @override
@@ -33,15 +34,15 @@ class TvApp extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       children: [
         ChangeNotifierProvider.value(
-          value: pageScrollStates[0],
+          value: pageModels[0],
           child: const IntroPage(),
         ),
         ChangeNotifierProvider.value(
-          value: pageScrollStates[1],
+          value: pageModels[1],
           child: const ResolutionPage(),
         ),
         ChangeNotifierProvider.value(
-          value: pageScrollStates[2],
+          value: pageModels[2],
           child: const SummaryPage(),
         ),
       ],
@@ -50,7 +51,7 @@ class TvApp extends StatelessWidget {
     return TvScreenScaffold(
       body: pageView,
       header: ValueListenableBuilder<TvNavBarLocation>(
-        valueListenable: context.read<TvUiModel>().navBarLocation,
+        valueListenable: context.tvScreenModel.navBarLocation,
         builder:
             (_, location, _) => switch (location) {
               TvNavBarLocation.left => LeftNavRail(

@@ -3,7 +3,7 @@ import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 
 /// A view model (ChangeNotifier) to store and manage the scroll state
 /// for a single page that contains vertical and horizontal lists.
-class TvPageUiModel extends ChangeNotifier {
+class PageUiModel extends ChangeNotifier {
   double _verticalOffset = 0.0;
   final Map<String, ScrollController> _horizontalControllers = {};
   final Map<String, double> _horizontalOffsets = {};

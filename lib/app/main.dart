@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app/mobile_app.dart';
 import 'package:flutter_focus_fun_tv_demo/app/tv_app.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/tv_screen_model.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
@@ -56,20 +56,20 @@ class _AppShellState extends State<AppShell> {
   late final PageController _pageController;
   int _selectedIndex = 0;
 
-  late final List<TvPageUiModel> _pageScrollStates;
+  late final List<PageUiModel> _pageModels;
   static const int _pageCount = 3;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
-    _pageScrollStates = List.generate(_pageCount, (_) => TvPageUiModel());
+    _pageModels = List.generate(_pageCount, (_) => PageUiModel());
   }
 
   @override
   void dispose() {
     _pageController.dispose();
-    for (final state in _pageScrollStates) {
+    for (final state in _pageModels) {
       state.dispose();
     }
     super.dispose();
@@ -92,29 +92,26 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    final uiExperience = context.watch<UiExperience>();
-    final bool isTvUI = uiExperience.isTv;
-
-    final child =
-        isTvUI
-            ? Provider(
-              create: (_) => TvUiModel(),
-              child: TvApp(
-                pageController: _pageController,
-                selectedIndex: _selectedIndex,
-                onNavItemTapped: _onNavItemTapped,
-                onPageChanged: _onPageChanged,
-                pageScrollStates: _pageScrollStates,
-              ),
-            )
-            : MobileApp(
-              pageController: _pageController,
-              selectedIndex: _selectedIndex,
-              onNavItemTapped: _onNavItemTapped,
-              onPageChanged: _onPageChanged,
-              pageScrollStates: _pageScrollStates,
-            );
-
-    return isTvUI ? child : SafeArea(child: child);
+    return switch (context.read<UiExperience>()) {
+      UiExperience.mobile => SafeArea(
+        child: MobileApp(
+          pageController: _pageController,
+          selectedIndex: _selectedIndex,
+          onNavItemTapped: _onNavItemTapped,
+          onPageChanged: _onPageChanged,
+          pageModels: _pageModels,
+        ),
+      ),
+      UiExperience.tv => Provider(
+        create: (_) => TvScreenModel(),
+        child: TvApp(
+          pageController: _pageController,
+          selectedIndex: _selectedIndex,
+          onNavItemTapped: _onNavItemTapped,
+          onPageChanged: _onPageChanged,
+          pageModels: _pageModels,
+        ),
+      ),
+    };
   }
 }
