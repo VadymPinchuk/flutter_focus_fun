@@ -68,22 +68,22 @@ class _ScreenScaffoldState extends State<TvScreenScaffold> {
       children: [
         FocusScope(
           node: bodyFocusNode,
-          onKeyEvent: (node, event) {
-            return _focusOnHeader(event);
-          },
+          // onKeyEvent: (node, event) {
+          //   return _focusOnHeader(event);
+          // },
           child: widget.body,
         ),
         FocusScope(
           node: headerFocusNode,
-          onKeyEvent: (node, event) {
-            if (event is! KeyUpEvent) return KeyEventResult.ignored;
-            if (event.logicalKey == LogicalKeyboardKey.arrowDown &&
-                headerFocusNode.hasFocus) {
-              _focusBody();
-              return KeyEventResult.handled;
-            }
-            return KeyEventResult.ignored;
-          },
+          // onKeyEvent: (node, event) {
+          //   if (event is! KeyUpEvent) return KeyEventResult.ignored;
+          //   if (event.logicalKey == LogicalKeyboardKey.arrowDown &&
+          //       headerFocusNode.hasFocus) {
+          //     _focusBody();
+          //     return KeyEventResult.handled;
+          //   }
+          //   return KeyEventResult.ignored;
+          // },
           child: widget.header,
         ),
       ],

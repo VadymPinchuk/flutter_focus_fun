@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 
 /// A view model (ChangeNotifier) to store and manage the scroll state
 /// for a single page that contains vertical and horizontal lists.
-class PageScrollUiModel extends ChangeNotifier {
+class TvPageUiModel extends ChangeNotifier {
   double _verticalOffset = 0.0;
   final Map<String, ScrollController> _horizontalControllers = {};
   final Map<String, double> _horizontalOffsets = {};
+
+  /// Notifies listeners when the currently focused content item changes.
+  final ValueNotifier<ContentItem?> focusedItem = ValueNotifier(null);
+
+  /// Notifies listeners when the index of the focused rail changes.
+  final ValueNotifier<int> focusedRailIndex = ValueNotifier(0);
 
   /// The last known vertical scroll offset.
   double get verticalOffset => _verticalOffset;
@@ -23,7 +30,9 @@ class PageScrollUiModel extends ChangeNotifier {
   ScrollController getHorizontalController(String railId) {
     if (!_horizontalControllers.containsKey(railId)) {
       // Create a new controller with the last known offset, or 0.0.
-      final controller = ScrollController(initialScrollOffset: _horizontalOffsets[railId] ?? 0.0);
+      final controller = ScrollController(
+        initialScrollOffset: _horizontalOffsets[railId] ?? 0.0,
+      );
       // Add a listener to save the offset whenever this rail is scrolled.
       controller.addListener(() {
         _horizontalOffsets[railId] = controller.offset;
@@ -39,6 +48,8 @@ class PageScrollUiModel extends ChangeNotifier {
     for (var controller in _horizontalControllers.values) {
       controller.dispose();
     }
+    focusedItem.dispose();
+    focusedRailIndex.dispose();
     super.dispose();
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/data/mock_rail_data.dart'
     show ContentRailData, mockData;
 import 'package:flutter_focus_fun_tv_demo/grid_traversal_policy.dart';
-import 'package:flutter_focus_fun_tv_demo/model/page_scroll_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/tv_page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_background.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/mobile_rail.dart';
@@ -30,13 +30,13 @@ class TvResolutionPage extends StatefulWidget {
 
 class _TvResolutionPageState extends State<TvResolutionPage> {
   late final ScrollController _verticalScrollController;
-  late final PageScrollUiModel _scrollState;
+  late final TvPageUiModel _scrollState;
   final List<ContentRailData> _resolutionRails = mockData.skip(3).toList();
 
   @override
   void initState() {
     super.initState();
-    _scrollState = context.read<PageScrollUiModel>();
+    _scrollState = context.read<TvPageUiModel>();
     _verticalScrollController = ScrollController(
       initialScrollOffset: _scrollState.verticalOffset,
     );
@@ -101,13 +101,13 @@ class MobileResolutionPage extends StatefulWidget {
 
 class _MobileResolutionPageState extends State<MobileResolutionPage> {
   late final ScrollController _verticalScrollController;
-  late final PageScrollUiModel _scrollState;
+  late final TvPageUiModel _scrollState;
   final List<ContentRailData> _resolutionRails = mockData.skip(3).toList();
 
   @override
   void initState() {
     super.initState();
-    _scrollState = context.read<PageScrollUiModel>();
+    _scrollState = context.read<TvPageUiModel>();
     _verticalScrollController = ScrollController(
       initialScrollOffset: _scrollState.verticalOffset,
     );

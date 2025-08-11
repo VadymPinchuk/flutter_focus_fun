@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_focus_fun_tv_demo/model/page_scroll_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/tv_page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/intro_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/resolution_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/summary_page.dart';
@@ -11,7 +11,7 @@ class MobileApp extends StatelessWidget {
   final int selectedIndex;
   final ValueChanged<int> onNavItemTapped;
   final ValueChanged<int> onPageChanged;
-  final List<PageScrollUiModel> pageScrollStates;
+  final List<TvPageUiModel> pageScrollStates;
 
   const MobileApp({
     super.key,

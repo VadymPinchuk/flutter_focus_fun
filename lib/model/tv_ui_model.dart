@@ -6,21 +6,13 @@ enum TvNavBarLocation { top, left }
 
 /// A model that holds the UI state for the TV experience using ValueNotifiers.
 class TvUiModel {
-  /// Notifies listeners when the currently focused content item changes.
-  final ValueNotifier<ContentItem?> focusedItem = ValueNotifier(null);
-
   /// Notifies listeners when the navigation bar location changes.
   final ValueNotifier<TvNavBarLocation> navBarLocation = ValueNotifier(
-    TvNavBarLocation.top,
+    TvNavBarLocation.left,
   );
-
-  /// Notifies listeners when the index of the focused rail changes.
-  final ValueNotifier<int> focusedRailIndex = ValueNotifier(0);
 
   /// Disposes the notifiers to prevent memory leaks.
   void dispose() {
-    focusedItem.dispose();
     navBarLocation.dispose();
-    focusedRailIndex.dispose();
   }
 }

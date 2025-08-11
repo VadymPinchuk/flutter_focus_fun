@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app/mobile_app.dart';
 import 'package:flutter_focus_fun_tv_demo/app/tv_app.dart';
-import 'package:flutter_focus_fun_tv_demo/model/page_scroll_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/tv_page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/model/tv_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
@@ -56,14 +56,14 @@ class _AppShellState extends State<AppShell> {
   late final PageController _pageController;
   int _selectedIndex = 0;
 
-  late final List<PageScrollUiModel> _pageScrollStates;
+  late final List<TvPageUiModel> _pageScrollStates;
   static const int _pageCount = 3;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
-    _pageScrollStates = List.generate(_pageCount, (_) => PageScrollUiModel());
+    _pageScrollStates = List.generate(_pageCount, (_) => TvPageUiModel());
   }
 
   @override
