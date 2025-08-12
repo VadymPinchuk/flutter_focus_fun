@@ -6,13 +6,13 @@ import 'package:flutter_focus_fun_tv_demo/data/content_item.dart'
 class TvTile extends StatefulWidget {
   final ContentItem item;
   final bool autofocus;
-  final void Function(ContentItem, bool)? onFocusChange;
+  final void Function(bool hasFocus) onFocusChange;
 
   const TvTile({
     super.key,
     required this.item,
     this.autofocus = false,
-    this.onFocusChange,
+    required this.onFocusChange,
   });
 
   @override
@@ -30,7 +30,10 @@ class _TvTileState extends State<TvTile> {
         setState(() {
           _isFocused = hasFocus;
         });
-        widget.onFocusChange?.call(widget.item, hasFocus);
+        widget.onFocusChange(hasFocus);
+        if (hasFocus) {
+          context.pageUiModel.focusedItem.value = widget.item;
+        }
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),

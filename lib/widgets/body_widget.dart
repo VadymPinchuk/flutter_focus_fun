@@ -2,9 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/mock_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/tv_screen_model.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_background.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/rail_wrapper.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/tv_rail.dart';
+
+/// A custom scroll controller that handles precise scrolling for a horizontal TV rail.
+/// It accounts for list padding to ensure focused items are correctly positioned.
+class TvRailScrollController {
+  final ScrollController scrollController;
+  final double tileWidth;
+  final double tileSpacing;
+  final double leftPadding;
+
+  TvRailScrollController({
+    required this.scrollController,
+    required this.tileWidth,
+    required this.tileSpacing,
+    required this.leftPadding,
+  });
+
+  /// Scrolls the list to bring the item at the given index into view.
+  void scrollToIndex(int index) {
+    // Calculate the target offset to center the tile, accounting for the left padding.
+    final targetOffset = (index * (tileWidth + tileSpacing));
+
+    scrollController.animateTo(
+      targetOffset.clamp(0.0, scrollController.position.maxScrollExtent),
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
+  }
+}
 
 class BodyWidget extends StatefulWidget {
   final List<ContentRailData> rails;
@@ -25,6 +54,10 @@ class _BodyWidgetState extends State<BodyWidget> {
   // A fixed height for each rail is crucial for calculating the layout.
   static const double _kRailHeight = 192.0;
 
+  // A fixed width for each tile, used for horizontal scroll calculations.
+  static const double _kTileWidth = 248.0; // Aspect ratio 16/9 * height 140
+  static const double _kTileSpacing = 16.0;
+
   @override
   void initState() {
     super.initState();
@@ -34,10 +67,10 @@ class _BodyWidgetState extends State<BodyWidget> {
     // After the first frame is built, calculate and jump to the initial scroll position.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        final screenHeight = MediaQuery.sizeOf(context).height;
-        final initialOffset = screenHeight - (1.5 * _kRailHeight);
-        _verticalScrollController.jumpTo(initialOffset);
-        _pageModel.setVerticalOffset(initialOffset);
+        // final screenHeight = MediaQuery.sizeOf(context).height;
+        // final initialOffset = screenHeight - (1.5 * _kRailHeight);
+        // _verticalScrollController.jumpTo(initialOffset);
+        // _pageModel.setVerticalOffset(initialOffset);
       }
     });
 
@@ -56,6 +89,7 @@ class _BodyWidgetState extends State<BodyWidget> {
   void _onFocusChange(int railIndex) {
     // If the focus has moved to a new rail, trigger a scroll.
     if (_focusedRailIndex != railIndex) {
+      context.pageUiModel.focusedRailIndex.value = railIndex;
       _scrollToRail(railIndex);
       setState(() {
         _focusedRailIndex = railIndex;
@@ -84,35 +118,42 @@ class _BodyWidgetState extends State<BodyWidget> {
     final screenHeight = MediaQuery.sizeOf(context).height;
     final topPadding = screenHeight - (1.5 * _kRailHeight);
     final bottomPadding = _kRailHeight / 2;
+    final navBarLocation = context.tvScreenModel.navBarLocation.value;
+    final horizontalPadding =
+        navBarLocation == TvNavBarLocation.left ? 116.0 : 48.0;
 
     return Stack(
       children: [
         const DynamicBackground(),
-        Padding(
-          padding: EdgeInsets.only(top: topPadding),
-          child: CustomScrollView(
-            controller: _verticalScrollController,
-            slivers: [
-              SliverList(
-                delegate: SliverChildBuilderDelegate((context, index) {
-                  final railData = widget.rails[index];
-                  // The RailWrapper now handles its own visibility.
-                  return RailWrapper(
+        CustomScrollView(
+          controller: _verticalScrollController,
+          slivers: [
+            SliverPadding(padding: EdgeInsets.only(top: topPadding)),
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final railData = widget.rails[index];
+                return RailWrapper(
+                  railIndex: index,
+                  child: TvRail(
+                    data: railData,
                     railIndex: index,
-                    child: TvRail(
-                      data: railData,
-                      railIndex: index,
-                      horizontalController: _pageModel.getHorizontalController(
+                    horizontalScrollController: TvRailScrollController(
+                      scrollController: _pageModel.getHorizontalController(
                         railData.id,
                       ),
-                      onFocusChange: (hasFocus) => _onFocusChange(index),
+                      tileWidth: _kTileWidth,
+                      tileSpacing: _kTileSpacing,
+                      leftPadding: horizontalPadding,
                     ),
-                  );
-                }, childCount: widget.rails.length),
-              ),
-              SliverPadding(padding: EdgeInsets.only(bottom: bottomPadding)),
-            ],
-          ),
+                    onFocusChange: (tileIndex) {
+                      _onFocusChange(index);
+                    },
+                  ),
+                );
+              }, childCount: widget.rails.length),
+            ),
+            SliverPadding(padding: EdgeInsets.only(bottom: bottomPadding)),
+          ],
         ),
       ],
     );
