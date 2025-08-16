@@ -1,36 +1,190 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold_layout.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
+import 'package:flutter_focus_fun_tv_demo/grid_traversal_policy.dart';
+import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/navigation/mobile_nav_bar.dart';
+import 'package:flutter_focus_fun_tv_demo/navigation/mobile_status_bar_overlay.dart';
+import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/home_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/intro/intro_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
+import 'package:provider/provider.dart' show ChangeNotifierProvider;
 
-class ScreenScaffold extends StatelessWidget {
-  final Widget? header; // TopNavBar on web
-  final Widget body; // PageScaffold or Page as is
-  final Widget? footer; // BottomNavBar - mobile
+class ScreenScaffold extends StatefulWidget {
+  final PageController pageController;
+  final int selectedIndex;
+  final ValueChanged<int> onNavItemTapped;
+  final ValueChanged<int> onPageChanged;
+  final List<PageUiModel> pageModels;
 
   const ScreenScaffold({
     super.key,
-    this.header,
-    required this.body,
-    this.footer,
+    required this.pageController,
+    required this.selectedIndex,
+    required this.onNavItemTapped,
+    required this.onPageChanged,
+    required this.pageModels,
   });
 
   @override
+  State<ScreenScaffold> createState() => _ScreenScaffoldState();
+}
+
+class _ScreenScaffoldState extends State<ScreenScaffold> {
+  int _selectedIndex = 0;
+  final FocusScopeNode _navBarScopeNode = FocusScopeNode(
+    debugLabel: 'NavBarScope',
+  );
+  final FocusScopeNode _homePageScopeNode = FocusScopeNode(
+    debugLabel: 'HomePageScope',
+  );
+  final FocusScopeNode _infoPageScopeNode = FocusScopeNode(
+    debugLabel: 'InfoPageScope',
+  );
+  final FocusScopeNode _settingsPageScopeNode = FocusScopeNode(
+    debugLabel: 'SettingsPageScope',
+  );
+
+  late final pageScopeNodes = [
+    _homePageScopeNode,
+    _infoPageScopeNode,
+    _settingsPageScopeNode,
+  ];
+
+  @override
   Widget build(BuildContext context) {
-    final List<Widget> children = <Widget>[];
-
-    children.add(LayoutId(id: ScreenSlot.body, child: BodyBuilder(body: body)));
-
-    header?.let((it) {
-      children.add(LayoutId(id: ScreenSlot.header, child: it));
-    });
-    footer?.let((it) {
-      children.add(LayoutId(id: ScreenSlot.footer, child: it));
-    });
-    return Material(
-      child: CustomMultiChildLayout(
-        delegate: ScreenScaffoldLayout(),
-        children: children,
+    return Actions(
+      actions: {
+        DismissIntent: CallbackAction<DismissIntent>(
+          onInvoke: (intent) => _navBarScopeNode.requestFocus(),
+        ),
+      },
+      child: Stack(
+        children: [
+          IndexedStack(
+            index: _selectedIndex,
+            children: [
+              FocusScope(
+                node: _homePageScopeNode,
+                onKeyEvent: (node, event) {
+                  return _maybeFocusOnNavBar(
+                    pageScopeNodes[_selectedIndex],
+                    event,
+                  );
+                },
+                child: ChangeNotifierProvider.value(
+                  value: widget.pageModels[0],
+                  child: const HomePage(),
+                ),
+              ),
+              FocusTraversalGroup(
+                policy: GridTraversalPolicy(),
+                child: FocusScope(
+                  node: _infoPageScopeNode,
+                  onKeyEvent: (node, event) {
+                    return _maybeFocusOnNavBar(
+                      pageScopeNodes[_selectedIndex],
+                      event,
+                    );
+                  },
+                  child: ChangeNotifierProvider.value(
+                    value: widget.pageModels[1],
+                    child: const IntroPage(),
+                  ),
+                ),
+              ),
+              // ),
+              FocusScope(
+                node: _settingsPageScopeNode,
+                onKeyEvent: (node, event) {
+                  return _maybeFocusOnNavBar(
+                    pageScopeNodes[_selectedIndex],
+                    event,
+                  );
+                },
+                child: ChangeNotifierProvider.value(
+                  value: widget.pageModels[2],
+                  child: const SettingsPage(),
+                ),
+              ),
+            ],
+          ),
+          ValueListenableBuilder<UiExperience>(
+            valueListenable: context.settingsModel.uiExperience,
+            builder:
+                (_, uiExperience, _) => switch (uiExperience) {
+                  UiExperience.tv => const SizedBox.shrink(),
+                  UiExperience.mobile => Align(
+                    alignment: Alignment.topCenter,
+                    child: MobileStatusBarOverlay(),
+                  ),
+                },
+          ),
+          FocusScope(
+            node: _navBarScopeNode,
+            onKeyEvent: (node, event) {
+              return _focusOnMainPanel(event);
+            },
+            child: ValueListenableBuilder<UiExperience>(
+              valueListenable: context.settingsModel.uiExperience,
+              builder:
+                  (_, uiExperience, _) => switch (uiExperience) {
+                    UiExperience.tv => TvNavBar(
+                      parentNode: _navBarScopeNode,
+                      selectedIndex: _selectedIndex,
+                      onItemSelected: handleNavBarClick,
+                    ),
+                    UiExperience.mobile => Align(
+                      alignment: Alignment.bottomCenter,
+                      child: MobileNavBar(
+                        parentNode: _navBarScopeNode,
+                        selectedIndex: _selectedIndex,
+                        onItemSelected: handleNavBarClick,
+                      ),
+                    ),
+                  },
+            ),
+          ),
+        ],
       ),
     );
+  }
+
+  void handleNavBarClick(int index) {
+    setState(() {
+      _selectedIndex = index;
+      final targetScopeNode = pageScopeNodes[_selectedIndex];
+      targetScopeNode.requestFocus();
+    });
+  }
+
+  KeyEventResult _focusOnMainPanel(KeyEvent event) {
+    if (event is KeyUpEvent &&
+        event.logicalKey == LogicalKeyboardKey.arrowRight) {
+      pageScopeNodes[_selectedIndex].requestFocus();
+
+      return KeyEventResult.handled;
+    }
+    return KeyEventResult.ignored;
+  }
+
+  KeyEventResult _maybeFocusOnNavBar(FocusScopeNode node, KeyEvent event) {
+    if (event is KeyUpEvent) {
+      return KeyEventResult.handled;
+    }
+    if (event.logicalKey != LogicalKeyboardKey.arrowLeft) {
+      return KeyEventResult.ignored;
+    }
+
+    if (!node.focusInDirection(TraversalDirection.left)) {
+      if (_navBarScopeNode.focusedChild == null) {
+        _navBarScopeNode.focusInDirection(TraversalDirection.left);
+      } else {
+        _navBarScopeNode.requestFocus();
+      }
+    }
+    return KeyEventResult.handled;
   }
 }

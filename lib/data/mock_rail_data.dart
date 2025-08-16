@@ -122,3 +122,71 @@ final List<ContentRailData> mockConfData = [
     ),
   ),
 ];
+
+// Helper function to generate a list of colors for the rails
+List<MaterialColor> _getRailColors() {
+  return [
+    Colors.red, Colors.pink, Colors.purple, Colors.deepPurple,
+    Colors.indigo, Colors.blue, Colors.lightBlue, Colors.cyan,
+    Colors.teal, Colors.green, Colors.lightGreen, Colors.lime,
+    Colors.yellow, Colors.amber, Colors.orange, Colors.deepOrange,
+    Colors.brown, Colors.blueGrey,
+    // Add more unique colors if needed
+    Colors.red, Colors.pink, Colors.purple, Colors.deepPurple, Colors.indigo,
+  ];
+}
+
+// Helper function to generate a list of icons for the tiles
+List<IconData> _getTileIcons() {
+  return [
+    Icons.widgets_outlined,
+    Icons.gesture,
+    Icons.animation,
+    Icons.style,
+    Icons.layers,
+    Icons.pages,
+    Icons.navigation,
+    Icons.input,
+    Icons.settings_input_component,
+    Icons.format_paint,
+    Icons.code,
+    Icons.build,
+    Icons.developer_mode,
+    Icons.memory,
+    Icons.network_check,
+    Icons.phone_android,
+    Icons.tv,
+    Icons.desktop_windows,
+    Icons.web,
+    Icons.bug_report,
+    Icons.security,
+    Icons.accessibility,
+    Icons.group,
+    Icons.cloud,
+    Icons.storage,
+    Icons.camera,
+    Icons.music_note,
+  ];
+}
+
+// Generates a large set of mock data for the UI.
+final List<ContentRailData> mockHomeData = List.generate(25, (railIndex) {
+  final colors = _getRailColors();
+  final icons = _getTileIcons();
+  final railColor = colors[railIndex % colors.length];
+
+  return ContentRailData(
+    title: 'Rail Topic ${railIndex + 1}',
+    items: List.generate(25, (tileIndex) {
+      return ContentItem(
+        title: 'Tile ${railIndex + 1}.${tileIndex + 1}',
+        description: 'A few short words.',
+        // Updated description
+        color: railColor[(tileIndex % 9 + 1) * 100]!,
+        // Cycle through shades of the rail's color
+        icon: icons[tileIndex % icons.length],
+        imagePath: '', // Image path can be added later if needed
+      );
+    }),
+  );
+});

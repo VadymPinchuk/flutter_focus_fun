@@ -5,14 +5,14 @@ import 'package:flutter_focus_fun_tv_demo/data/content_item.dart'
 import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class TvTile extends StatefulWidget {
-  final ContentItem item;
   final bool autofocus;
+  final ContentItem item;
   final void Function(bool hasFocus) onFocusChange;
 
   const TvTile({
     super.key,
-    required this.item,
     this.autofocus = false,
+    required this.item,
     required this.onFocusChange,
   });
 
@@ -56,7 +56,11 @@ class _TvTileState extends State<TvTile> {
                   )
                   : null,
         ),
-        child: ContentTile(item: widget.item),
+        child: AnimatedOpacity(
+          opacity: _isFocused ? 1.0 : 0.75,
+          duration: const Duration(milliseconds: 200),
+          child: ContentTile(item: widget.item),
+        ),
       ),
     );
   }

@@ -1,31 +1,31 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/side_menu/side_menu_traversal_policy.dart';
+import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar_traversal_policy.dart';
 
-class SideMenu extends StatefulWidget {
+class TvNavBar extends StatefulWidget {
   final int selectedIndex;
-  final FocusNode focusNode;
+  final FocusNode parentNode;
   final ValueChanged<int> onItemSelected;
 
-  const SideMenu({
+  const TvNavBar({
     super.key,
     this.selectedIndex = 0,
-    required this.focusNode,
+    required this.parentNode,
     required this.onItemSelected,
   });
 
   @override
-  State<SideMenu> createState() => _SideMenuState();
+  State<TvNavBar> createState() => _TvNavBarState();
 }
 
-class _SideMenuState extends State<SideMenu> {
+class _TvNavBarState extends State<TvNavBar> {
   bool isFocused = false;
   late int selectedIndex = widget.selectedIndex;
-  late final FocusNode focusNode = widget.focusNode;
+  late final FocusNode focusNode = widget.parentNode;
   final List<FocusNode> sideMenuNodes = List.generate(
-    4,
-    (index) => FocusNode(debugLabel: 'SideMenuItem $index'),
+    3,
+    (index) => FocusNode(debugLabel: 'TvNavBarItem $index'),
   );
 
   void itemSelected(int index) {
@@ -48,15 +48,15 @@ class _SideMenuState extends State<SideMenu> {
         }
       },
       child: FocusTraversalGroup(
-        policy: SideMenuTraversalPolicy(sideMenuNodes: sideMenuNodes),
+        policy: TvNavBarTraversalPolicy(navBarNodes: sideMenuNodes),
         child: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: AnimatedContainer(
               curve: Curves.easeOut,
               duration: const Duration(milliseconds: 300),
-              width: isFocused ? 240 : 66,
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              width: isFocused ? 256.0 : 64.0,
               decoration: BoxDecoration(
                 color: Colors.black.withValues(alpha: 0.3),
                 boxShadow: [
@@ -70,31 +70,29 @@ class _SideMenuState extends State<SideMenu> {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 32,
                 children: [
-                  _SideMenuButton.search(
+                  Spacer(),
+                  _TvNavBarButton.home(
                     isSelected: selectedIndex == 0,
                     showLabel: isFocused,
                     focusNode: sideMenuNodes[0],
                     onPressed: () => itemSelected(0),
                   ),
-                  _SideMenuButton.home(
+                  const SizedBox(height: 24.0),
+                  _TvNavBarButton.info(
                     isSelected: selectedIndex == 1,
                     showLabel: isFocused,
                     focusNode: sideMenuNodes[1],
                     onPressed: () => itemSelected(1),
                   ),
-                  _SideMenuButton.watchlist(
+                  Spacer(),
+                  Divider(height: 1, color: Colors.white24),
+                  const SizedBox(height: 24.0),
+                  _TvNavBarButton.settings(
                     isSelected: selectedIndex == 2,
                     showLabel: isFocused,
                     focusNode: sideMenuNodes[2],
                     onPressed: () => itemSelected(2),
-                  ),
-                  _SideMenuButton.settings(
-                    isSelected: selectedIndex == 3,
-                    showLabel: isFocused,
-                    focusNode: sideMenuNodes[3],
-                    onPressed: () => itemSelected(3),
                   ),
                 ],
               ),
@@ -106,55 +104,56 @@ class _SideMenuState extends State<SideMenu> {
   }
 }
 
-class _SideMenuButton extends StatefulWidget {
-  final VoidCallback onPressed;
-  final bool isSelected;
-  final IconData icon;
-  final String label;
-  final bool showLabel;
+/// TV navigation bar buttons
+typedef NavButtonIcon = ({IconData active, IconData inactive});
+
+class _TvNavBarButton extends StatefulWidget {
   final FocusNode focusNode;
+  final NavButtonIcon icon;
+  final String label;
+  final bool isSelected;
+  final bool showLabel;
+  final VoidCallback onPressed;
 
-  const _SideMenuButton.search({
-    required this.onPressed,
-    this.isSelected = false,
-    this.showLabel = false,
-    required this.focusNode,
-  }) : icon = Icons.search,
-       label = 'SEARCH';
-
-  const _SideMenuButton.home({
+  const _TvNavBarButton.home({
     required this.onPressed,
     this.isSelected = false,
     this.showLabel = true,
     required this.focusNode,
-  }) : icon = Icons.home,
+  }) : icon = (active: Icons.home_rounded, inactive: Icons.home_outlined),
        label = 'HOME';
 
-  const _SideMenuButton.watchlist({
+  const _TvNavBarButton.info({
     required this.onPressed,
     this.isSelected = false,
     this.showLabel = false,
     required this.focusNode,
-  }) : icon = Icons.add,
-       label = 'WATCHLIST';
+  }) : icon = (
+         active: Icons.info_rounded,
+         inactive: Icons.info_outline_rounded,
+       ),
+       label = 'INFO';
 
-  const _SideMenuButton.settings({
+  const _TvNavBarButton.settings({
     required this.onPressed,
     this.isSelected = false,
     this.showLabel = false,
     required this.focusNode,
-  }) : icon = Icons.settings,
+  }) : icon = (
+         active: Icons.settings_rounded,
+         inactive: Icons.settings_outlined,
+       ),
        label = 'SETTINGS';
 
   @override
-  State<_SideMenuButton> createState() => _SideMenuButtonState();
+  State<_TvNavBarButton> createState() => _TvNavBarButtonState();
 }
 
-class _SideMenuButtonState extends State<_SideMenuButton> {
+class _TvNavBarButtonState extends State<_TvNavBarButton> {
   bool showLabel = false;
 
   @override
-  void didUpdateWidget(covariant _SideMenuButton oldWidget) {
+  void didUpdateWidget(covariant _TvNavBarButton oldWidget) {
     if (widget.showLabel == false) {
       setState(() {
         showLabel = false;
@@ -173,62 +172,55 @@ class _SideMenuButtonState extends State<_SideMenuButton> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 8,
-      children: [
-        Icon(
-          widget.icon,
-          color: widget.isSelected ? Colors.white : Colors.white54,
-          size: 24,
-        ),
-        TextButton(
-          onPressed: widget.onPressed,
-          focusNode: widget.focusNode,
-          style: ButtonStyle(
-            padding: WidgetStateProperty.resolveWith((states) {
-              return showLabel
-                  ? const EdgeInsets.symmetric(horizontal: 12)
-                  : EdgeInsets.zero;
-            }),
-            minimumSize: WidgetStatePropertyAll(Size.zero),
-            backgroundBuilder: (context, states, child) {
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border(
-                    left: BorderSide(
-                      color:
-                          states.contains(WidgetState.focused)
-                              ? Colors.white
-                              : Colors.transparent,
-                      width: 2,
-                    ),
-                  ),
-                ),
-                child: child,
-              );
-            },
-            shape: WidgetStatePropertyAll(RoundedRectangleBorder()),
-            overlayColor: WidgetStatePropertyAll(Colors.transparent),
-            foregroundColor: WidgetStateProperty.resolveWith((states) {
-              if (states.contains(WidgetState.focused)) {
-                return Colors.white;
-              }
-              return Colors.white54;
-            }),
-            textStyle: WidgetStatePropertyAll(
-              const TextStyle(
+    return TextButton(
+      onPressed: widget.onPressed,
+      focusNode: widget.focusNode,
+      style: ButtonStyle(
+        padding: WidgetStatePropertyAll(const EdgeInsets.all(16.0)),
+        minimumSize: WidgetStatePropertyAll(Size.zero),
+        shape: WidgetStatePropertyAll(RoundedRectangleBorder()),
+        backgroundColor: WidgetStateProperty.resolveWith((states) {
+          return states.contains(WidgetState.focused)
+              ? Colors.white10
+              : Colors.transparent;
+        }),
+        foregroundColor: WidgetStateProperty.resolveWith((states) {
+          if (states.contains(WidgetState.focused)) {
+            return Colors.white;
+          }
+          return Colors.white54;
+        }),
+        textStyle: WidgetStateProperty.resolveWith((states) {
+          return states.contains(WidgetState.focused)
+              ? const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 1,
+              )
+              : const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w400,
                 letterSpacing: 1,
-              ),
-            ),
+              );
+        }),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            widget.isSelected ? widget.icon.active : widget.icon.inactive,
+            color: widget.isSelected ? Colors.white : Colors.white54,
+            size: 32.0,
           ),
-          child: AnimatedSwitcher(
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 100),
+            child: SizedBox(width: showLabel ? 8.0 : 0.0),
+          ),
+          AnimatedSwitcher(
             duration: const Duration(milliseconds: 100),
             child: showLabel ? Text(widget.label) : const SizedBox.shrink(),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

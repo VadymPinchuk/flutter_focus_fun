@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/mock_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_screen_model.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_background.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/rail_wrapper.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/tv_rail.dart';
@@ -112,7 +111,6 @@ class _BodyWidgetState extends State<BodyWidget> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
-    print('Scrolling to rail $newRailIndex, new offset: $clampedOffset');
   }
 
   @override
@@ -120,9 +118,8 @@ class _BodyWidgetState extends State<BodyWidget> {
     final screenHeight = MediaQuery.sizeOf(context).height;
     final topPadding = screenHeight - (1.5 * _kRailHeight);
     final bottomPadding = _kRailHeight / 2;
-    final navBarLocation = context.tvScreenModel.navBarLocation.value;
-    final horizontalPadding =
-        navBarLocation == TvNavBarLocation.left ? 116.0 : 48.0;
+    final isTopNavBar = context.settingsModel.useTopNavBar.value;
+    final horizontalPadding = isTopNavBar ? 48.0 : 116.0;
 
     return Stack(
       children: [

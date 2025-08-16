@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app/mobile_app.dart';
-import 'package:flutter_focus_fun_tv_demo/app/tv_app.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_screen_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/tv_settings_model.dart';
+import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
@@ -18,25 +18,29 @@ class PresentationApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     final platform = Theme.of(context).platform;
     final uiExperience = defaultExperienceFor(platform);
 
-    return Provider<UiExperience>.value(
-      value: uiExperience,
-      child: MaterialApp(
-        title: 'Flutter Focus Fun',
-        debugShowCheckedModeBanner: false,
-        shortcuts: KeyboardShortcuts(uiExperience: uiExperience).shortcuts(),
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          primaryColor: Colors.blueGrey.shade900,
-          scaffoldBackgroundColor: Colors.transparent,
-          textTheme: const TextTheme(
-            bodyLarge: TextStyle(color: Colors.white),
-            bodyMedium: TextStyle(color: Colors.white70),
-          ),
+    return MaterialApp(
+      title: 'Flutter Focus Fun',
+      debugShowCheckedModeBanner: false,
+      shortcuts: KeyboardShortcuts(uiExperience: uiExperience).shortcuts(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.blueGrey.shade900,
+        scaffoldBackgroundColor: Colors.transparent,
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: Colors.white),
+          bodyMedium: TextStyle(color: Colors.white70),
         ),
-        home: Material(
+      ),
+      home: MultiProvider(
+        providers: [
+          Provider<TvSettingsModel>(create: (_) => TvSettingsModel()),
+          Provider<UiExperience>.value(value: uiExperience),
+        ],
+        child: Material(
           color: Colors.transparent,
           child: const Stack(children: [BackgroundImage(), AppShell()]),
         ),
@@ -92,26 +96,12 @@ class _AppShellState extends State<AppShell> {
 
   @override
   Widget build(BuildContext context) {
-    return switch (context.read<UiExperience>()) {
-      UiExperience.mobile => SafeArea(
-        child: MobileApp(
-          pageController: _pageController,
-          selectedIndex: _selectedIndex,
-          onNavItemTapped: _onNavItemTapped,
-          onPageChanged: _onPageChanged,
-          pageModels: _pageModels,
-        ),
-      ),
-      UiExperience.tv => Provider(
-        create: (_) => TvScreenModel(),
-        child: TvApp(
-          pageController: _pageController,
-          selectedIndex: _selectedIndex,
-          onNavItemTapped: _onNavItemTapped,
-          onPageChanged: _onPageChanged,
-          pageModels: _pageModels,
-        ),
-      ),
-    };
+    return ScreenScaffold(
+      pageController: _pageController,
+      selectedIndex: _selectedIndex,
+      onNavItemTapped: _onNavItemTapped,
+      onPageChanged: _onPageChanged,
+      pageModels: _pageModels,
+    );
   }
 }

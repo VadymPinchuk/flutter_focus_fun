@@ -3,18 +3,20 @@ import 'package:flutter/widgets.dart';
 /// A custom focus traversal policy for a TV app side menu.
 /// Restricts vertical focus traversal to side menu items only,
 /// while allowing unrestricted horizontal navigation.
-class SideMenuTraversalPolicy extends FocusTraversalPolicy
+class TvNavBarTraversalPolicy extends FocusTraversalPolicy
     with DirectionalFocusTraversalPolicyMixin {
-  final List<FocusNode> sideMenuNodes;
+  final List<FocusNode> navBarNodes;
 
   /// Creates a policy that restricts vertical focus traversal to the side menu.
   ///
-  /// [sideMenuNodes] should contain the list of focus nodes that belong to the side menu.
-  SideMenuTraversalPolicy({required this.sideMenuNodes});
+  /// [navBarNodes] should contain the list of focus nodes that belong to the side menu.
+  TvNavBarTraversalPolicy({required this.navBarNodes});
 
   @override
   Iterable<FocusNode> sortDescendants(
-      Iterable<FocusNode> descendants, FocusNode currentNode) {
+    Iterable<FocusNode> descendants,
+    FocusNode currentNode,
+  ) {
     // Default sorting behavior (can be customized if needed).
     return descendants;
   }
@@ -24,14 +26,15 @@ class SideMenuTraversalPolicy extends FocusTraversalPolicy
     if (direction == TraversalDirection.up ||
         direction == TraversalDirection.down) {
       // Restrict vertical navigation to side menu items only.
-      if (sideMenuNodes.contains(currentNode)) {
-        final int currentIndex = sideMenuNodes.indexOf(currentNode);
-        final int nextIndex = direction == TraversalDirection.down
-            ? currentIndex + 1
-            : currentIndex - 1;
+      if (navBarNodes.contains(currentNode)) {
+        final int currentIndex = navBarNodes.indexOf(currentNode);
+        final int nextIndex =
+            direction == TraversalDirection.down
+                ? currentIndex + 1
+                : currentIndex - 1;
 
-        if (nextIndex >= 0 && nextIndex < sideMenuNodes.length) {
-          sideMenuNodes[nextIndex].requestFocus();
+        if (nextIndex >= 0 && nextIndex < navBarNodes.length) {
+          navBarNodes[nextIndex].requestFocus();
           return true;
         }
       }

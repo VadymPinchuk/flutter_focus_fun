@@ -21,54 +21,46 @@ class ContentTile extends StatelessWidget {
               ),
             );
           },
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              // Image is the base layer
-              Image.asset(
-                item.imagePath,
-                fit: BoxFit.cover,
-                // Error handling for missing assets
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.grey[800],
-                    child: const Center(
-                      child: Icon(
-                        Icons.image_not_supported,
-                        color: Colors.white54,
+          child: Container(
+            color: item.color,
+            padding: const EdgeInsets.all(8.0),
+            child: Stack(
+              children: [
+                Center(child: Icon(item.icon, size: 48, color: Colors.white)),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.title,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        shadows: [
+                          Shadow(blurRadius: 2.0, color: Colors.black54),
+                        ],
                       ),
                     ),
-                  );
-                },
-              ),
-              // Gradient overlay for text readability
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.transparent, Colors.black.withOpacity(0.8)],
-                    stops: const [0.5, 1.0],
-                  ),
+                    const SizedBox(height: 4),
+                    Text(
+                      item.description,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 12,
+                        shadows: const [
+                          Shadow(blurRadius: 2.0, color: Colors.black54),
+                        ],
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
-              ),
-              // Text is positioned at the bottom
-              Positioned(
-                bottom: 8,
-                left: 8,
-                right: 8,
-                child: Text(
-                  item.title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    shadows: [Shadow(blurRadius: 2.0, color: Colors.black87)],
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
