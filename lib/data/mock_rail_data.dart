@@ -157,14 +157,14 @@ List<IconData> _getTileIcons() {
 }
 
 // Generates a large set of mock data for the UI.
-final List<ContentRailData> mockHomeData = List.generate(25, (railIndex) {
+final List<ContentRailData> mockHomeData = List.generate(20, (railIndex) {
   final colors = Colors.primaries;
   final icons = _getTileIcons();
   final railColor = colors[railIndex % colors.length];
 
   return ContentRailData(
     title: 'Rail Topic ${railIndex + 1}',
-    items: List.generate(25, (tileIndex) {
+    items: List.generate(20, (tileIndex) {
       return ContentItem(
         title: 'Tile ${railIndex + 1}.${tileIndex + 1}',
         description: 'A dummy item description',

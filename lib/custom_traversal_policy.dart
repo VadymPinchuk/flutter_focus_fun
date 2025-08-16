@@ -1,10 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/scrollable_ensure_alignment.dart'
     show ScrollableX;
 
-class GridTraversalPolicy extends ReadingOrderTraversalPolicy {
+class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
   static int _verticalCompare(Offset target, Offset a, Offset b) {
     return (a.dy - target.dy).abs().compareTo((b.dy - target.dy).abs());
   }
@@ -299,7 +300,7 @@ class GridTraversalPolicy extends ReadingOrderTraversalPolicy {
     ScrollableX.ensureCenterVerticalAlignment(
       node.context!,
       alignmentPolicy,
-      duration: Duration(milliseconds: 200),
+      duration: kAnimationDuration,
       curve: curve ?? Curves.easeOut,
     );
   };

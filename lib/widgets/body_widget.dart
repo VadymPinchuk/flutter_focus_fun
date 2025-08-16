@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/mock_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_background.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/rail_wrapper.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/tv_rail.dart';
@@ -50,29 +52,22 @@ class _BodyWidgetState extends State<BodyWidget> {
   // State to track the currently focused rail.
   int _focusedRailIndex = 0;
 
-  // A fixed height for each rail is crucial for calculating the layout.
-  static const double _kRailHeight = 192.0;
-
-  // A fixed width for each tile, used for horizontal scroll calculations.
-  static const double _kTileWidth = 248.0; // Aspect ratio 16/9 * height 140
-  static const double _kTileSpacing = 16.0;
-
   @override
   void initState() {
     super.initState();
     _pageModel = context.pageUiModel;
     _verticalScrollController = ScrollController();
 
-    // After the first frame is built, calculate and jump to the initial scroll position.
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        // final screenHeight = MediaQuery.sizeOf(context).height;
-        // final initialOffset = screenHeight - (1.5 * _kRailHeight);
-        // _verticalScrollController.jumpTo(initialOffset);
-        // _pageModel.setVerticalOffset(initialOffset);
-      }
-    });
-
+    // // After the first frame is built, calculate and jump to the initial scroll position.
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   if (mounted) {
+    //     // final screenHeight = MediaQuery.sizeOf(context).height;
+    //     // final initialOffset = screenHeight - (1.5 * _kRailHeight);
+    //     // _verticalScrollController.jumpTo(initialOffset);
+    //     // _pageModel.setVerticalOffset(initialOffset);
+    //   }
+    // });
+    //
     _verticalScrollController.addListener(() {
       _pageModel.setVerticalOffset(_verticalScrollController.offset);
     });
@@ -101,14 +96,14 @@ class _BodyWidgetState extends State<BodyWidget> {
     if (_focusedRailIndex == newRailIndex) return;
     final direction = newRailIndex > _focusedRailIndex ? 1 : -1;
     final currentOffset = _verticalScrollController.offset;
-    final newOffset = currentOffset + (direction * _kRailHeight);
+    final newOffset = currentOffset + (direction * kRailHeight);
 
     final maxScroll = _verticalScrollController.position.maxScrollExtent;
     final clampedOffset = newOffset.clamp(0.0, maxScroll);
 
     _verticalScrollController.animateTo(
       clampedOffset,
-      duration: const Duration(milliseconds: 300),
+      duration: kAnimationDuration,
       curve: Curves.easeInOut,
     );
   }
@@ -116,48 +111,62 @@ class _BodyWidgetState extends State<BodyWidget> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.sizeOf(context).height;
-    final topPadding = screenHeight - (1.5 * _kRailHeight);
-    final bottomPadding = _kRailHeight / 2;
     final isHorizontalNavBar =
         context.settingsModel.uiExperience.value.isMobile;
-    // TODO: based on the Screen Grid
     final railPadding = isHorizontalNavBar ? 48.0 : 80.0;
 
-    return Stack(
-      children: [
-        const DynamicBackground(),
-        CustomScrollView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: _verticalScrollController,
-          slivers: [
-            SliverPadding(padding: EdgeInsets.only(top: topPadding)),
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                final railData = widget.rails[index];
-                return RailWrapper(
-                  railIndex: index,
-                  child: TvRail(
-                    data: railData,
-                    railIndex: index,
-                    railScrollController: TvRailScrollController(
-                      scrollController: _pageModel.getHorizontalController(
-                        railData.id,
-                      ),
-                      tileWidth: _kTileWidth,
-                      tileSpacing: _kTileSpacing,
-                      railPadding: railPadding,
+    return ValueListenableBuilder(
+      valueListenable: context.settingsModel.useTvPageLayout,
+      builder:
+          (_, useTvPageLayout, __) => Stack(
+            children: [
+              useTvPageLayout
+                  ? const DynamicBackground()
+                  : const SizedBox.shrink(),
+              CustomScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _verticalScrollController,
+                slivers: [
+                  // shift rail to bottom part of the screen
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height:
+                          useTvPageLayout
+                              ? screenHeight - (1.5 * kRailHeight)
+                              : 0.0,
                     ),
-                    onFocusChange: (tileIndex) {
-                      _onFocusChange(index);
-                    },
                   ),
-                );
-              }, childCount: widget.rails.length),
-            ),
-            SliverPadding(padding: EdgeInsets.only(bottom: bottomPadding)),
-          ],
-        ),
-      ],
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                      final railData = widget.rails[index];
+                      return TvRail(
+                        data: railData,
+                        railIndex: index,
+                        railScrollController: TvRailScrollController(
+                          scrollController: _pageModel.getHorizontalController(
+                            railData.id,
+                          ),
+                          tileWidth: kTileWidth,
+                          tileSpacing: kTileSpacing,
+                          railPadding: railPadding,
+                        ),
+                        onFocusChange: (_) {
+                          if (useTvPageLayout) _onFocusChange(index);
+                        },
+                      ).let(
+                        (rail) =>
+                            useTvPageLayout
+                                ? RailWrapper(railIndex: index, child: rail)
+                                : rail,
+                      );
+                    }, childCount: widget.rails.length),
+                  ),
+                  // save some space at the bottom to make rail scroll nice
+                  SliverToBoxAdapter(child: SizedBox(height: kRailHeight / 2)),
+                ],
+              ),
+            ],
+          ),
     );
   }
 }

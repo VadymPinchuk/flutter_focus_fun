@@ -22,7 +22,7 @@ class SettingsModel {
 
   /// Determines if a visual decoration (e.g., a border or scale effect)
   /// should be shown on the currently focused item.
-  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(false);
+  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(true);
 
   void toggleFocusDecoration() {
     useFocusDecoration.value = !useFocusDecoration.value;

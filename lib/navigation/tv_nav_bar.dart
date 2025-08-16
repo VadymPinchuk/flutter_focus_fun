@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar_traversal_policy.dart';
 
@@ -55,7 +56,7 @@ class _TvNavBarState extends State<TvNavBar> {
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: AnimatedContainer(
               curve: Curves.easeOut,
-              duration: const Duration(milliseconds: 300),
+              duration: kAnimationDuration,
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               width: isFocused ? 256.0 : 64.0,
               decoration: BoxDecoration(
@@ -189,7 +190,7 @@ class _TvNavBarButtonState extends State<_TvNavBarButton> {
         showLabel = false;
       });
     } else {
-      Future.delayed(const Duration(milliseconds: 250), () {
+      Future.delayed(kAnimationDuration, () {
         if (mounted) {
           setState(() {
             showLabel = widget.isFocused;
@@ -244,11 +245,11 @@ class _TvNavBarButtonState extends State<_TvNavBarButton> {
                 size: 32.0,
               ),
               AnimatedSwitcher(
-                duration: const Duration(milliseconds: 100),
+                duration: kAnimationDuration,
                 child: SizedBox(width: showLabel ? 8.0 : 0.0),
               ),
               AnimatedSwitcher(
-                duration: const Duration(milliseconds: 100),
+                duration: kAnimationDuration,
                 child: showLabel ? Text(widget.label) : const SizedBox.shrink(),
               ),
             ],

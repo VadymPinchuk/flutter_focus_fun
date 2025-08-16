@@ -55,9 +55,9 @@ class DynamicBackground extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withOpacity(0.6),
+                      Colors.black.withValues(alpha: 0.6),
                       Colors.transparent,
-                      Colors.black.withOpacity(0.8),
+                      Colors.black.withValues(alpha: 0.8),
                     ],
                     stops: const [0.0, 0.5, 1.0],
                   ),
@@ -92,7 +92,7 @@ class DynamicBackground extends StatelessWidget {
                           maxLines: 3,
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.white.withValues(alpha: 0.9),
                             shadows: const [
                               Shadow(blurRadius: 2, color: Colors.black54),
                             ],

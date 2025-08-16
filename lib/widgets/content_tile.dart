@@ -48,7 +48,7 @@ class ContentTile extends StatelessWidget {
                       item.description,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.white.withValues(alpha:0.8),
                         fontSize: 12,
                         shadows: const [
                           Shadow(blurRadius: 2.0, color: Colors.black54),

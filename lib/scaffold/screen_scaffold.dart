@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/grid_traversal_policy.dart';
+import 'package:flutter_focus_fun_tv_demo/custom_traversal_policy.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/mobile_nav_bar.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/mobile_status_bar_overlay.dart';
@@ -86,7 +86,7 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                 ),
               ),
               FocusTraversalGroup(
-                policy: GridTraversalPolicy(),
+                policy: CustomTraversalPolicy(),
                 child: FocusScope(
                   node: _infoPageScopeNode,
                   onKeyEvent: (node, event) {
@@ -115,7 +115,7 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                 ),
               ),
               FocusTraversalGroup(
-                policy: GridTraversalPolicy(),
+                policy: CustomTraversalPolicy(),
                 child: FocusScope(
                   node: _aboutPageScopeNode,
                   onKeyEvent: (node, event) {
