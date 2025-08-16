@@ -25,15 +25,15 @@ class SettingsModel {
   ValueNotifier<UiExperience> get uiExperience => _useTvLayout;
 
   /// Determines if arrow keys should be used for focus-based navigation.
-  final ValueNotifier<bool> useFocusToNavigate = ValueNotifier(true);
+  final ValueNotifier<bool> useFocusToNavigate = ValueNotifier(false);
 
   /// Determines if a visual decoration (e.g., a border or scale effect)
   /// should be shown on the currently focused item.
-  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(true);
+  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(false);
 
   /// Determines if the page should use the "1.5 rail" TV layout with a
   /// large preview area at the top.
-  final ValueNotifier<bool> useFixedRailViewport = ValueNotifier(true);
+  final ValueNotifier<bool> useFixedRailViewport = ValueNotifier(false);
 
   /// Notifies listeners when the navigation bar location changes.
   final ValueNotifier<bool> useTopNavBar = ValueNotifier(false);
