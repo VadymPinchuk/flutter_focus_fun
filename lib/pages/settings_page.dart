@@ -7,8 +7,8 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FocusTraversalGroup(
-      child: ListView(
+    return Scaffold(
+      body: ListView(
         padding: EdgeInsets.symmetric(horizontal: context.settingsModel.uiExperience.value.isTv ? 32.0 : 16.0),
         children: [
           SizedBox(height: MediaQuery.paddingOf(context).top),

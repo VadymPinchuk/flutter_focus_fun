@@ -13,20 +13,7 @@ import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:provider/provider.dart' show ChangeNotifierProvider;
 
 class ScreenScaffold extends StatefulWidget {
-  final PageController pageController;
-  final int selectedIndex;
-  final ValueChanged<int> onNavItemTapped;
-  final ValueChanged<int> onPageChanged;
-  final List<PageUiModel> pageModels;
-
-  const ScreenScaffold({
-    super.key,
-    required this.pageController,
-    required this.selectedIndex,
-    required this.onNavItemTapped,
-    required this.onPageChanged,
-    required this.pageModels,
-  });
+  const ScreenScaffold({super.key});
 
   @override
   State<ScreenScaffold> createState() => _ScreenScaffoldState();
@@ -34,6 +21,8 @@ class ScreenScaffold extends StatefulWidget {
 
 class _ScreenScaffoldState extends State<ScreenScaffold> {
   int _selectedIndex = 0;
+
+  /// Focus nodes
   final FocusScopeNode _navBarScopeNode = FocusScopeNode(
     debugLabel: 'NavBarScope',
   );
@@ -52,6 +41,16 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
     _infoPageScopeNode,
     _settingsPageScopeNode,
   ];
+
+  /// Page models to save local state
+  late final List<PageUiModel> pageModels;
+  static const int _pageCount = 3;
+
+  @override
+  void initState() {
+    super.initState();
+    pageModels = List.generate(_pageCount, (_) => PageUiModel());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +74,7 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                   );
                 },
                 child: ChangeNotifierProvider.value(
-                  value: widget.pageModels[0],
+                  value: pageModels[0],
                   child: const HomePage(),
                 ),
               ),
@@ -90,7 +89,7 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                     );
                   },
                   child: ChangeNotifierProvider.value(
-                    value: widget.pageModels[1],
+                    value: pageModels[1],
                     child: const IntroPage(),
                   ),
                 ),
@@ -105,7 +104,7 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                   );
                 },
                 child: ChangeNotifierProvider.value(
-                  value: widget.pageModels[2],
+                  value: pageModels[2],
                   child: const SettingsPage(),
                 ),
               ),

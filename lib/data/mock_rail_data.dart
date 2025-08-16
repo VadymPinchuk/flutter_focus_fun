@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart'
     show ContentItem;
+import 'package:uuid/uuid.dart';
 
 const _uuid = Uuid();
 
@@ -123,19 +123,6 @@ final List<ContentRailData> mockConfData = [
   ),
 ];
 
-// Helper function to generate a list of colors for the rails
-List<MaterialColor> _getRailColors() {
-  return [
-    Colors.red, Colors.pink, Colors.purple, Colors.deepPurple,
-    Colors.indigo, Colors.blue, Colors.lightBlue, Colors.cyan,
-    Colors.teal, Colors.green, Colors.lightGreen, Colors.lime,
-    Colors.yellow, Colors.amber, Colors.orange, Colors.deepOrange,
-    Colors.brown, Colors.blueGrey,
-    // Add more unique colors if needed
-    Colors.red, Colors.pink, Colors.purple, Colors.deepPurple, Colors.indigo,
-  ];
-}
-
 // Helper function to generate a list of icons for the tiles
 List<IconData> _getTileIcons() {
   return [
@@ -171,7 +158,7 @@ List<IconData> _getTileIcons() {
 
 // Generates a large set of mock data for the UI.
 final List<ContentRailData> mockHomeData = List.generate(25, (railIndex) {
-  final colors = _getRailColors();
+  final colors = Colors.primaries;
   final icons = _getTileIcons();
   final railColor = colors[railIndex % colors.length];
 
@@ -180,12 +167,10 @@ final List<ContentRailData> mockHomeData = List.generate(25, (railIndex) {
     items: List.generate(25, (tileIndex) {
       return ContentItem(
         title: 'Tile ${railIndex + 1}.${tileIndex + 1}',
-        description: 'A few short words.',
-        // Updated description
+        description: 'A dummy item description',
         color: railColor[(tileIndex % 9 + 1) * 100]!,
-        // Cycle through shades of the rail's color
         icon: icons[tileIndex % icons.length],
-        imagePath: '', // Image path can be added later if needed
+        imagePath: '',
       );
     }),
   );
