@@ -43,7 +43,7 @@ class SettingsModel {
   }
 
   /// Shows additional menu with rails about me and my information.
-  final ValueNotifier<bool> showAboutPage = ValueNotifier(false);
+  final ValueNotifier<bool> showAboutPage = ValueNotifier(true);
 
   void toggleAboutPageVisibility() {
     showAboutPage.value = !showAboutPage.value;

@@ -88,31 +88,28 @@ class _TvNavBarState extends State<TvNavBar> {
                     onPressed: () => itemSelected(1),
                   ),
                   Spacer(),
-                  Divider(height: 1, color: Colors.white24),
-                  const SizedBox(height: 24.0),
-                  _TvNavBarButton.settings(
-                    isSelected: selectedIndex == 2,
-                    isFocused: isFocused,
-                    focusNode: navBarNodes[2],
-                    onPressed: () => itemSelected(2),
-                  ),
                   ValueListenableBuilder<bool>(
                     valueListenable: context.settingsModel.showAboutPage,
-                    builder: (context, showAbout, child) {
-                      return showAbout
-                          ? Column(
-                            children: [
-                              const SizedBox(height: 24.0),
-                              _TvNavBarButton.about(
-                                isSelected: selectedIndex == 3,
-                                isFocused: isFocused,
-                                focusNode: navBarNodes[3],
-                                onPressed: () => itemSelected(3),
-                              ),
-                            ],
-                          )
-                          : const SizedBox.shrink();
-                    },
+                    builder:
+                        (context, showAbout, child) =>
+                            showAbout
+                                ? _TvNavBarButton.about(
+                                  isSelected: selectedIndex == 2,
+                                  isFocused: isFocused,
+                                  focusNode: navBarNodes[2],
+                                  onPressed: () => itemSelected(2),
+                                )
+                                : const SizedBox.shrink(),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: Divider(height: 1, color: Colors.white24),
+                  ),
+                  _TvNavBarButton.settings(
+                    isSelected: selectedIndex == 3,
+                    isFocused: isFocused,
+                    focusNode: navBarNodes[3],
+                    onPressed: () => itemSelected(3),
                   ),
                 ],
               ),

@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/custom_traversal_policy.dart';
-import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/mobile_nav_bar.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/mobile_status_bar_overlay.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/any_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/info_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
-import 'package:provider/provider.dart' show ChangeNotifierProvider;
 
+import '../pages/about_page.dart';
 import '../pages/home_page.dart';
 
 class ScreenScaffold extends StatefulWidget {
@@ -36,18 +34,18 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
   final FocusScopeNode _infoPageScopeNode = FocusScopeNode(
     debugLabel: 'InfoPageScope',
   );
-  final FocusScopeNode _settingsPageScopeNode = FocusScopeNode(
-    debugLabel: 'SettingsPageScope',
-  );
   final FocusScopeNode _aboutPageScopeNode = FocusScopeNode(
     debugLabel: 'AboutPageScope',
+  );
+  final FocusScopeNode _settingsPageScopeNode = FocusScopeNode(
+    debugLabel: 'SettingsPageScope',
   );
 
   late final pageScopeNodes = [
     _homePageScopeNode,
     _infoPageScopeNode,
-    _settingsPageScopeNode,
     _aboutPageScopeNode,
+    _settingsPageScopeNode,
   ];
 
   late final List<Widget> pages;
@@ -58,8 +56,8 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
     pages = [
       const HomePage(key: Key('HomePage')),
       const InfoPage(key: Key('InfoPage')),
+      const AboutPage(key: Key('AboutPage')),
       const SettingsPage(),
-      const AnyPage(key: Key('AboutPage')),
     ];
   }
 
@@ -104,6 +102,7 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
             children: [
               _buildPageScope(0, _homePageScopeNode),
               _buildPageScope(1, _infoPageScopeNode),
+              _buildPageScope(2, _aboutPageScopeNode),
               FocusScope(
                 node: _settingsPageScopeNode,
                 onKeyEvent: (node, event) {
@@ -114,7 +113,6 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                 },
                 child: const SettingsPage(),
               ),
-              _buildPageScope(3, _aboutPageScopeNode),
             ],
           ),
           ValueListenableBuilder<UiExperience>(

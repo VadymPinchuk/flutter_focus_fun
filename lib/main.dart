@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/model/settings_model.dart';
 import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
