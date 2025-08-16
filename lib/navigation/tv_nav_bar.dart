@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar_traversal_policy.dart';
 
 class TvNavBar extends StatefulWidget {
@@ -74,14 +75,14 @@ class _TvNavBarState extends State<TvNavBar> {
                   Spacer(),
                   _TvNavBarButton.home(
                     isSelected: selectedIndex == 0,
-                    showLabel: isFocused,
+                    isFocused: isFocused,
                     focusNode: navBarNodes[0],
                     onPressed: () => itemSelected(0),
                   ),
                   const SizedBox(height: 24.0),
                   _TvNavBarButton.info(
                     isSelected: selectedIndex == 1,
-                    showLabel: isFocused,
+                    isFocused: isFocused,
                     focusNode: navBarNodes[1],
                     onPressed: () => itemSelected(1),
                   ),
@@ -90,7 +91,7 @@ class _TvNavBarState extends State<TvNavBar> {
                   const SizedBox(height: 24.0),
                   _TvNavBarButton.settings(
                     isSelected: selectedIndex == 2,
-                    showLabel: isFocused,
+                    isFocused: isFocused,
                     focusNode: navBarNodes[2],
                     onPressed: () => itemSelected(2),
                   ),
@@ -112,13 +113,13 @@ class _TvNavBarButton extends StatefulWidget {
   final NavButtonIcon icon;
   final String label;
   final bool isSelected;
-  final bool showLabel;
+  final bool isFocused;
   final VoidCallback onPressed;
 
   const _TvNavBarButton.home({
     required this.onPressed,
     this.isSelected = false,
-    this.showLabel = true,
+    this.isFocused = true,
     required this.focusNode,
   }) : icon = (active: Icons.home_rounded, inactive: Icons.home_outlined),
        label = 'HOME';
@@ -126,7 +127,7 @@ class _TvNavBarButton extends StatefulWidget {
   const _TvNavBarButton.info({
     required this.onPressed,
     this.isSelected = false,
-    this.showLabel = false,
+    this.isFocused = false,
     required this.focusNode,
   }) : icon = (
          active: Icons.info_rounded,
@@ -137,7 +138,7 @@ class _TvNavBarButton extends StatefulWidget {
   const _TvNavBarButton.settings({
     required this.onPressed,
     this.isSelected = false,
-    this.showLabel = false,
+    this.isFocused = false,
     required this.focusNode,
   }) : icon = (
          active: Icons.settings_rounded,
@@ -154,7 +155,7 @@ class _TvNavBarButtonState extends State<_TvNavBarButton> {
 
   @override
   void didUpdateWidget(covariant _TvNavBarButton oldWidget) {
-    if (widget.showLabel == false) {
+    if (widget.isFocused == false) {
       setState(() {
         showLabel = false;
       });
@@ -162,7 +163,7 @@ class _TvNavBarButtonState extends State<_TvNavBarButton> {
       Future.delayed(const Duration(milliseconds: 250), () {
         if (mounted) {
           setState(() {
-            showLabel = widget.showLabel;
+            showLabel = widget.isFocused;
           });
         }
       });
@@ -172,55 +173,64 @@ class _TvNavBarButtonState extends State<_TvNavBarButton> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: widget.onPressed,
-      focusNode: widget.focusNode,
-      style: ButtonStyle(
-        padding: WidgetStatePropertyAll(const EdgeInsets.all(16.0)),
-        minimumSize: WidgetStatePropertyAll(Size.zero),
-        shape: WidgetStatePropertyAll(RoundedRectangleBorder()),
-        backgroundColor: WidgetStateProperty.resolveWith((states) {
-          return states.contains(WidgetState.focused)
-              ? Colors.white10
-              : Colors.transparent;
-        }),
-        foregroundColor: WidgetStateProperty.resolveWith((states) {
-          if (states.contains(WidgetState.focused)) {
-            return Colors.white;
-          }
-          return Colors.white54;
-        }),
-        textStyle: WidgetStateProperty.resolveWith((states) {
-          return states.contains(WidgetState.focused)
-              ? const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 1,
-              )
-              : const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                letterSpacing: 1,
-              );
-        }),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            widget.isSelected ? widget.icon.active : widget.icon.inactive,
-            color: widget.isSelected ? Colors.white : Colors.white54,
-            size: 32.0,
+    return ValueListenableBuilder<bool>(
+      valueListenable: context.settingsModel.useFocusDecoration,
+      builder: (context, useDecoration, child) {
+        return TextButton(
+          onPressed: widget.onPressed,
+          focusNode: widget.focusNode,
+          style: ButtonStyle(
+            padding: WidgetStatePropertyAll(const EdgeInsets.all(16.0)),
+            minimumSize: WidgetStatePropertyAll(Size.zero),
+            shape: WidgetStatePropertyAll(RoundedRectangleBorder()),
+            backgroundColor: WidgetStateProperty.resolveWith((states) {
+              return useDecoration && states.contains(WidgetState.focused)
+                  ? Colors.white10
+                  : Colors.transparent;
+            }),
+            foregroundColor: WidgetStateProperty.resolveWith((states) {
+              return useDecoration && states.contains(WidgetState.focused)
+                  ? Colors.white
+                  : Colors.white54;
+            }),
+            overlayColor: WidgetStateProperty.resolveWith((states) {
+              return useDecoration && states.contains(WidgetState.focused)
+                  ? Colors.white10
+                  : Colors.transparent;
+            }),
+            textStyle: WidgetStateProperty.resolveWith((states) {
+              return useDecoration && states.contains(WidgetState.focused)
+                  ? const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1,
+                  )
+                  : const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 1,
+                  );
+            }),
           ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 100),
-            child: SizedBox(width: showLabel ? 8.0 : 0.0),
+          child: Row(
+            children: [
+              Icon(
+                widget.isSelected ? widget.icon.active : widget.icon.inactive,
+                color: widget.isSelected ? Colors.white : Colors.white54,
+                size: 32.0,
+              ),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 100),
+                child: SizedBox(width: showLabel ? 8.0 : 0.0),
+              ),
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 100),
+                child: showLabel ? Text(widget.label) : const SizedBox.shrink(),
+              ),
+            ],
           ),
-          AnimatedSwitcher(
-            duration: const Duration(milliseconds: 100),
-            child: showLabel ? Text(widget.label) : const SizedBox.shrink(),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
