@@ -25,7 +25,7 @@ class _TvNavBarState extends State<TvNavBar> {
   late int selectedIndex = widget.selectedIndex;
   late final FocusNode focusNode = widget.parentNode;
   final List<FocusNode> navBarNodes = List.generate(
-    3,
+    4,
     (index) => FocusNode(debugLabel: 'TvNavBarItem $index'),
   );
 
@@ -95,6 +95,24 @@ class _TvNavBarState extends State<TvNavBar> {
                     focusNode: navBarNodes[2],
                     onPressed: () => itemSelected(2),
                   ),
+                  ValueListenableBuilder<bool>(
+                    valueListenable: context.settingsModel.showAboutPage,
+                    builder: (context, showAbout, child) {
+                      return showAbout
+                          ? Column(
+                            children: [
+                              const SizedBox(height: 24.0),
+                              _TvNavBarButton.about(
+                                isSelected: selectedIndex == 3,
+                                isFocused: isFocused,
+                                focusNode: navBarNodes[3],
+                                onPressed: () => itemSelected(3),
+                              ),
+                            ],
+                          )
+                          : const SizedBox.shrink();
+                    },
+                  ),
                 ],
               ),
             ),
@@ -134,6 +152,17 @@ class _TvNavBarButton extends StatefulWidget {
          inactive: Icons.info_outline_rounded,
        ),
        label = 'INFO';
+
+  const _TvNavBarButton.about({
+    required this.onPressed,
+    this.isSelected = false,
+    this.isFocused = false,
+    required this.focusNode,
+  }) : icon = (
+         active: Icons.question_mark_rounded,
+         inactive: Icons.question_mark_rounded,
+       ),
+       label = 'ABOUT';
 
   const _TvNavBarButton.settings({
     required this.onPressed,
@@ -192,11 +221,6 @@ class _TvNavBarButtonState extends State<_TvNavBarButton> {
               return useDecoration && states.contains(WidgetState.focused)
                   ? Colors.white
                   : Colors.white54;
-            }),
-            overlayColor: WidgetStateProperty.resolveWith((states) {
-              return useDecoration && states.contains(WidgetState.focused)
-                  ? Colors.white10
-                  : Colors.transparent;
             }),
             textStyle: WidgetStateProperty.resolveWith((states) {
               return useDecoration && states.contains(WidgetState.focused)

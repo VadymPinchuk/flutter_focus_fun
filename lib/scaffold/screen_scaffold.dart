@@ -36,21 +36,24 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
   final FocusScopeNode _settingsPageScopeNode = FocusScopeNode(
     debugLabel: 'SettingsPageScope',
   );
+  final FocusScopeNode _aboutPageScopeNode = FocusScopeNode(
+    debugLabel: 'AboutPageScope',
+  );
 
   late final pageScopeNodes = [
     _homePageScopeNode,
     _infoPageScopeNode,
     _settingsPageScopeNode,
+    _aboutPageScopeNode,
   ];
 
   /// Page models to save local state
   late final List<PageUiModel> pageModels;
-  static const int _pageCount = 3;
 
   @override
   void initState() {
     super.initState();
-    pageModels = List.generate(_pageCount, (_) => PageUiModel());
+    pageModels = List.generate(4, (_) => PageUiModel());
   }
 
   @override
@@ -98,7 +101,6 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                   ),
                 ),
               ),
-              // ),
               FocusScope(
                 node: _settingsPageScopeNode,
                 onKeyEvent: (node, event) {
@@ -110,6 +112,22 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
                 child: ChangeNotifierProvider.value(
                   value: pageModels[2],
                   child: const SettingsPage(),
+                ),
+              ),
+              FocusTraversalGroup(
+                policy: GridTraversalPolicy(),
+                child: FocusScope(
+                  node: _aboutPageScopeNode,
+                  onKeyEvent: (node, event) {
+                    return _maybeFocusOnNavBar(
+                      pageScopeNodes[_selectedIndex],
+                      event,
+                    );
+                  },
+                  child: ChangeNotifierProvider.value(
+                    value: pageModels[3],
+                    child: const HomePage(),
+                  ),
                 ),
               ),
             ],
