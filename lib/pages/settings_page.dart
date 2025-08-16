@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_settings_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/settings_model.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class _MobileSettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsModel = context.watch<TvSettingsModel>();
+    final settingsModel = context.watch<SettingsModel>();
     return ListView(
       padding: const EdgeInsets.all(16.0),
       children: [
@@ -101,7 +102,7 @@ class _TvSettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsModel = context.watch<TvSettingsModel>();
+    final settingsModel = context.watch<SettingsModel>();
     return Center(
       child: SizedBox(
         width: 600, // Constrain the width for a better look on large screens
@@ -113,7 +114,7 @@ class _TvSettingsLayout extends StatelessWidget {
               subtitle:
                   'Switches between a side rail and a bottom navigation bar.',
               valueListenable: settingsModel.uiExperience.map(
-                (exp) => exp == UiExperience.tv,
+                (exp) => exp.isTv,
               ),
               onPressed: () => context.settingsModel.toggleUiExperience(),
               autofocus: true,
@@ -186,11 +187,19 @@ class _TvSettingTileState extends State<_TvSettingTile> {
           _isFocused = hasFocus;
         });
       },
+      onKeyEvent: (FocusNode node, KeyEvent event) {
+        if (event is KeyDownEvent &&
+            event.logicalKey == LogicalKeyboardKey.select) {
+          widget.onPressed();
+          return KeyEventResult.handled;
+        }
+        return KeyEventResult.ignored;
+      },
       child: InkWell(
         onTap: widget.onPressed,
         child: ValueListenableBuilder<bool>(
           valueListenable: widget.valueListenable,
-          builder: (context, value, child) {
+          builder: (_, value, _) {
             return AnimatedContainer(
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.all(16.0),
@@ -210,15 +219,21 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                       children: [
                         Text(
                           widget.title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: _isFocused ? Colors.white : Colors.white70,
+                            fontWeight:
+                                _isFocused ? FontWeight.w500 : FontWeight.w400,
                           ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           widget.subtitle,
-                          style: const TextStyle(color: Colors.white70),
+                          style: TextStyle(
+                            color: _isFocused ? Colors.white : Colors.white70,
+                            fontWeight:
+                                _isFocused ? FontWeight.w500 : FontWeight.w400,
+                          ),
                         ),
                       ],
                     ),
@@ -228,7 +243,11 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                   AnimatedOpacity(
                     duration: const Duration(milliseconds: 200),
                     opacity: value ? 1.0 : 0.0,
-                    child: const Icon(Icons.check_circle, color: Colors.white),
+                    child: Icon(
+                      Icons.check_circle,
+                      color: context.colors.primary,
+                      size: 32,
+                    ),
                   ),
                 ],
               ),

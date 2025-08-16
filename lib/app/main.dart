@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/model/tv_settings_model.dart';
+import 'package:flutter_focus_fun_tv_demo/model/settings_model.dart';
 import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
@@ -29,9 +29,8 @@ class PresentationApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.blueGrey.shade900,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blueGrey,
-          accentColor: Colors.cyanAccent,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blueGrey,
           brightness: Brightness.dark,
         ),
         scaffoldBackgroundColor: Colors.transparent,
@@ -42,7 +41,7 @@ class PresentationApp extends StatelessWidget {
       ),
       home: MultiProvider(
         providers: [
-          Provider<TvSettingsModel>(create: (_) => TvSettingsModel()),
+          Provider<SettingsModel>(create: (_) => SettingsModel()),
           Provider<UiExperience>.value(value: uiExperience),
         ],
         child: Material(

@@ -8,7 +8,7 @@ enum TvNavBarLocation { top, left }
 ///
 /// This uses ValueNotifiers to allow widgets to listen to and react to
 /// changes for individual settings.
-class TvSettingsModel {
+class SettingsModel {
   /// Determines if the app should use a side navigation rail (TV) or a
   /// bottom navigation bar (mobile).
   final ValueNotifier<UiExperience> _useTvLayout = ValueNotifier(
