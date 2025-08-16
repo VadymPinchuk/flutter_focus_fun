@@ -4,14 +4,14 @@ import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/any_page.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class InfoPage extends StatelessWidget {
+  const InfoPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => PageUiModel(mockHomeData),
-      child: AnyPage(key: const Key('HomePage')),
+      create: (_) => PageUiModel(mockData),
+      child: AnyPage(key: const Key('InfoPage')),
     );
   }
 }

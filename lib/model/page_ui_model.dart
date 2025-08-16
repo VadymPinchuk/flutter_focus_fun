@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
+import 'package:flutter_focus_fun_tv_demo/data/mock_rail_data.dart';
 
 /// A view model (ChangeNotifier) to store and manage the scroll state
 /// for a single page that contains vertical and horizontal lists.
 class PageUiModel extends ChangeNotifier {
+  final List<ContentRailData> railsData;
+
+  PageUiModel(this.railsData);
+
   double _verticalOffset = 0.0;
   final Map<String, ScrollController> _horizontalControllers = {};
   final Map<String, double> _horizontalOffsets = {};

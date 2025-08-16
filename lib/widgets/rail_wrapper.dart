@@ -15,18 +15,23 @@ class RailWrapper extends StatefulWidget {
 class _RailWrapperState extends State<RailWrapper> {
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<int>(
-      valueListenable: context.pageUiModel.focusedRailIndex,
-      builder: (context, focusedRailIndex, child) {
-        // A rail is visible if its index is the same as or after the focused rail.
-        final bool isVisible = widget.railIndex >= focusedRailIndex;
-        return AnimatedOpacity(
-          duration: const Duration(milliseconds: 300),
-          opacity: isVisible ? 1.0 : 0.0,
-          child: child,
+    return ValueListenableBuilder<bool>(
+      valueListenable: context.settingsModel.useCustomTraversalPolicy,
+      builder: (_, customPolicy, _) {
+        return ValueListenableBuilder<int>(
+          valueListenable: context.pageUiModel.focusedRailIndex,
+          builder: (_, focusedRailIndex, child) {
+            final bool isVisible =
+                customPolicy && widget.railIndex >= focusedRailIndex;
+            return AnimatedOpacity(
+              duration: const Duration(milliseconds: 300),
+              opacity: isVisible ? 1.0 : 0.0,
+              child: child,
+            );
+          },
+          child: widget.child,
         );
       },
-      child: widget.child,
     );
   }
 }

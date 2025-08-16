@@ -6,12 +6,14 @@ import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/mobile_nav_bar.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/mobile_status_bar_overlay.dart';
 import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/home_page.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/intro/intro_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/any_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/info_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:provider/provider.dart' show ChangeNotifierProvider;
+
+import '../pages/home_page.dart';
 
 class ScreenScaffold extends StatefulWidget {
   const ScreenScaffold({super.key});
@@ -47,13 +49,34 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
     _aboutPageScopeNode,
   ];
 
-  /// Page models to save local state
-  late final List<PageUiModel> pageModels;
+  late final List<Widget> pages;
 
   @override
   void initState() {
     super.initState();
-    pageModels = List.generate(4, (_) => PageUiModel());
+    pages = [
+      const HomePage(key: Key('HomePage')),
+      const InfoPage(key: Key('InfoPage')),
+      const SettingsPage(),
+      const AnyPage(key: Key('AboutPage')),
+    ];
+  }
+
+  Widget _buildPageScope(int index, FocusScopeNode focusNode) {
+    Widget scopeWidget = FocusScope(
+      key: Key('PageScopeNode $index'),
+      node: focusNode,
+      onKeyEvent: (node, event) {
+        return _maybeFocusOnNavBar(pageScopeNodes[index], event);
+      },
+      child: pages[index],
+    );
+    return context.settingsModel.useCustomTraversalPolicy.value
+        ? FocusTraversalGroup(
+          policy: CustomTraversalPolicy(),
+          child: scopeWidget,
+        )
+        : scopeWidget;
   }
 
   @override
@@ -72,64 +95,20 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
           IndexedStack(
             index: _selectedIndex,
             children: [
-              FocusScope(
-                node: _homePageScopeNode,
-                onKeyEvent: (node, event) {
-                  return _maybeFocusOnNavBar(
-                    pageScopeNodes[_selectedIndex],
-                    event,
-                  );
-                },
-                child: ChangeNotifierProvider.value(
-                  value: pageModels[0],
-                  child: const HomePage(),
-                ),
-              ),
-              FocusTraversalGroup(
-                policy: CustomTraversalPolicy(),
-                child: FocusScope(
-                  node: _infoPageScopeNode,
-                  onKeyEvent: (node, event) {
-                    return _maybeFocusOnNavBar(
-                      pageScopeNodes[_selectedIndex],
-                      event,
-                    );
-                  },
-                  child: ChangeNotifierProvider.value(
-                    value: pageModels[1],
-                    child: const IntroPage(),
-                  ),
-                ),
-              ),
-              FocusScope(
-                node: _settingsPageScopeNode,
-                onKeyEvent: (node, event) {
-                  return _maybeFocusOnNavBar(
-                    pageScopeNodes[_selectedIndex],
-                    event,
-                  );
-                },
-                child: ChangeNotifierProvider.value(
-                  value: pageModels[2],
-                  child: const SettingsPage(),
-                ),
-              ),
-              FocusTraversalGroup(
-                policy: CustomTraversalPolicy(),
-                child: FocusScope(
-                  node: _aboutPageScopeNode,
-                  onKeyEvent: (node, event) {
-                    return _maybeFocusOnNavBar(
-                      pageScopeNodes[_selectedIndex],
-                      event,
-                    );
-                  },
-                  child: ChangeNotifierProvider.value(
-                    value: pageModels[3],
-                    child: const HomePage(),
-                  ),
-                ),
-              ),
+              _buildPageScope(0, _homePageScopeNode),
+              _buildPageScope(1, _infoPageScopeNode),
+              _buildPageScope(2, _settingsPageScopeNode),
+              // FocusScope(
+              //   node: _settingsPageScopeNode,
+              //   onKeyEvent: (node, event) {
+              //     return _maybeFocusOnNavBar(
+              //       pageScopeNodes[_selectedIndex],
+              //       event,
+              //     );
+              //   },
+              //   child: const SettingsPage(),
+              // ),
+              _buildPageScope(3, _aboutPageScopeNode),
             ],
           ),
           ValueListenableBuilder<UiExperience>(

@@ -117,56 +117,57 @@ class _BodyWidgetState extends State<BodyWidget> {
 
     return ValueListenableBuilder(
       valueListenable: context.settingsModel.useTvPageLayout,
-      builder:
-          (_, useTvPageLayout, __) => Stack(
-            children: [
-              useTvPageLayout
-                  ? const DynamicBackground()
-                  : const SizedBox.shrink(),
-              CustomScrollView(
-                physics: const NeverScrollableScrollPhysics(),
-                controller: _verticalScrollController,
-                slivers: [
-                  // shift rail to bottom part of the screen
-                  SliverToBoxAdapter(
-                    child: SizedBox(
-                      height:
-                          useTvPageLayout
-                              ? screenHeight - (1.5 * kRailHeight)
-                              : 0.0,
-                    ),
+      builder: (_, useTvPageLayout, __) {
+        return Stack(
+          children: [
+            useTvPageLayout
+                ? const DynamicBackground()
+                : const SizedBox.shrink(),
+            CustomScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: _verticalScrollController,
+              slivers: [
+                // shift rail to bottom part of the screen
+                SliverToBoxAdapter(
+                  child: SizedBox(
+                    height:
+                        useTvPageLayout
+                            ? screenHeight - (1.5 * kRailHeight)
+                            : 0.0,
                   ),
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                      final railData = widget.rails[index];
-                      return TvRail(
-                        data: railData,
-                        railIndex: index,
-                        railScrollController: TvRailScrollController(
-                          scrollController: _pageModel.getHorizontalController(
-                            railData.id,
-                          ),
-                          tileWidth: kTileWidth,
-                          tileSpacing: kTileSpacing,
-                          railPadding: railPadding,
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final railData = widget.rails[index];
+                    return TvRail(
+                      data: railData,
+                      railIndex: index,
+                      railScrollController: TvRailScrollController(
+                        scrollController: _pageModel.getHorizontalController(
+                          railData.id,
                         ),
-                        onFocusChange: (_) {
-                          if (useTvPageLayout) _onFocusChange(index);
-                        },
-                      ).let(
-                        (rail) =>
-                            useTvPageLayout
-                                ? RailWrapper(railIndex: index, child: rail)
-                                : rail,
-                      );
-                    }, childCount: widget.rails.length),
-                  ),
-                  // save some space at the bottom to make rail scroll nice
-                  SliverToBoxAdapter(child: SizedBox(height: kRailHeight / 2)),
-                ],
-              ),
-            ],
-          ),
+                        tileWidth: kTileWidth,
+                        tileSpacing: kTileSpacing,
+                        railPadding: railPadding,
+                      ),
+                      onFocusChange: (_) {
+                        if (useTvPageLayout) _onFocusChange(index);
+                      },
+                    ).let(
+                      (rail) =>
+                          useTvPageLayout
+                              ? RailWrapper(railIndex: index, child: rail)
+                              : rail,
+                    );
+                  }, childCount: widget.rails.length),
+                ),
+                // save some space at the bottom to make rail scroll nice
+                SliverToBoxAdapter(child: SizedBox(height: kRailHeight / 2)),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -29,14 +29,14 @@ class SettingsModel {
   }
 
   /// Determines if arrow keys should be used for focus-based navigation.
-  final ValueNotifier<bool> useTvPageLayout = ValueNotifier(false);
+  final ValueNotifier<bool> useTvPageLayout = ValueNotifier(true);
 
   void toggleTvPageLayout() {
     useTvPageLayout.value = !useTvPageLayout.value;
   }
 
   /// Determines if a custom focus traversal policy should be used
-  final ValueNotifier<bool> useCustomTraversalPolicy = ValueNotifier(false);
+  final ValueNotifier<bool> useCustomTraversalPolicy = ValueNotifier(true);
 
   void toggleTraversalPolicy() {
     useCustomTraversalPolicy.value = !useCustomTraversalPolicy.value;
