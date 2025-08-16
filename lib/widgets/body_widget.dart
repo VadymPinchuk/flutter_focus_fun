@@ -99,6 +99,7 @@ class _BodyWidgetState extends State<BodyWidget> {
 
   /// Scrolls the vertical list by one rail height up or down.
   void _scrollToRail(int newRailIndex) {
+    if (_focusedRailIndex == newRailIndex) return;
     final direction = newRailIndex > _focusedRailIndex ? 1 : -1;
     final currentOffset = _verticalScrollController.offset;
     final newOffset = currentOffset + (direction * _kRailHeight);
@@ -111,6 +112,7 @@ class _BodyWidgetState extends State<BodyWidget> {
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeInOut,
     );
+    print('Scrolling to rail $newRailIndex, new offset: $clampedOffset');
   }
 
   @override
@@ -126,6 +128,7 @@ class _BodyWidgetState extends State<BodyWidget> {
       children: [
         const DynamicBackground(),
         CustomScrollView(
+          physics: const NeverScrollableScrollPhysics(),
           controller: _verticalScrollController,
           slivers: [
             SliverPadding(padding: EdgeInsets.only(top: topPadding)),

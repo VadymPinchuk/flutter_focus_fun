@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/scrollable_enusure_alignment.dart'
+import 'package:flutter_focus_fun_tv_demo/scrollable_ensure_alignment.dart'
     show ScrollableX;
 
 class GridTraversalPolicy extends ReadingOrderTraversalPolicy {
@@ -275,13 +275,15 @@ class GridTraversalPolicy extends ReadingOrderTraversalPolicy {
       TraversalDirection.right ||
       TraversalDirection.down => ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
     };
-    requestFocusCallback(
-      chosenNode,
-      alignmentPolicy: alignmentPolicy,
-      alignment: 0.5,
-      curve: Curves.easeOut,
-      duration: const Duration(milliseconds: 300),
-    );
+    chosenNode.requestFocus();
+
+    // requestFocusCallback(
+    //   chosenNode,
+    //   alignmentPolicy: alignmentPolicy,
+    //   alignment: 0.5,
+    //   curve: Curves.easeOut,
+    //   duration: const Duration(milliseconds: 300),
+    // );
     return true;
   }
 

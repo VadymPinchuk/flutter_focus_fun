@@ -57,7 +57,7 @@ class _AppShellState extends State<AppShell> {
   int _selectedIndex = 0;
 
   late final List<PageUiModel> _pageModels;
-  static const int _pageCount = 3;
+  static const int _pageCount = 4;
 
   @override
   void initState() {

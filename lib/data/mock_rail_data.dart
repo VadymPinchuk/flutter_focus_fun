@@ -81,3 +81,44 @@ final List<ContentRailData> mockData = [
     ),
   ),
 ];
+
+// Generates some mock data for the UI.
+final List<ContentRailData> mockConfData = [
+  ContentRailData(
+    title: '#ftcon25in',
+    items: [
+      ContentItem(
+        title: 'FlutterCon India Keynote',
+        description:
+            'Join us for the opening keynote of FlutterCon India 2025.',
+        color: Colors.amber.shade700,
+        imagePath: 'assets/india/0_in.jpeg',
+      ),
+    ],
+  ),
+  ContentRailData(
+    title: '#ftcon25eu',
+    items: List.generate(
+      10,
+      (index) => ContentItem(
+        title: 'EU Session ${index + 1}',
+        description:
+            'A deep dive into Flutter development from our European conference.',
+        color: Colors.blue.shade700,
+        imagePath: 'assets/eu/${index}_eu.jpeg',
+      ),
+    ),
+  ),
+  ContentRailData(
+    title: '#ftcon25usa',
+    items: List.generate(
+      44,
+      (index) => ContentItem(
+        title: 'USA Workshop ${index + 1}',
+        description: 'Hands-on workshops from our USA conference series.',
+        color: Colors.red.shade700,
+        imagePath: 'assets/usa/${index}_usa.jpeg',
+      ),
+    ),
+  ),
+];

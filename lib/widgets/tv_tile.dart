@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart'
     show ContentItem;
+import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class TvTile extends StatefulWidget {
   final ContentItem item;
@@ -55,35 +56,7 @@ class _TvTileState extends State<TvTile> {
                   )
                   : null,
         ),
-        child: AspectRatio(
-          aspectRatio: 16 / 9,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                Container(
-                  color: widget.item.color,
-                  child: Center(
-                    child: Text(
-                      widget.item.title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        shadows: [Shadow(blurRadius: 2.0)],
-                      ),
-                    ),
-                  ),
-                ),
-                AnimatedOpacity(
-                  duration: const Duration(milliseconds: 200),
-                  opacity: _isFocused ? 0.0 : 0.5,
-                  child: Container(color: Colors.black),
-                ),
-              ],
-            ),
-          ),
-        ),
+        child: ContentTile(item: widget.item),
       ),
     );
   }

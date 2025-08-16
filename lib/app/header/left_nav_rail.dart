@@ -27,6 +27,13 @@ class LeftNavRail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _NavRailButton(
+                  icon: selectedIndex == 0 ? Icons.currency_bitcoin : Icons.currency_bitcoin_outlined,
+                  isSelected: selectedIndex == 0,
+                  onPressed: () => onTapped(0),
+                  autofocus: true,
+                ),
+                const SizedBox(height: 24),
+                _NavRailButton(
                   icon: selectedIndex == 0 ? Icons.help : Icons.help_outline,
                   isSelected: selectedIndex == 0,
                   onPressed: () => onTapped(0),
