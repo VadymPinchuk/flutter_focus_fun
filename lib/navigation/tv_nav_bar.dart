@@ -23,7 +23,7 @@ class _TvNavBarState extends State<TvNavBar> {
   bool isFocused = false;
   late int selectedIndex = widget.selectedIndex;
   late final FocusNode focusNode = widget.parentNode;
-  final List<FocusNode> sideMenuNodes = List.generate(
+  final List<FocusNode> navBarNodes = List.generate(
     3,
     (index) => FocusNode(debugLabel: 'TvNavBarItem $index'),
   );
@@ -44,11 +44,11 @@ class _TvNavBarState extends State<TvNavBar> {
           this.isFocused = isFocused;
         });
         if (isFocused) {
-          sideMenuNodes[selectedIndex].requestFocus();
+          navBarNodes[selectedIndex].requestFocus();
         }
       },
       child: FocusTraversalGroup(
-        policy: TvNavBarTraversalPolicy(navBarNodes: sideMenuNodes),
+        policy: TvNavBarTraversalPolicy(navBarNodes: navBarNodes),
         child: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
@@ -75,14 +75,14 @@ class _TvNavBarState extends State<TvNavBar> {
                   _TvNavBarButton.home(
                     isSelected: selectedIndex == 0,
                     showLabel: isFocused,
-                    focusNode: sideMenuNodes[0],
+                    focusNode: navBarNodes[0],
                     onPressed: () => itemSelected(0),
                   ),
                   const SizedBox(height: 24.0),
                   _TvNavBarButton.info(
                     isSelected: selectedIndex == 1,
                     showLabel: isFocused,
-                    focusNode: sideMenuNodes[1],
+                    focusNode: navBarNodes[1],
                     onPressed: () => itemSelected(1),
                   ),
                   Spacer(),
@@ -91,7 +91,7 @@ class _TvNavBarState extends State<TvNavBar> {
                   _TvNavBarButton.settings(
                     isSelected: selectedIndex == 2,
                     showLabel: isFocused,
-                    focusNode: sideMenuNodes[2],
+                    focusNode: navBarNodes[2],
                     onPressed: () => itemSelected(2),
                   ),
                 ],

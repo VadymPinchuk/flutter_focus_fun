@@ -9,6 +9,7 @@ import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/home_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/intro/intro_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
+import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:provider/provider.dart' show ChangeNotifierProvider;
 
@@ -56,6 +57,9 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
   Widget build(BuildContext context) {
     return Actions(
       actions: {
+        MenuIntent: CallbackAction<MenuIntent>(
+          onInvoke: (intent) => _navBarScopeNode.requestFocus(),
+        ),
         DismissIntent: CallbackAction<DismissIntent>(
           onInvoke: (intent) => _navBarScopeNode.requestFocus(),
         ),

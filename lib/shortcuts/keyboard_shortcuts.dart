@@ -11,43 +11,47 @@ class KeyboardShortcuts {
 
   const KeyboardShortcuts({required this.uiExperience});
 
-  Map<ShortcutActivator, Intent>? shortcuts() => switch (uiExperience) {
-    UiExperience.tv => {
-      // Activation
-      SingleClickActivator([
-            LogicalKeyboardKey.enter,
-            LogicalKeyboardKey.numpadEnter,
-            LogicalKeyboardKey.space,
-          ]):
-          const ActivateIntent(),
+  Map<ShortcutActivator, Intent>? shortcuts() => {
+    // Activation
+    SingleClickActivator([
+          LogicalKeyboardKey.enter,
+          LogicalKeyboardKey.numpadEnter,
+          LogicalKeyboardKey.space,
+        ]):
+        const ActivateIntent(),
 
-      // Long Press activation
-      LongPressActivator([LogicalKeyboardKey.enter]):
-          const ActivateSecondaryIntent(),
+    // Dismissal
+    const SingleActivator(LogicalKeyboardKey.contextMenu): const MenuIntent(),
 
-      // Dismissal
-      const SingleActivator(LogicalKeyboardKey.escape): const DismissIntent(),
+    // Long Press activation
+    LongPressActivator([LogicalKeyboardKey.enter]):
+        const ActivateSecondaryIntent(),
 
-      // Playlist (+)
-      const SingleActivator(LogicalKeyboardKey.f16): const AddIntent(),
+    // Dismissal
+    const SingleActivator(LogicalKeyboardKey.escape): const DismissIntent(),
 
-      // Keyboard traversal
-      const SingleActivator(LogicalKeyboardKey.tab): const NextFocusIntent(),
-      const SingleActivator(LogicalKeyboardKey.tab, shift: true):
-          const PreviousFocusIntent(),
-      const SingleActivator(
-        LogicalKeyboardKey.arrowLeft,
-      ): const DirectionalFocusIntent(TraversalDirection.left),
-      const SingleActivator(
-        LogicalKeyboardKey.arrowRight,
-      ): const DirectionalFocusIntent(TraversalDirection.right),
-      const SingleActivator(
-        LogicalKeyboardKey.arrowDown,
-      ): const DirectionalFocusIntent(TraversalDirection.down),
-      const SingleActivator(
-        LogicalKeyboardKey.arrowUp,
-      ): const DirectionalFocusIntent(TraversalDirection.up),
-    },
-    _ => null,
+    // Playlist (+)
+    const SingleActivator(LogicalKeyboardKey.f16): const AddIntent(),
+
+    // Keyboard traversal
+    const SingleActivator(LogicalKeyboardKey.tab): const NextFocusIntent(),
+    const SingleActivator(LogicalKeyboardKey.tab, shift: true):
+        const PreviousFocusIntent(),
+    const SingleActivator(
+      LogicalKeyboardKey.arrowLeft,
+    ): const DirectionalFocusIntent(TraversalDirection.left),
+    const SingleActivator(
+      LogicalKeyboardKey.arrowRight,
+    ): const DirectionalFocusIntent(TraversalDirection.right),
+    const SingleActivator(
+      LogicalKeyboardKey.arrowDown,
+    ): const DirectionalFocusIntent(TraversalDirection.down),
+    const SingleActivator(
+      LogicalKeyboardKey.arrowUp,
+    ): const DirectionalFocusIntent(TraversalDirection.up),
   };
+}
+
+class MenuIntent extends Intent {
+  const MenuIntent();
 }

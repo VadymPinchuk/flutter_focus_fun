@@ -36,38 +36,44 @@ class _MobileNavBarState extends State<MobileNavBar> {
   @override
   Widget build(BuildContext context) {
     return ClipRect(
-      child: ColoredBox(
-        color: Colors.blueGrey[900]!.withValues(alpha: 0.75),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: BottomNavigationBar(
-            backgroundColor: Colors.transparent,
-            currentIndex: selectedIndex,
-            onTap: selectMenuItem,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white70,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  selectedIndex == 0 ? Icons.home_rounded : Icons.home_outlined,
+      child: ClipRect(
+        child: ColoredBox(
+          color: Colors.blueGrey[900]!.withValues(alpha: 0.75),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: BottomNavigationBar(
+              backgroundColor: Colors.transparent,
+              currentIndex: selectedIndex,
+              onTap: selectMenuItem,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.white70,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    selectedIndex == 0
+                        ? Icons.home_rounded
+                        : Icons.home_outlined,
+                  ),
+                  label: 'Home',
                 ),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  selectedIndex == 1
-                      ? Icons.info_rounded
-                      : Icons.info_outline_rounded,
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    selectedIndex == 1
+                        ? Icons.info_rounded
+                        : Icons.info_outline_rounded,
+                  ),
+                  label: 'Info',
                 ),
-                label: 'Info',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  selectedIndex == 2 ? Icons.settings : Icons.settings_rounded,
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    selectedIndex == 2
+                        ? Icons.settings
+                        : Icons.settings_rounded,
+                  ),
+                  label: 'Settings',
                 ),
-                label: 'Settings',
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -188,8 +188,12 @@ class _TvSettingTileState extends State<_TvSettingTile> {
         });
       },
       onKeyEvent: (FocusNode node, KeyEvent event) {
-        if (event is KeyDownEvent &&
-            event.logicalKey == LogicalKeyboardKey.select) {
+        if (event is KeyUpEvent) return KeyEventResult.ignored;
+        if (event.logicalKey == LogicalKeyboardKey.enter) {
+          widget.onPressed();
+          return KeyEventResult.handled;
+        }
+        if (event.logicalKey == LogicalKeyboardKey.numpadEnter) {
           widget.onPressed();
           return KeyEventResult.handled;
         }

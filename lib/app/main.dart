@@ -39,14 +39,20 @@ class PresentationApp extends StatelessWidget {
           bodyMedium: TextStyle(color: Colors.white70),
         ),
       ),
-      home: MultiProvider(
-        providers: [
-          Provider<SettingsModel>(create: (_) => SettingsModel()),
-          Provider<UiExperience>.value(value: uiExperience),
-        ],
-        child: Material(
-          color: Colors.transparent,
-          child: const Stack(children: [BackgroundImage(), ScreenScaffold()]),
+      home: KeyboardListener(
+        focusNode: FocusNode(),
+        onKeyEvent: (event) {
+          print('Key event: ${event.runtimeType} - ${event.logicalKey}');
+        },
+        child: MultiProvider(
+          providers: [
+            Provider<SettingsModel>(create: (_) => SettingsModel()),
+            Provider<UiExperience>.value(value: uiExperience),
+          ],
+          child: Material(
+            color: Colors.transparent,
+            child: const Stack(children: [BackgroundImage(), ScreenScaffold()]),
+          ),
         ),
       ),
     );
