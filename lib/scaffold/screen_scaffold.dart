@@ -10,6 +10,7 @@ import 'package:flutter_focus_fun_tv_demo/pages/any_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/info_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 import 'package:provider/provider.dart' show ChangeNotifierProvider;
 
@@ -63,20 +64,26 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
   }
 
   Widget _buildPageScope(int index, FocusScopeNode focusNode) {
-    Widget scopeWidget = FocusScope(
+    return FocusScope(
       key: Key('PageScopeNode $index'),
       node: focusNode,
       onKeyEvent: (node, event) {
         return _maybeFocusOnNavBar(pageScopeNodes[index], event);
       },
       child: pages[index],
+    ).let(
+      (page) => ValueListenableBuilder(
+        valueListenable: context.settingsModel.useCustomTraversalPolicy,
+        builder: (_, usePolicy, _) {
+          return usePolicy
+              ? FocusTraversalGroup(
+                policy: CustomTraversalPolicy(),
+                child: page,
+              )
+              : page;
+        },
+      ),
     );
-    return context.settingsModel.useCustomTraversalPolicy.value
-        ? FocusTraversalGroup(
-          policy: CustomTraversalPolicy(),
-          child: scopeWidget,
-        )
-        : scopeWidget;
   }
 
   @override
@@ -97,17 +104,16 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
             children: [
               _buildPageScope(0, _homePageScopeNode),
               _buildPageScope(1, _infoPageScopeNode),
-              _buildPageScope(2, _settingsPageScopeNode),
-              // FocusScope(
-              //   node: _settingsPageScopeNode,
-              //   onKeyEvent: (node, event) {
-              //     return _maybeFocusOnNavBar(
-              //       pageScopeNodes[_selectedIndex],
-              //       event,
-              //     );
-              //   },
-              //   child: const SettingsPage(),
-              // ),
+              FocusScope(
+                node: _settingsPageScopeNode,
+                onKeyEvent: (node, event) {
+                  return _maybeFocusOnNavBar(
+                    pageScopeNodes[_selectedIndex],
+                    event,
+                  );
+                },
+                child: const SettingsPage(),
+              ),
               _buildPageScope(3, _aboutPageScopeNode),
             ],
           ),
