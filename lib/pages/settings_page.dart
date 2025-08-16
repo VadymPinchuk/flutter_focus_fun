@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/model/settings_model.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
-import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -30,67 +28,15 @@ class _MobileSettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsModel = context.watch<SettingsModel>();
-    return ListView(
-      padding: const EdgeInsets.all(16.0),
-      children: [
-        SwitchListTile(
-          title: const Text('Use TV Experience'),
-          subtitle: const Text(
-            'Switches between a side rail and a bottom navigation bar.',
-          ),
-          value: true, // Always true in this layout
-          onChanged: (_) => context.settingsModel.toggleUiExperience(),
+    return Center(
+      child: SwitchListTile(
+        title: const Text('Use TV Navigation'),
+        subtitle: const Text(
+          'Switches between a side rail and a bottom navigation bar.',
         ),
-        const Divider(),
-        ValueListenableBuilder<bool>(
-          valueListenable: settingsModel.useFocusToNavigate,
-          builder: (context, value, child) {
-            return SwitchListTile(
-              title: const Text('Use Focus Navigation'),
-              subtitle: const Text(
-                'Enables navigating between items with arrow keys.',
-              ),
-              value: value,
-              onChanged: (newValue) {
-                settingsModel.useFocusToNavigate.value = newValue;
-              },
-            );
-          },
-        ),
-        const Divider(),
-        ValueListenableBuilder<bool>(
-          valueListenable: settingsModel.useFocusDecoration,
-          builder: (context, value, child) {
-            return SwitchListTile(
-              title: const Text('Show Focus Decoration'),
-              subtitle: const Text(
-                'Visually highlights the currently focused item.',
-              ),
-              value: value,
-              onChanged: (newValue) {
-                settingsModel.useFocusDecoration.value = newValue;
-              },
-            );
-          },
-        ),
-        const Divider(),
-        ValueListenableBuilder<bool>(
-          valueListenable: settingsModel.useFixedRailViewport,
-          builder: (context, value, child) {
-            return SwitchListTile(
-              title: const Text('Use TV Viewport Layout'),
-              subtitle: const Text(
-                'Shows 1.5 rails with a large preview area at the top.',
-              ),
-              value: value,
-              onChanged: (newValue) {
-                settingsModel.useFixedRailViewport.value = newValue;
-              },
-            );
-          },
-        ),
-      ],
+        value: true, // Always true in this layout
+        onChanged: (_) => context.settingsModel.toggleUiExperience(),
+      ),
     );
   }
 }
@@ -102,7 +48,6 @@ class _TvSettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsModel = context.watch<SettingsModel>();
     return Center(
       child: SizedBox(
         width: 600, // Constrain the width for a better look on large screens
@@ -110,44 +55,42 @@ class _TvSettingsLayout extends StatelessWidget {
           padding: const EdgeInsets.all(32.0),
           children: [
             _TvSettingTile(
-              title: 'Use TV Experience',
+              title: 'Use TV Navigation',
               subtitle:
-                  'Switches between a side rail and a bottom navigation bar.',
-              valueListenable: settingsModel.uiExperience.map(
+                  'Switches between a side rail and a bottom navigation bar',
+              valueListenable: context.settingsModel.uiExperience.map(
                 (exp) => exp.isTv,
               ),
-              onPressed: () => context.settingsModel.toggleUiExperience(),
+              onPressed: context.settingsModel.toggleUiExperience,
               autofocus: true,
             ),
-            const SizedBox(height: 16),
-            _TvSettingTile(
-              title: 'Use Focus Navigation',
-              subtitle: 'Enables navigating between items with arrow keys.',
-              valueListenable: settingsModel.useFocusToNavigate,
-              onPressed:
-                  () =>
-                      settingsModel.useFocusToNavigate.value =
-                          !settingsModel.useFocusToNavigate.value,
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24.0),
             _TvSettingTile(
               title: 'Show Focus Decoration',
-              subtitle: 'Visually highlights the currently focused item.',
-              valueListenable: settingsModel.useFocusDecoration,
-              onPressed:
-                  () =>
-                      settingsModel.useFocusDecoration.value =
-                          !settingsModel.useFocusDecoration.value,
+              subtitle: 'Enables decoration over focused widget',
+              valueListenable: context.settingsModel.useFocusDecoration,
+              onPressed: context.settingsModel.toggleFocusDecoration,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24.0),
             _TvSettingTile(
-              title: 'Use TV Viewport Layout',
-              subtitle: 'Shows 1.5 rails with a large preview area at the top.',
-              valueListenable: settingsModel.useFixedRailViewport,
-              onPressed:
-                  () =>
-                      settingsModel.useFixedRailViewport.value =
-                          !settingsModel.useFixedRailViewport.value,
+              title: 'Use TV Page Layout',
+              subtitle: 'Switches to a layout optimized for TV',
+              valueListenable: context.settingsModel.useTvPageLayout,
+              onPressed: context.settingsModel.toggleTvPageLayout,
+            ),
+            const SizedBox(height: 24.0),
+            _TvSettingTile(
+              title: 'Use Custom Traversal Policy',
+              subtitle: 'Enables custom focus traversal for better navigation',
+              valueListenable: context.settingsModel.useCustomTraversalPolicy,
+              onPressed: context.settingsModel.toggleTraversalPolicy,
+            ),
+            const SizedBox(height: 24.0),
+            _TvSettingTile(
+              title: 'Show About Page',
+              subtitle: 'Information about this app and author',
+              valueListenable: context.settingsModel.showAboutPage,
+              onPressed: context.settingsModel.toggleAboutPageVisibility,
             ),
           ],
         ),

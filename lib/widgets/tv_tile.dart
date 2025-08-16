@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart'
-    show ContentItem;
+import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class TvTile extends StatefulWidget {
@@ -49,14 +48,14 @@ class _TvTileState extends State<TvTile> {
             padding: EdgeInsets.all(applyFocusEffects ? 3.0 : 0.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(11.0),
-              // Conditionally apply the gradient border.
+              // Conditionally apply the gradient border using theme colors.
               gradient:
                   applyFocusEffects
-                      ? const LinearGradient(
+                      ? LinearGradient(
                         colors: [
-                          Colors.cyanAccent,
-                          Colors.pinkAccent,
-                          Colors.yellowAccent,
+                          context.colors.primary,
+                          context.colors.secondary,
+                          context.colors.inversePrimary,
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,

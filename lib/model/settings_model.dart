@@ -11,39 +11,50 @@ enum TvNavBarLocation { top, left }
 class SettingsModel {
   /// Determines if the app should use a side navigation rail (TV) or a
   /// bottom navigation bar (mobile).
-  final ValueNotifier<UiExperience> _useTvLayout = ValueNotifier(
+  final ValueNotifier<UiExperience> uiExperience = ValueNotifier(
     UiExperience.mobile,
   );
 
   void toggleUiExperience() {
-    _useTvLayout.value =
-        _useTvLayout.value == UiExperience.mobile
-            ? UiExperience.tv
-            : UiExperience.mobile;
+    uiExperience.value =
+        uiExperience.value.isMobile ? UiExperience.tv : UiExperience.mobile;
   }
-
-  ValueNotifier<UiExperience> get uiExperience => _useTvLayout;
-
-  /// Determines if arrow keys should be used for focus-based navigation.
-  final ValueNotifier<bool> useFocusToNavigate = ValueNotifier(false);
 
   /// Determines if a visual decoration (e.g., a border or scale effect)
   /// should be shown on the currently focused item.
   final ValueNotifier<bool> useFocusDecoration = ValueNotifier(false);
 
-  /// Determines if the page should use the "1.5 rail" TV layout with a
-  /// large preview area at the top.
-  final ValueNotifier<bool> useFixedRailViewport = ValueNotifier(false);
+  void toggleFocusDecoration() {
+    useFocusDecoration.value = !useFocusDecoration.value;
+  }
 
-  /// Notifies listeners when the navigation bar location changes.
-  final ValueNotifier<bool> useTopNavBar = ValueNotifier(false);
+  /// Determines if arrow keys should be used for focus-based navigation.
+  final ValueNotifier<bool> useTvPageLayout = ValueNotifier(false);
+
+  void toggleTvPageLayout() {
+    useTvPageLayout.value = !useTvPageLayout.value;
+  }
+
+  /// Determines if a custom focus traversal policy should be used
+  final ValueNotifier<bool> useCustomTraversalPolicy = ValueNotifier(false);
+
+  void toggleTraversalPolicy() {
+    useCustomTraversalPolicy.value = !useCustomTraversalPolicy.value;
+  }
+
+  /// Shows additional menu with rails about me and my information.
+  final ValueNotifier<bool> showAboutPage = ValueNotifier(false);
+
+  void toggleAboutPageVisibility() {
+    showAboutPage.value = !showAboutPage.value;
+  }
 
   /// Disposes the notifiers to prevent memory leaks.
   void dispose() {
-    _useTvLayout.dispose();
-    useFocusToNavigate.dispose();
+    uiExperience.dispose();
     useFocusDecoration.dispose();
-    useFixedRailViewport.dispose();
-    useTopNavBar.dispose();
+    useTvPageLayout.dispose();
+    useCustomTraversalPolicy.dispose();
+    showAboutPage.dispose();
   }
 }

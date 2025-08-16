@@ -12,13 +12,13 @@ class TvRailScrollController {
   final ScrollController scrollController;
   final double tileWidth;
   final double tileSpacing;
-  final double leftPadding;
+  final double railPadding;
 
   TvRailScrollController({
     required this.scrollController,
     required this.tileWidth,
     required this.tileSpacing,
-    required this.leftPadding,
+    required this.railPadding,
   });
 
   /// Scrolls the list to bring the item at the given index into view.
@@ -28,7 +28,7 @@ class TvRailScrollController {
 
     scrollController.animateTo(
       targetOffset.clamp(0.0, scrollController.position.maxScrollExtent),
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 150),
       curve: Curves.easeInOut,
     );
   }
@@ -118,8 +118,10 @@ class _BodyWidgetState extends State<BodyWidget> {
     final screenHeight = MediaQuery.sizeOf(context).height;
     final topPadding = screenHeight - (1.5 * _kRailHeight);
     final bottomPadding = _kRailHeight / 2;
-    final isTopNavBar = context.settingsModel.useTopNavBar.value;
-    final horizontalPadding = isTopNavBar ? 48.0 : 116.0;
+    final isHorizontalNavBar =
+        context.settingsModel.uiExperience.value.isMobile;
+    // TODO: based on the Screen Grid
+    final railPadding = isHorizontalNavBar ? 48.0 : 80.0;
 
     return Stack(
       children: [
@@ -137,13 +139,13 @@ class _BodyWidgetState extends State<BodyWidget> {
                   child: TvRail(
                     data: railData,
                     railIndex: index,
-                    horizontalScrollController: TvRailScrollController(
+                    railScrollController: TvRailScrollController(
                       scrollController: _pageModel.getHorizontalController(
                         railData.id,
                       ),
                       tileWidth: _kTileWidth,
                       tileSpacing: _kTileSpacing,
-                      leftPadding: horizontalPadding,
+                      railPadding: railPadding,
                     ),
                     onFocusChange: (tileIndex) {
                       _onFocusChange(index);

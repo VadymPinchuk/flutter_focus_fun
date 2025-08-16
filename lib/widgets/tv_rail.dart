@@ -6,14 +6,14 @@ import 'package:flutter_focus_fun_tv_demo/widgets/tv_tile.dart';
 class TvRail extends StatelessWidget {
   final ContentRailData data;
   final int railIndex;
-  final TvRailScrollController horizontalScrollController;
+  final TvRailScrollController railScrollController;
   final void Function(int tileIndex) onFocusChange;
 
   const TvRail({
     super.key,
     required this.data,
     required this.railIndex,
-    required this.horizontalScrollController,
+    required this.railScrollController,
     required this.onFocusChange,
   });
 
@@ -26,7 +26,7 @@ class TvRail extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(
-              left: horizontalScrollController.leftPadding,
+              left: railScrollController.railPadding,
             ),
             child: Text(
               data.title,
@@ -38,15 +38,15 @@ class TvRail extends StatelessWidget {
             height: 140,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              controller: horizontalScrollController.scrollController,
+              controller: railScrollController.scrollController,
               clipBehavior: Clip.none,
               padding: EdgeInsets.symmetric(
-                horizontal: horizontalScrollController.leftPadding,
+                horizontal: railScrollController.railPadding,
               ),
               itemCount: data.items.length,
               separatorBuilder:
                   (_, __) =>
-                      SizedBox(width: horizontalScrollController.tileSpacing),
+                      SizedBox(width: railScrollController.tileSpacing),
               itemBuilder: (_, index) {
                 final item = data.items[index];
                 return TvTile(
@@ -54,7 +54,7 @@ class TvRail extends StatelessWidget {
                   autofocus: railIndex == 0 && index == 0,
                   onFocusChange: (hasFocus) {
                     if (hasFocus) {
-                      horizontalScrollController.scrollToIndex(index);
+                      railScrollController.scrollToIndex(index);
                       onFocusChange(index);
                     }
                   },
