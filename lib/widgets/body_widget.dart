@@ -57,17 +57,6 @@ class _BodyWidgetState extends State<BodyWidget> {
     super.initState();
     _pageModel = context.pageUiModel;
     _verticalScrollController = ScrollController();
-
-    // // After the first frame is built, calculate and jump to the initial scroll position.
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   if (mounted) {
-    //     // final screenHeight = MediaQuery.sizeOf(context).height;
-    //     // final initialOffset = screenHeight - (1.5 * _kRailHeight);
-    //     // _verticalScrollController.jumpTo(initialOffset);
-    //     // _pageModel.setVerticalOffset(initialOffset);
-    //   }
-    // });
-    //
     _verticalScrollController.addListener(() {
       _pageModel.setVerticalOffset(_verticalScrollController.offset);
     });
@@ -96,7 +85,7 @@ class _BodyWidgetState extends State<BodyWidget> {
     if (_focusedRailIndex == newRailIndex) return;
     final direction = newRailIndex > _focusedRailIndex ? 1 : -1;
     final currentOffset = _verticalScrollController.offset;
-    final newOffset = currentOffset + (direction * kRailHeight);
+    final newOffset = currentOffset + (direction * kFullRailHeight);
 
     final maxScroll = _verticalScrollController.position.maxScrollExtent;
     final clampedOffset = newOffset.clamp(0.0, maxScroll);
@@ -132,7 +121,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                   child: SizedBox(
                     height:
                         useTvPageLayout
-                            ? screenHeight - (1.5 * kRailHeight)
+                            ? screenHeight - (kFullRailHeight + kHalfRailHeight)
                             : 0.0,
                   ),
                 ),
@@ -162,7 +151,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                   }, childCount: widget.rails.length),
                 ),
                 // save some space at the bottom to make rail scroll nice
-                SliverToBoxAdapter(child: SizedBox(height: kRailHeight / 2)),
+                SliverToBoxAdapter(child: SizedBox(height: kHalfRailHeight)),
               ],
             ),
           ],

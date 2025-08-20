@@ -19,36 +19,31 @@ class SlideWidget extends StatelessWidget {
         }
 
         final slideData = SlideData.fromJson(json.decode(snapshot.data!));
-        return LeftTextRightCodeLayout(data: slideData);
-
-        // // Use a switch statement to build the correct layout based on slideType.
-        // switch (slideData.slideType) {
-        //   case SlideType.singleText:
-        //     return SingleTextLayout(data: slideData);
-        //   case SlideType.doubleText:
-        //     return DoubleTextLayout(data: slideData);
-        //   case SlideType.leftTextRightImage:
-        //     return LeftTextRightImageLayout(data: slideData);
-        //   case SlideType.leftTextRightCode:
-        //     return LeftTextRightCodeLayout(data: slideData);
-        //   case SlideType.leftImageRightText:
-        //     return LeftImageRightTextLayout(data: slideData);
-        //   case SlideType.leftImageRightCode:
-        //     return LeftImageRightCodeLayout(data: slideData);
-        //   case SlideType.leftCodeRightImage:
-        //     return LeftCodeRightImageLayout(data: slideData);
-        //   case SlideType.singleCode:
-        //     return SingleCodeLayout(data: slideData);
-        //   case SlideType.doubleCode:
-        //     return DoubleCodeLayout(data: slideData);
-        //   case SlideType.unknown:
-        //   default:
-        //     return Center(
-        //       child: Text(
-        //         'Unknown or invalid slide type: ${slideData.slideType}',
-        //       ),
-        //     );
-        // }
+        // Use a switch statement to build the correct layout based on slideType.
+        switch (slideData.slideType) {
+          case SlideType.singleText:
+            return SingleTextLayout(data: slideData);
+          case SlideType.doubleText:
+            return DoubleTextLayout(data: slideData);
+          case SlideType.leftTextRightImage:
+            return LeftTextRightImageLayout(data: slideData);
+          case SlideType.leftTextRightCode:
+            return LeftTextRightCodeLayout(data: slideData);
+          case SlideType.leftImageRightText:
+            return LeftImageRightTextLayout(data: slideData);
+          case SlideType.leftImageRightCode:
+            return LeftImageRightCodeLayout(data: slideData);
+          case SlideType.leftCodeRightImage:
+            return LeftCodeRightImageLayout(data: slideData);
+          case SlideType.singleCode:
+            return SingleCodeLayout(data: slideData);
+          case SlideType.unknown:
+            return Center(
+              child: Text(
+                'Unknown or invalid slide type: ${slideData.slideType}',
+              ),
+            );
+        }
       },
     );
   }

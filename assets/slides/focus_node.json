@@ -7,5 +7,7 @@
     "It represents the focus state of a widget. You can ask it for focus, listen to its changes, and more.",
     "Crucially, a FocusNode is a long-lived object. You must create it in `initState` and clean it up in the `dispose` method to prevent memory leaks."
   ],
-  "codeSample": "// 1. Create and dispose the FocusNode\nfinal _focusNode = FocusNode();\n// ... in dispose(): _focusNode.dispose();\n\n// 2. Attach it to a widget\nElevatedButton(\n  focusNode: _focusNode,\n  // ...\n)"
+  "codeSamples": [
+    "// 1. Create and dispose the FocusNode\nfinal _focusNode = FocusNode();\n// ... in dispose(): _focusNode.dispose();\n\n// 2. Attach it to a widget\nElevatedButton(\n  focusNode: _focusNode,\n  // ...\n)"
+  ]
 }

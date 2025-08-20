@@ -21,14 +21,14 @@ class TvRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: kRailHeight,
+      height: kFullRailHeight,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        padding: const EdgeInsets.symmetric(vertical: kRailPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 24.0,
+              height: kTitleHeight,
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: railScrollController.railPadding,
@@ -42,9 +42,9 @@ class TvRail extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: kRailTitlePadding),
             SizedBox(
-              height: 140.0,
+              height: kRailHeight,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 controller: railScrollController.scrollController,

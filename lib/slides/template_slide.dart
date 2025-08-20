@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/footer_widget.dart';
+import 'package:flutter_focus_fun_tv_demo/constants.dart';
+import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/footer_widget.dart';
 
 /// A private class to hold the text styles for the slide.
 class _SlideTextStyles {
   static const TextStyle titleStyle = TextStyle(
-    fontSize: 48,
+    fontSize: 72,
     fontWeight: FontWeight.bold,
     color: Color(0xFFFFFFFF),
   );
   static const TextStyle subtitleStyle = TextStyle(
-    fontSize: 24,
+    fontSize: 56,
     color: Color(0xE6FFFFFF),
   );
 }
@@ -23,8 +25,6 @@ class TemplateSlide extends StatelessWidget {
   final String subtitle;
   final Widget child;
 
-  static const double _kRailHeight = 192.0;
-
   const TemplateSlide({
     super.key,
     required this.title,
@@ -34,14 +34,17 @@ class TemplateSlide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    // This calculation determines the space available for the slide content above the rails.
-    final contentHeight = screenHeight - (1.5 * _kRailHeight);
+    final isHorizontalNavBar =
+        context.settingsModel.uiExperience.value.isMobile;
+    final railPadding = isHorizontalNavBar ? 48.0 : 80.0;
 
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 120, top: 100, right: 48),
+          padding: EdgeInsets.symmetric(
+            horizontal: railPadding,
+            vertical: 48.0,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -50,18 +53,17 @@ class TemplateSlide extends StatelessWidget {
               Text(subtitle, style: _SlideTextStyles.subtitleStyle),
               const SizedBox(height: 32),
               // Constrain the height of the body content.
-              SizedBox(
-                height: contentHeight - 220, // Adjust for title/padding
-                child: child,
-              ),
+              child,
             ],
           ),
         ),
         // Position the static footer at the bottom right.
-        Positioned(
-          bottom: (1.5 * _kRailHeight) + 24, // Position above the rails
-          right: 48,
-          left: 120,
+        Container(
+          alignment: Alignment.bottomRight,
+          padding: EdgeInsets.symmetric(
+            horizontal: railPadding,
+            vertical: kRailHeight / 2,
+          ),
           child: const FooterWidget(),
         ),
       ],

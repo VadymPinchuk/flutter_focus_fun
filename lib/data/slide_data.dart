@@ -1,5 +1,3 @@
-
-
 enum SlideType {
   singleText,
   doubleText,
@@ -9,8 +7,7 @@ enum SlideType {
   leftImageRightCode,
   leftCodeRightImage,
   singleCode,
-  doubleCode,
-  unknown, // Fallback for invalid types
+  unknown,
 }
 
 SlideType _slideTypeFromString(String? type) {
@@ -31,10 +28,39 @@ SlideType _slideTypeFromString(String? type) {
       return SlideType.leftCodeRightImage;
     case 'SINGLE_CODE':
       return SlideType.singleCode;
-    case 'DOUBLE_CODE':
-      return SlideType.doubleCode;
     default:
       return SlideType.unknown;
+  }
+}
+
+class SlideFooterItem {
+  final String text;
+  final String imagePath;
+
+  SlideFooterItem({required this.text, required this.imagePath});
+
+  factory SlideFooterItem.fromJson(Map<String, dynamic> json) {
+    return SlideFooterItem(
+      text: json['text'] as String,
+      imagePath: json['imagePath'] as String,
+    );
+  }
+}
+
+/// A class to hold a single code snippet with optional metadata.
+class CodeSample {
+  final String title;
+  final String code;
+  final String language;
+
+  CodeSample({this.title = '', required this.code, this.language = 'dart'});
+
+  factory CodeSample.fromJson(Map<String, dynamic> json) {
+    return CodeSample(
+      title: json['title'] as String? ?? '',
+      code: json['code'] as String,
+      language: json['language'] as String? ?? 'dart',
+    );
   }
 }
 
@@ -47,7 +73,8 @@ class SlideData {
   final String? rightImagePath;
   final String? leftImagePath;
   final String? fullWidthImagePath;
-  final String? codeSample;
+  final List<String>? codeSamples;
+  final List<SlideFooterItem>? footers;
 
   SlideData({
     required this.title,
@@ -58,7 +85,8 @@ class SlideData {
     this.rightImagePath,
     this.leftImagePath,
     this.fullWidthImagePath,
-    this.codeSample,
+    this.codeSamples,
+    this.footers,
   });
 
   factory SlideData.fromJson(Map<String, dynamic> json) {
@@ -77,7 +105,14 @@ class SlideData {
       rightImagePath: json['rightImagePath'] as String?,
       leftImagePath: json['leftImagePath'] as String?,
       fullWidthImagePath: json['fullWidthImagePath'] as String?,
-      codeSample: json['codeSample'] as String?,
+      codeSamples:
+          (json['codeSamples'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList(),
+      footers:
+          (json['footer'] as List<dynamic>?)
+              ?.map((e) => SlideFooterItem.fromJson(e as Map<String, dynamic>))
+              .toList(),
     );
   }
 }

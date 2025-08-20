@@ -9,5 +9,18 @@
     "Can request focus automatically."
   ],
   "rightImagePath": "assets/images/focus_diagram.png",
-  "codeSample": "Focus(\n  onFocusChange: (hasFocus) {},\n  child: YourWidget(),\n);"
+  "codeSamples": [
+    "Focus(\n  onFocusChange: (hasFocus) {},\n  child: YourWidget(),\n);",
+    "Focus(\n  onFocusChange: (hasFocus) {},\n  child: YourWidget(),\n);"
+  ],
+  "footer": [
+    {
+      "text": "Key takeaway",
+      "imagePath": "assets/icons/lightbulb.png"
+    },
+    {
+      "text": "Provides visual feedback",
+      "imagePath": "assets/icons/visibility.png"
+    }
+  ]
 }
