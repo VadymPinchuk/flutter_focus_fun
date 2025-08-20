@@ -1,0 +1,13 @@
+{
+  "title": "The Focus Widget",
+  "subtitle": "The core of focusability in Flutter.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    "Makes any widget focusable.",
+    "Listens for focus changes with onFocusChange.",
+    "Handles key events with onKey.",
+    "Can request focus automatically."
+  ],
+  "rightImagePath": "assets/images/focus_diagram.png",
+  "codeSample": "Focus(\n  onFocusChange: (hasFocus) {},\n  child: YourWidget(),\n);"
+}

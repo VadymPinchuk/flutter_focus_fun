@@ -13,114 +13,61 @@ class ContentRailData {
   ContentRailData({required this.title, required this.items}) : id = _uuid.v4();
 }
 
-// Generates some mock data for the UI.
+// Generates a large set of mock data for the UI.
 final List<ContentRailData> mockData = [
   ContentRailData(
-    title: 'Introduction',
-    items: List.generate(
-      10,
-      (index) => ContentItem(
-        title: 'Intro ${index + 1}',
-        description:
-            'An engaging look at the core concepts of building for TV.',
-        color: Colors.red.shade400,
-        imagePath: 'assets/intro_bg.jpg',
-      ),
-    ),
-  ),
-  ContentRailData(
-    title: 'The 10-Foot UI Paradigm',
-    items: List.generate(
-      10,
-      (index) => ContentItem(
-        title: 'Paradigm ${index + 1}',
-        description:
-            'Learn the design principles of interfaces controlled from a distance.',
-        color: Colors.green.shade400,
-        imagePath: 'assets/paradigm_bg.jpg',
-      ),
-    ),
-  ),
-  ContentRailData(
-    title: "Flutter's Focus System",
-    items: List.generate(
-      10,
-      (index) => ContentItem(
-        title: 'Focus ${index + 1}',
-        description:
-            'A deep dive into FocusNode, FocusScope, and the widget tree.',
-        color: Colors.blue.shade400,
-        imagePath: 'assets/focus_bg.jpg',
-      ),
-    ),
-  ),
-  ContentRailData(
-    title: 'Directing the Flow',
-    items: List.generate(
-      10,
-      (index) => ContentItem(
-        title: 'Flow ${index + 1}',
-        description:
-            'Mastering focus traversal to create intuitive navigation.',
-        color: Colors.orange.shade400,
-        imagePath: 'assets/flow_bg.jpg',
-      ),
-    ),
-  ),
-  ContentRailData(
-    title: 'Actions & Polish',
-    items: List.generate(
-      10,
-      (index) => ContentItem(
-        title: 'Polish ${index + 1}',
-        description:
-            'Bringing your app to life with animations, sounds, and shortcuts.',
-        color: Colors.purple.shade400,
-        imagePath: 'assets/polish_bg.jpg',
-      ),
-    ),
-  ),
-];
-
-// Generates some mock data for the UI.
-final List<ContentRailData> mockConfData = [
-  ContentRailData(
-    title: '#ftcon25in',
+    title: 'The Focus System',
     items: [
       ContentItem(
-        title: 'FlutterCon India Keynote',
-        description:
-            'Join us for the opening keynote of FlutterCon India 2025.',
-        color: Colors.amber.shade700,
-        imagePath: 'assets/india/0_in.jpeg',
+        title: 'Focus Widget',
+        description: 'The core of focusability.',
+        color: Colors.blue.shade700,
+        icon: Icons.center_focus_strong,
+        slideAssetPath: 'assets/slides/focus_widget.json',
+      ),
+      ContentItem(
+        title: 'FocusNode',
+        description: 'The state of a focusable widget.',
+        color: Colors.blue.shade800,
+        icon: Icons.adjust,
+        slideAssetPath: 'assets/slides/focus_node.json',
+      ),
+      ContentItem(
+        title: 'FocusScope',
+        description: 'Managing a group of FocusNodes.',
+        color: Colors.blue.shade900,
+        icon: Icons.select_all,
+        slideAssetPath: 'assets/slides/focus_scope.md',
       ),
     ],
   ),
   ContentRailData(
-    title: '#ftcon25eu',
-    items: List.generate(
-      10,
-      (index) => ContentItem(
-        title: 'EU Session ${index + 1}',
-        description:
-            'A deep dive into Flutter development from our European conference.',
-        color: Colors.blue.shade700,
-        imagePath: 'assets/eu/${index}_eu.jpeg',
+    title: 'Traversal Policies',
+    items: [
+      ContentItem(
+        title: 'ReadingOrderTraversalPolicy',
+        description: 'The default navigation order.',
+        color: Colors.green.shade700,
+        icon: Icons.sort_by_alpha,
+        slideAssetPath: 'assets/slides/reading_order_policy.md',
       ),
-    ),
-  ),
-  ContentRailData(
-    title: '#ftcon25usa',
-    items: List.generate(
-      44,
-      (index) => ContentItem(
-        title: 'USA Workshop ${index + 1}',
-        description: 'Hands-on workshops from our USA conference series.',
-        color: Colors.red.shade700,
-        imagePath: 'assets/usa/${index}_usa.jpeg',
+      ContentItem(
+        title: 'FocusTraversalGroup',
+        description: 'Defining navigation boundaries.',
+        color: Colors.green.shade800,
+        icon: Icons.group_work,
+        slideAssetPath: 'assets/slides/focus_traversal_group.md',
       ),
-    ),
+      ContentItem(
+        title: 'Custom Policies',
+        description: 'Creating your own navigation rules.',
+        color: Colors.green.shade900,
+        icon: Icons.rule,
+        slideAssetPath: 'assets/slides/custom_policies.md',
+      ),
+    ],
   ),
+  // Add more rails and items as needed...
 ];
 
 // Helper function to generate a list of icons for the tiles
@@ -171,6 +118,7 @@ final List<ContentRailData> mockHomeData = List.generate(20, (railIndex) {
         color: railColor[(tileIndex % 9 + 1) * 100]!,
         icon: icons[tileIndex % icons.length],
         imagePath: '',
+        slideAssetPath: '',
       );
     }),
   );
