@@ -214,7 +214,7 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
     if (found != null) {
       return foundNodeToFocus(found, direction);
     }
-    return super.inDirection(currentNode, direction);
+    return false;
   }
 
   /// Finds the first node in the next row below [focusedChild].

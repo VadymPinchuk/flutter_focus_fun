@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
 
@@ -34,7 +35,7 @@ class _MobileSettingsLayout extends StatelessWidget {
         subtitle: const Text(
           'Switches between a side rail and a bottom navigation bar.',
         ),
-        value: true, // Always true in this layout
+        value: context.settingsModel.uiExperience.value.isTv,
         onChanged: (_) => context.settingsModel.toggleUiExperience(),
       ),
     );
@@ -148,7 +149,7 @@ class _TvSettingTileState extends State<_TvSettingTile> {
           valueListenable: widget.valueListenable,
           builder: (_, value, _) {
             return AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
+              duration: kAnimationDuration,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: value ? Colors.white12 : Colors.transparent,
@@ -188,7 +189,7 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                   const SizedBox(width: 16),
                   // Visual indicator for the "on" state
                   AnimatedOpacity(
-                    duration: const Duration(milliseconds: 200),
+                    duration: kAnimationDuration,
                     opacity: value ? 1.0 : 0.0,
                     child: Icon(
                       Icons.check_circle,

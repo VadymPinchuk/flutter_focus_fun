@@ -84,12 +84,12 @@ class RowWrappingTraversalPolicy extends GridRowTraversalPolicy {
         return row[idx + 1];
       }
     } else {
-      // Move left: wrap to previous row if at start.
-      if (idx == 0) {
-        return _findLastInPreviousRow(focusedChild, nodes);
-      } else {
-        return row[idx - 1];
-      }
+      // Move left: do NOT wrap to previous row if at start.
+      // if (idx == 0) {
+        return null;
+      // } else {
+      //   return row[idx - 1];
+      // }
     }
   }
 

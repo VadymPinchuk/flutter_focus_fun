@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
@@ -40,7 +41,7 @@ class _TvTileState extends State<TvTile> {
             }
           },
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
+            duration: kAnimationDuration,
             // Conditionally apply the scale transform.
             transform: Matrix4.identity()..scale(applyFocusEffects ? 1.1 : 1.0),
             transformAlignment: Alignment.center,
@@ -66,7 +67,7 @@ class _TvTileState extends State<TvTile> {
               // When not focused, dim the tile only if decorations are enabled.
               // When focused, always show at full opacity.
               opacity: _isFocused ? 1.0 : (useDecoration ? 0.75 : 1.0),
-              duration: const Duration(milliseconds: 200),
+              duration: kAnimationDuration,
               child: ContentTile(item: widget.item),
             ),
           ),

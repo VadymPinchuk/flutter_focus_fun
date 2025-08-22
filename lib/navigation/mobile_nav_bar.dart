@@ -67,6 +67,14 @@ class _MobileNavBarState extends State<MobileNavBar> {
                 BottomNavigationBarItem(
                   icon: Icon(
                     selectedIndex == 2
+                        ? Icons.question_mark_sharp
+                        : Icons.question_mark_rounded,
+                  ),
+                  label: 'About',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    selectedIndex == 3
                         ? Icons.settings
                         : Icons.settings_rounded,
                   ),

@@ -8,7 +8,7 @@ import 'package:flutter_focus_fun_tv_demo/pages/about_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/home_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/info_page.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
-import 'package:flutter_focus_fun_tv_demo/policy/row_wrapping_traversal_policy.dart';
+import 'package:flutter_focus_fun_tv_demo/policy/grid_row_traversal_policy.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
@@ -74,7 +74,7 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
         builder: (_, usePolicy, _) {
           return usePolicy
               ? FocusTraversalGroup(
-                policy: RowWrappingTraversalPolicy(),
+                policy: GridRowTraversalPolicy(),
                 child: page,
               )
               : page;

@@ -16,13 +16,13 @@ class _RailWrapperState extends State<RailWrapper> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<bool>(
-      valueListenable: context.settingsModel.useCustomTraversalPolicy,
-      builder: (_, customPolicy, _) {
+      valueListenable: context.settingsModel.useTvPageLayout,
+      builder: (_, tvPageLayout, _) {
         return ValueListenableBuilder<int>(
           valueListenable: context.pageUiModel.focusedRailIndex,
           builder: (_, focusedRailIndex, child) {
             final bool isVisible =
-                customPolicy && widget.railIndex >= focusedRailIndex;
+                tvPageLayout ? widget.railIndex >= focusedRailIndex : true;
             return AnimatedOpacity(
               duration: const Duration(milliseconds: 300),
               opacity: isVisible ? 1.0 : 0.0,
