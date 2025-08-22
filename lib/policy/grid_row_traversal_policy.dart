@@ -5,17 +5,23 @@ import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/scrollable_ensure_alignment.dart'
     show ScrollableX;
 
-class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
+/// A custom [FocusTraversalPolicy] for grid layouts that enables
+/// intuitive row and column navigation using keyboard or remote controls.
+///
+/// - Horizontal navigation (left/right) moves within a row.
+/// - Vertical navigation (up/down) jumps between rows, focusing the closest item.
+class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
+  /// Compares two offsets by their vertical distance to [target].
   static int _verticalCompare(Offset target, Offset a, Offset b) {
     return (a.dy - target.dy).abs().compareTo((b.dy - target.dy).abs());
   }
 
+  /// Compares two offsets by their horizontal distance to [target].
   static int _horizontalCompare(Offset target, Offset a, Offset b) {
     return (a.dx - target.dx).abs().compareTo((b.dx - target.dx).abs());
   }
 
-  // Sort the ones that are closest horizontally first, and if two are the same
-  // horizontal distance, pick the one that is closest vertically.
+  /// Sorts [nodes] by horizontal distance to [target], breaking ties by vertical distance.
   static Iterable<FocusNode> _sortByDistancePreferHorizontal(
     Offset target,
     Iterable<FocusNode> nodes,
@@ -36,8 +42,8 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return sorted;
   }
 
+  /// Compares two rects by the closest vertical edge to [target].
   static int _verticalCompareClosestEdge(Offset target, Rect a, Rect b) {
-    // Find which edge is closest to the target for each.
     final double aCoord =
         (a.top - target.dy).abs() < (a.bottom - target.dy).abs()
             ? a.top
@@ -49,9 +55,7 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return (aCoord - target.dy).abs().compareTo((bCoord - target.dy).abs());
   }
 
-  // Sort the ones that have edges that are closest vertically first, and if
-  // two are the same vertical distance, pick the one that is closest
-  // horizontally.
+  /// Sorts [nodes] by the closest vertical edge to [target], breaking ties by horizontal distance.
   static Iterable<FocusNode> _sortClosestEdgesByDistancePreferVertical(
     Offset target,
     Iterable<FocusNode> nodes,
@@ -66,8 +70,6 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
           nodeB.rect,
         );
         if (vertical == 0) {
-          // If they're the same distance vertically, pick the closest one
-          // horizontally.
           return _horizontalCompare(
             target,
             nodeA.rect.center,
@@ -80,14 +82,9 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return sorted;
   }
 
-  // Sorts nodes from left to right horizontally, and removes nodes that are
-  // either to the right of the left side of the target node if we're going
-  // left, or to the left of the right side of the target node if we're going
-  // right.
-  //
-  // This doesn't need to take into account directionality because it is
-  // typically intending to actually go left or right, not in a reading
-  // direction.
+  /// Filters and sorts [nodes] horizontally for left/right navigation.
+  ///
+  /// Only nodes to the left (for left) or right (for right) of [target] are considered.
   Iterable<FocusNode> _sortAndFilterHorizontally(
     TraversalDirection direction,
     Rect target,
@@ -97,24 +94,17 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
       direction == TraversalDirection.left ||
           direction == TraversalDirection.right,
     );
-    final Iterable<FocusNode> filtered;
-    switch (direction) {
-      case TraversalDirection.left:
-        filtered = nodes.where(
-          (FocusNode node) =>
-              node.rect != target && node.rect.center.dx <= target.left,
-        );
-      case TraversalDirection.right:
-        filtered = nodes.where(
-          (FocusNode node) =>
-              node.rect != target && node.rect.center.dx >= target.right,
-        );
-      case TraversalDirection.up:
-      case TraversalDirection.down:
-        throw ArgumentError('Invalid direction $direction');
-    }
+    final Iterable<FocusNode> filtered =
+        direction == TraversalDirection.left
+            ? nodes.where(
+              (FocusNode node) =>
+                  node.rect != target && node.rect.center.dx <= target.left,
+            )
+            : nodes.where(
+              (FocusNode node) =>
+                  node.rect != target && node.rect.center.dx >= target.right,
+            );
     final List<FocusNode> sorted = filtered.toList();
-    // Sort all nodes from left to right.
     mergeSort<FocusNode>(
       sorted,
       compare:
@@ -124,9 +114,9 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return sorted;
   }
 
-  // Sorts nodes from top to bottom vertically, and removes nodes that are
-  // either below the top of the target node if we're going up, or above the
-  // bottom of the target node if we're going down.
+  /// Filters and sorts [nodes] vertically for up/down navigation.
+  ///
+  /// Only nodes above (for up) or below (for down) [target] are considered.
   Iterable<FocusNode> _sortAndFilterVertically(
     TraversalDirection direction,
     Rect target,
@@ -136,22 +126,16 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
       direction == TraversalDirection.up ||
           direction == TraversalDirection.down,
     );
-    final Iterable<FocusNode> filtered;
-    switch (direction) {
-      case TraversalDirection.up:
-        filtered = nodes.where(
-          (FocusNode node) =>
-              node.rect != target && node.rect.center.dy <= target.top,
-        );
-      case TraversalDirection.down:
-        filtered = nodes.where(
-          (FocusNode node) =>
-              node.rect != target && node.rect.center.dy >= target.bottom,
-        );
-      case TraversalDirection.left:
-      case TraversalDirection.right:
-        throw ArgumentError('Invalid direction $direction');
-    }
+    final Iterable<FocusNode> filtered =
+        direction == TraversalDirection.up
+            ? nodes.where(
+              (FocusNode node) =>
+                  node.rect != target && node.rect.center.dy <= target.top,
+            )
+            : nodes.where(
+              (FocusNode node) =>
+                  node.rect != target && node.rect.center.dy >= target.bottom,
+            );
     final List<FocusNode> sorted = filtered.toList();
     mergeSort<FocusNode>(
       sorted,
@@ -162,12 +146,13 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return sorted;
   }
 
+  /// Handles directional focus traversal from [currentNode] in [direction].
+  ///
+  /// Returns true if a node was focused, otherwise falls back to the superclass.
   @override
   bool inDirection(FocusNode currentNode, TraversalDirection direction) {
     final nearestScope = currentNode.nearestScope;
-    if (nearestScope == null) {
-      return false;
-    }
+    if (nearestScope == null) return false;
 
     final FocusNode? focusedChild = nearestScope.focusedChild;
     if (focusedChild == null) {
@@ -175,84 +160,56 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     }
 
     FocusNode? found;
-    final ScrollableState? focusedScrollable = Scrollable.maybeOf(
-      focusedChild.context!,
-    );
     switch (direction) {
       case TraversalDirection.down:
+        found = _findFirstInNextRow(
+          focusedChild,
+          nearestScope.traversalDescendants,
+        );
+        break;
       case TraversalDirection.up:
-        Iterable<FocusNode> eligibleNodes = _sortAndFilterVertically(
+        final nodesAbove = _sortAndFilterVertically(
           direction,
           focusedChild.rect,
           nearestScope.traversalDescendants,
         );
-        if (eligibleNodes.isEmpty) {
-          break;
+        if (nodesAbove.isNotEmpty) {
+          found =
+              _sortClosestEdgesByDistancePreferVertical(
+                focusedChild.rect.center,
+                nodesAbove,
+              ).first;
         }
-        if (focusedScrollable != null && !focusedScrollable.position.atEdge) {
-          final Iterable<FocusNode> filteredEligibleNodes = eligibleNodes.where(
-            (FocusNode node) =>
-                Scrollable.maybeOf(node.context!) == focusedScrollable,
-          );
-          if (filteredEligibleNodes.isNotEmpty) {
-            eligibleNodes = filteredEligibleNodes;
-          }
-        }
-        if (direction == TraversalDirection.up) {
-          eligibleNodes = eligibleNodes.toList().reversed;
-        }
-        // Pick the one that is
-        // closest to the center line vertically, and if any are the same
-        // distance vertically, pick the closest one of those horizontally.
-        found =
-            _sortClosestEdgesByDistancePreferVertical(
-              focusedChild.rect.center,
-              eligibleNodes,
-            ).first;
-      case TraversalDirection.right:
+        break;
       case TraversalDirection.left:
+      case TraversalDirection.right:
         Iterable<FocusNode> eligibleNodes = _sortAndFilterHorizontally(
           direction,
           focusedChild.rect,
           nearestScope.traversalDescendants,
         );
-        if (eligibleNodes.isEmpty) {
-          break;
-        }
-        if (focusedScrollable != null && !focusedScrollable.position.atEdge) {
-          final Iterable<FocusNode> filteredEligibleNodes = eligibleNodes.where(
-            (FocusNode node) =>
-                Scrollable.maybeOf(node.context!) == focusedScrollable,
+        if (eligibleNodes.isNotEmpty) {
+          if (direction == TraversalDirection.left) {
+            eligibleNodes = eligibleNodes.toList().reversed;
+          }
+          final Rect band = Rect.fromLTRB(
+            -double.infinity,
+            focusedChild.rect.top,
+            double.infinity,
+            focusedChild.rect.bottom,
           );
-          if (filteredEligibleNodes.isNotEmpty) {
-            eligibleNodes = filteredEligibleNodes;
+          final Iterable<FocusNode> inBand = eligibleNodes.where(
+            (FocusNode node) => !node.rect.intersect(band).isEmpty,
+          );
+          if (inBand.isNotEmpty) {
+            found =
+                _sortByDistancePreferHorizontal(
+                  focusedChild.rect.center,
+                  inBand,
+                ).first;
           }
         }
-        if (direction == TraversalDirection.left) {
-          eligibleNodes = eligibleNodes.toList().reversed;
-        }
-        // Find any nodes that intersect the band of the focused child.
-        final Rect band = Rect.fromLTRB(
-          -double.infinity,
-          focusedChild.rect.top,
-          double.infinity,
-          focusedChild.rect.bottom,
-        );
-
-        final Iterable<FocusNode> inBand = eligibleNodes.where(
-          (FocusNode node) => !node.rect.intersect(band).isEmpty,
-        );
-        if (inBand.isNotEmpty) {
-          found =
-              _sortByDistancePreferHorizontal(
-                focusedChild.rect.center,
-                inBand,
-              ).first;
-          break;
-        }
-        // If we do not find any candidates in the horizontal band,
-        // then we should not navigate anywhere
-        return false;
+        break;
     }
     if (found != null) {
       return foundNodeToFocus(found, direction);
@@ -260,6 +217,27 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return super.inDirection(currentNode, direction);
   }
 
+  /// Finds the first node in the next row below [focusedChild].
+  ///
+  /// Returns the leftmost node in the next row, or null if none found.
+  FocusNode? _findFirstInNextRow(
+    FocusNode focusedChild,
+    Iterable<FocusNode> nodes,
+  ) {
+    final double currentBottom = focusedChild.rect.bottom;
+    final below = nodes.where((n) => n.rect.top > currentBottom).toList();
+    if (below.isEmpty) return null;
+    below.sort((a, b) => a.rect.top.compareTo(b.rect.top));
+    final double nextRowTop = below.first.rect.top;
+    final nextRow =
+        below.where((n) => (n.rect.top - nextRowTop).abs() < 1.0).toList();
+    nextRow.sort((a, b) => a.rect.left.compareTo(b.rect.left));
+    return nextRow.first;
+  }
+
+  /// Handles focus traversal when no node is currently focused.
+  ///
+  /// Focuses the first eligible node in [direction], or [currentNode] if none found.
   bool inDirectionNoCurrentFocus(
     FocusNode currentNode,
     TraversalDirection direction,
@@ -269,6 +247,7 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return foundNodeToFocus(firstFocus, direction);
   }
 
+  /// Requests focus for [chosenNode] and applies scroll alignment based on [direction].
   bool foundNodeToFocus(FocusNode chosenNode, TraversalDirection direction) {
     final alignmentPolicy = switch (direction) {
       TraversalDirection.up || TraversalDirection.left =>
@@ -277,7 +256,7 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
       TraversalDirection.down => ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
     };
     chosenNode.requestFocus();
-
+    // Optionally, use the callback for animated scrolling:
     // requestFocusCallback(
     //   chosenNode,
     //   alignmentPolicy: alignmentPolicy,
@@ -288,6 +267,7 @@ class CustomTraversalPolicy extends ReadingOrderTraversalPolicy {
     return true;
   }
 
+  /// Callback to request focus and ensure the node is visible in a scrollable.
   @override
   TraversalRequestFocusCallback get requestFocusCallback => (
     FocusNode node, {
