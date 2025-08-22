@@ -74,6 +74,13 @@ class _TvSettingsLayout extends StatelessWidget {
             ),
             const SizedBox(height: 24.0),
             _TvSettingTile(
+              title: 'Use TV Fixed Focus Scroll',
+              subtitle: 'Switches to a fixed focus navigation',
+              valueListenable: context.settingsModel.useTvFixedFocusController,
+              onPressed: context.settingsModel.toggleTvFixedFocus,
+            ),
+            const SizedBox(height: 24.0),
+            _TvSettingTile(
               title: 'Use TV Page Layout',
               subtitle: 'Switches to a layout optimized for TV',
               valueListenable: context.settingsModel.useTvPageLayout,

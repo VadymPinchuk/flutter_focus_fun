@@ -3,38 +3,11 @@ import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/mock_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
+import 'package:flutter_focus_fun_tv_demo/scroll/tv_rail_scroll_controller.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_background.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/rail_wrapper.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/tv_rail.dart';
-
-/// A custom scroll controller that handles precise scrolling for a horizontal TV rail.
-/// It accounts for list padding to ensure focused items are correctly positioned.
-class TvRailScrollController {
-  final ScrollController scrollController;
-  final double tileWidth;
-  final double tileSpacing;
-  final double railPadding;
-
-  TvRailScrollController({
-    required this.scrollController,
-    required this.tileWidth,
-    required this.tileSpacing,
-    required this.railPadding,
-  });
-
-  /// Scrolls the list to bring the item at the given index into view.
-  void scrollToIndex(int index) {
-    // Calculate the target offset to center the tile, accounting for the left padding.
-    final targetOffset = (index * (tileWidth + tileSpacing));
-
-    scrollController.animateTo(
-      targetOffset.clamp(0.0, scrollController.position.maxScrollExtent),
-      duration: const Duration(milliseconds: 150),
-      curve: Curves.easeInOut,
-    );
-  }
-}
 
 class BodyWidget extends StatefulWidget {
   final List<ContentRailData> rails;
@@ -92,7 +65,7 @@ class _BodyWidgetState extends State<BodyWidget> {
 
     _verticalScrollController.animateTo(
       clampedOffset,
-      duration: kAnimationDuration,
+      duration:  Duration(milliseconds: 100),
       curve: Curves.easeInOut,
     );
   }
