@@ -13,3 +13,7 @@ extension Models on BuildContext {
 extension SomeTheme on BuildContext {
   ColorScheme get colors => Theme.of(this).colorScheme;
 }
+
+extension TextScale on BuildContext {
+  double get textScale => MediaQuery.textScalerOf(this).scale(1.0);
+}

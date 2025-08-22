@@ -3,27 +3,7 @@ import 'package:flutter_focus_fun_tv_demo/data/slide_data.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/template_slide.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/bullet_list_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_sample_widget.dart';
-
-/// A widget that renders an image from an asset path.
-class ImageWidget extends StatelessWidget {
-  final String imagePath;
-
-  const ImageWidget({super.key, required this.imagePath});
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Image.asset(
-        imagePath,
-        fit: BoxFit.contain,
-        errorBuilder: (c, e, s) => const Placeholder(),
-      ),
-    );
-  }
-}
-
-// --- Specific Slide Layout Implementations ---
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/image_widget.dart';
 
 /// A slide layout that displays bullet points on the left and a code sample on the right.
 class LeftTextRightCodeLayout extends StatelessWidget {

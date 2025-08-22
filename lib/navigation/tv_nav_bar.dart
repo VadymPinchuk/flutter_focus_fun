@@ -88,18 +88,11 @@ class _TvNavBarState extends State<TvNavBar> {
                     onPressed: () => itemSelected(1),
                   ),
                   Spacer(),
-                  ValueListenableBuilder<bool>(
-                    valueListenable: context.settingsModel.showAboutPage,
-                    builder:
-                        (context, showAbout, child) =>
-                            showAbout
-                                ? _TvNavBarButton.about(
-                                  isSelected: selectedIndex == 2,
-                                  isFocused: isFocused,
-                                  focusNode: navBarNodes[2],
-                                  onPressed: () => itemSelected(2),
-                                )
-                                : const SizedBox.shrink(),
+                  _TvNavBarButton.about(
+                    isSelected: selectedIndex == 2,
+                    isFocused: isFocused,
+                    focusNode: navBarNodes[2],
+                    onPressed: () => itemSelected(2),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12.0),

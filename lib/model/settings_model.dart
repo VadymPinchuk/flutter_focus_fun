@@ -49,12 +49,8 @@ class SettingsModel {
     useCustomTraversalPolicy.value = !useCustomTraversalPolicy.value;
   }
 
-  /// Shows additional menu with rails about me and my information.
-  final ValueNotifier<bool> showAboutPage = ValueNotifier(true);
-
-  void toggleAboutPageVisibility() {
-    showAboutPage.value = !showAboutPage.value;
-  }
+  /// Controls the global text scaling factor for the entire application.
+  final ValueNotifier<double> textScaleFactor = ValueNotifier(1.0);
 
   /// Disposes the notifiers to prevent memory leaks.
   void dispose() {
@@ -63,6 +59,6 @@ class SettingsModel {
     useTvFixedFocusController.dispose();
     useTvPageLayout.dispose();
     useCustomTraversalPolicy.dispose();
-    showAboutPage.dispose();
+    textScaleFactor.dispose();
   }
 }

@@ -51,7 +51,7 @@ class _TvSettingsLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: 600, // Constrain the width for a better look on large screens
+        width: 600 * context.textScale,
         child: ListView(
           padding: const EdgeInsets.all(32.0),
           children: [
@@ -65,46 +65,46 @@ class _TvSettingsLayout extends StatelessWidget {
               onPressed: context.settingsModel.toggleUiExperience,
               autofocus: true,
             ),
-            const SizedBox(height: 24.0),
+            getSpacer,
             _TvSettingTile(
               title: 'Show Focus Decoration',
               subtitle: 'Enables decoration over focused widget',
               valueListenable: context.settingsModel.useFocusDecoration,
               onPressed: context.settingsModel.toggleFocusDecoration,
             ),
-            const SizedBox(height: 24.0),
+            getSpacer,
             _TvSettingTile(
               title: 'Use TV Fixed Focus Scroll',
               subtitle: 'Switches to a fixed focus navigation',
               valueListenable: context.settingsModel.useTvFixedFocusController,
               onPressed: context.settingsModel.toggleTvFixedFocus,
             ),
-            const SizedBox(height: 24.0),
+            getSpacer,
             _TvSettingTile(
               title: 'Use TV Page Layout',
               subtitle: 'Switches to a layout optimized for TV',
               valueListenable: context.settingsModel.useTvPageLayout,
               onPressed: context.settingsModel.toggleTvPageLayout,
             ),
-            const SizedBox(height: 24.0),
+            getSpacer,
             _TvSettingTile(
               title: 'Use Custom Traversal Policy',
               subtitle: 'Enables custom focus traversal for better navigation',
               valueListenable: context.settingsModel.useCustomTraversalPolicy,
               onPressed: context.settingsModel.toggleTraversalPolicy,
             ),
-            const SizedBox(height: 24.0),
-            _TvSettingTile(
-              title: 'Show About Page',
-              subtitle: 'Information about this app and author',
-              valueListenable: context.settingsModel.showAboutPage,
-              onPressed: context.settingsModel.toggleAboutPageVisibility,
+            getSpacer,
+            _TextScaleSlider(
+              title: 'Content Text Scale',
+              subtitle: 'Improve content visibility by changing text size',
             ),
           ],
         ),
       ),
     );
   }
+
+  Widget get getSpacer => const SizedBox(height: 24.0);
 }
 
 class _TvSettingTile extends StatefulWidget {
@@ -185,6 +185,7 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                         Text(
                           widget.subtitle,
                           style: TextStyle(
+                            fontSize: 16,
                             color: _isFocused ? Colors.white : Colors.white70,
                             fontWeight:
                                 _isFocused ? FontWeight.w500 : FontWeight.w400,
@@ -209,6 +210,114 @@ class _TvSettingTileState extends State<_TvSettingTile> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+/// A widget for adjusting the global text scale factor.
+class _TextScaleSlider extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
+  const _TextScaleSlider({required this.title, required this.subtitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<double>(
+      valueListenable: context.settingsModel.textScaleFactor,
+      builder: (_, currentTextScale, child) {
+        return Column(
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+                // color: _isFocused ? Colors.white : Colors.white70,
+                // fontWeight:
+                // _isFocused ? FontWeight.w500 : FontWeight.w400,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              subtitle,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              spacing: 24.0,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _TextScalerIconButton(
+                  icon: Icons.remove,
+                  onPressed: () {
+                    context
+                        .settingsModel
+                        .textScaleFactor
+                        .value = (currentTextScale - 0.1).clamp(0.8, 2.0);
+                  },
+                ),
+                Text(
+                  '${(currentTextScale * 100).toStringAsFixed(0)}%',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                _TextScalerIconButton(
+                  icon: Icons.add,
+                  onPressed: () {
+                    context
+                        .settingsModel
+                        .textScaleFactor
+                        .value = (currentTextScale + 0.1).clamp(0.8, 2.0);
+                  },
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _TextScalerIconButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  const _TextScalerIconButton({required this.icon, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return Focus(
+      canRequestFocus: false,
+      descendantsAreFocusable: true,
+      onKeyEvent: (FocusNode node, KeyEvent event) {
+        if (event is KeyUpEvent) return KeyEventResult.ignored;
+        if (event.logicalKey == LogicalKeyboardKey.enter) {
+          onPressed();
+          return KeyEventResult.handled;
+        }
+        if (event.logicalKey == LogicalKeyboardKey.numpadEnter) {
+          onPressed();
+          return KeyEventResult.handled;
+        }
+        return KeyEventResult.ignored;
+      },
+      onFocusChange: (hasFocus) {
+        // Optionally handle focus change if needed
+      },
+      child: IconButton(
+        icon: Icon(icon, size: 24 * context.textScale),
+        color: Colors.white,
+        onPressed: onPressed,
       ),
     );
   }

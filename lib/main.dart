@@ -12,8 +12,15 @@ void main() {
   runApp(const PresentationApp());
 }
 
-class PresentationApp extends StatelessWidget {
+class PresentationApp extends StatefulWidget {
   const PresentationApp({super.key});
+
+  @override
+  State<PresentationApp> createState() => _PresentationAppState();
+}
+
+class _PresentationAppState extends State<PresentationApp> {
+  final SettingsModel settingsModel = SettingsModel();
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +52,25 @@ class PresentationApp extends StatelessWidget {
         },
         child: MultiProvider(
           providers: [
-            Provider<SettingsModel>(create: (_) => SettingsModel()),
+            Provider<SettingsModel>.value(value: settingsModel),
             Provider<UiExperience>.value(value: uiExperience),
           ],
-          child: Material(
-            color: Colors.transparent,
-            child: const Stack(children: [BackgroundImage(), ScreenScaffold()]),
+          child: ValueListenableBuilder(
+            valueListenable: settingsModel.textScaleFactor,
+            builder: (ctx, textScale, _) {
+              final mediaQueryData = MediaQuery.of(ctx);
+              return MediaQuery(
+                data: mediaQueryData.copyWith(
+                  textScaler: TextScaler.linear(textScale),
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: const Stack(
+                    children: [BackgroundImage(), ScreenScaffold()],
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),
