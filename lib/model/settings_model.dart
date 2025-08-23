@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
 
 /// Defines the possible locations for the TV navigation bar.
 enum TvNavBarLocation { top, left }
@@ -11,13 +11,13 @@ enum TvNavBarLocation { top, left }
 class SettingsModel {
   /// Determines if the app should use a side navigation rail (TV) or a
   /// bottom navigation bar (mobile).
-  final ValueNotifier<UiExperience> uiExperience = ValueNotifier(
-    UiExperience.tv,
+  final ValueNotifier<UserExperience> experience = ValueNotifier(
+    UserExperience.mobile,
   );
 
   void toggleUiExperience() {
-    uiExperience.value =
-        uiExperience.value.isMobile ? UiExperience.tv : UiExperience.mobile;
+    experience.value =
+        experience.value.isMobile ? UserExperience.tv : UserExperience.mobile;
   }
 
   /// Determines if a visual decoration (e.g., a border or scale effect)
@@ -52,13 +52,17 @@ class SettingsModel {
   /// Controls the global text scaling factor for the entire application.
   final ValueNotifier<double> textScaleFactor = ValueNotifier(1.0);
 
+  /// Controls the number of tiles displayed per row in content grids.
+  final ValueNotifier<double> tilesPerRowCount = ValueNotifier(3.0);
+
   /// Disposes the notifiers to prevent memory leaks.
   void dispose() {
-    uiExperience.dispose();
+    experience.dispose();
     useFocusDecoration.dispose();
     useTvFixedFocusController.dispose();
     useTvPageLayout.dispose();
     useCustomTraversalPolicy.dispose();
     textScaleFactor.dispose();
+    tilesPerRowCount.dispose();
   }
 }

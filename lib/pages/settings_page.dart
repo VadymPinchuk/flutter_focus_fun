@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -11,12 +11,12 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ValueListenableBuilder<UiExperience>(
-        valueListenable: context.settingsModel.uiExperience,
+      body: ValueListenableBuilder<UserExperience>(
+        valueListenable: context.settingsModel.experience,
         builder:
-            (_, uiExperience, _) => switch (uiExperience) {
-              UiExperience.tv => const _TvSettingsLayout(),
-              UiExperience.mobile => const _MobileSettingsLayout(),
+            (_, experience, _) => switch (experience) {
+              UserExperience.tv => const _TvSettingsLayout(),
+              UserExperience.mobile => const _MobileSettingsLayout(),
             },
       ),
     );
@@ -36,7 +36,7 @@ class _MobileSettingsLayout extends StatelessWidget {
         subtitle: const Text(
           'Switches between a side rail and a bottom navigation bar.',
         ),
-        value: context.settingsModel.uiExperience.value.isTv,
+        value: context.settingsModel.experience.value.isTv,
         onChanged: (_) => context.settingsModel.toggleUiExperience(),
       ),
     );
@@ -60,7 +60,7 @@ class _TvSettingsLayout extends StatelessWidget {
               title: 'Use TV Navigation',
               subtitle:
                   'Switches between a side rail and a bottom navigation bar',
-              valueListenable: context.settingsModel.uiExperience.map(
+              valueListenable: context.settingsModel.experience.map(
                 (exp) => exp.isTv,
               ),
               onPressed: context.settingsModel.toggleUiExperience,
@@ -98,6 +98,11 @@ class _TvSettingsLayout extends StatelessWidget {
             _TextScaleSlider(
               title: 'Content Text Scale',
               subtitle: 'Improve content visibility by changing text size',
+            ),
+            getSpacer,
+            _TileCountWidget(
+              title: 'Tiles count per row',
+              subtitle: 'Increase tile visibility by decreasing count',
             ),
           ],
         ),
@@ -165,8 +170,8 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                 border: Border.all(
                   color:
                       _isFocused
-                          ? AppColors.settingsFocused
-                          : AppColors.settingsUnfocused,
+                          ? AppColors.settingsTileFocused
+                          : AppColors.settingsTileUnfocused,
                   width: _isFocused ? 2.0 : 1.0,
                   strokeAlign: BorderSide.strokeAlignCenter,
                 ),
@@ -181,7 +186,7 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                           widget.title,
                           style: TextStyle(
                             fontSize: 24,
-                            color: AppColors.settingsFocused.withValues(
+                            color: AppColors.settingsTileFocused.withValues(
                               alpha: _isFocused ? 1.0 : 0.7,
                             ),
                             fontWeight:
@@ -193,7 +198,7 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                           widget.subtitle,
                           style: TextStyle(
                             fontSize: 16,
-                            color: AppColors.settingsFocused.withValues(
+                            color: AppColors.settingsTileFocused.withValues(
                               alpha: _isFocused ? 1.0 : 0.7,
                             ),
                             fontWeight:
@@ -236,60 +241,48 @@ class _TextScaleSlider extends StatelessWidget {
     return ValueListenableBuilder<double>(
       valueListenable: context.settingsModel.textScaleFactor,
       builder: (_, currentTextScale, child) {
-        return Column(
+        return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 24,
-                color: AppColors.settingsFocused,
-                fontWeight: FontWeight.w400,
-                // color: _isFocused ? Colors.white : Colors.white70,
-                // fontWeight:
-                // _isFocused ? FontWeight.w500 : FontWeight.w400,
-              ),
+            _SettingsIconButton(
+              icon: Icons.remove,
+              onPressed: () {
+                context
+                    .settingsModel
+                    .textScaleFactor
+                    .value = (currentTextScale - 0.1).clamp(0.8, 2.0);
+              },
             ),
-            const SizedBox(height: 4),
-            Text(
-              subtitle,
-              style: TextStyle(
-                fontSize: 16,
-                color: AppColors.settingsFocused,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Row(
-              spacing: 24.0,
-              mainAxisSize: MainAxisSize.min,
+            Column(
               children: [
-                _TextScalerIconButton(
-                  icon: Icons.remove,
-                  onPressed: () {
-                    context
-                        .settingsModel
-                        .textScaleFactor
-                        .value = (currentTextScale - 0.1).clamp(0.8, 2.0);
-                  },
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: AppColors.settingsTextUnfocused,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
+                const SizedBox(height: 4),
                 Text(
                   '${(currentTextScale * 100).toStringAsFixed(0)}%',
                   style: const TextStyle(
                     fontSize: 16,
-                    color: AppColors.settingsFocused,
+                    color: AppColors.settingsTextFocused,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                _TextScalerIconButton(
-                  icon: Icons.add,
-                  onPressed: () {
-                    context
-                        .settingsModel
-                        .textScaleFactor
-                        .value = (currentTextScale + 0.1).clamp(0.8, 2.0);
-                  },
-                ),
               ],
+            ),
+            _SettingsIconButton(
+              icon: Icons.add,
+              onPressed: () {
+                context
+                    .settingsModel
+                    .textScaleFactor
+                    .value = (currentTextScale + 0.1).clamp(0.8, 2.0);
+              },
             ),
           ],
         );
@@ -298,11 +291,73 @@ class _TextScaleSlider extends StatelessWidget {
   }
 }
 
-class _TextScalerIconButton extends StatelessWidget {
+/// A widget for adjusting the global text scale factor.
+class _TileCountWidget extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
+  const _TileCountWidget({required this.title, required this.subtitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<double>(
+      valueListenable: context.settingsModel.tilesPerRowCount,
+      builder: (_, currentTileCount, child) {
+        return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _SettingsIconButton(
+              icon: Icons.remove,
+              onPressed: () {
+                context
+                    .settingsModel
+                    .tilesPerRowCount
+                    .value = (currentTileCount - 1.0).clamp(2.0, 7.0);
+              },
+            ),
+            Column(
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: AppColors.settingsTextUnfocused,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  '$currentTileCount tiles per row',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: AppColors.settingsTextFocused,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            _SettingsIconButton(
+              icon: Icons.add,
+              onPressed: () {
+                context
+                    .settingsModel
+                    .tilesPerRowCount
+                    .value = (currentTileCount + 1.0).clamp(2.0, 8.0);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _SettingsIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
 
-  const _TextScalerIconButton({required this.icon, required this.onPressed});
+  const _SettingsIconButton({required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

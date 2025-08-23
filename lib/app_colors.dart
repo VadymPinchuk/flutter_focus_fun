@@ -14,6 +14,8 @@ class AppColors {
   static const tileIcon = Color(0xFF000000);
   static const tileShadow = Color(0x801C1C1C);
 
-  static const settingsFocused = Color(0xFFFFFFFF);
-  static const settingsUnfocused = Color(0x3DFFFFFF);
+  static const settingsTextFocused = Color(0xFFFFFFFF);
+  static const settingsTextUnfocused = Color(0x99FFFFFF);
+  static const settingsTileFocused = Color(0xFFFFFFFF);
+  static const settingsTileUnfocused = Color(0x3DFFFFFF);
 }

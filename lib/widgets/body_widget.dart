@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
@@ -58,7 +57,8 @@ class _BodyWidgetState extends State<BodyWidget> {
     if (_focusedRailIndex == newRailIndex) return;
     final direction = newRailIndex > _focusedRailIndex ? 1 : -1;
     final currentOffset = _verticalScrollController.offset;
-    final newOffset = currentOffset + (direction * kFullRailHeight);
+    final newOffset =
+        currentOffset + (direction * context.railData.railFullHeight);
 
     final maxScroll = _verticalScrollController.position.maxScrollExtent;
     final clampedOffset = newOffset.clamp(0.0, maxScroll);
@@ -73,9 +73,6 @@ class _BodyWidgetState extends State<BodyWidget> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.sizeOf(context).height;
-    final isHorizontalNavBar =
-        context.settingsModel.uiExperience.value.isMobile;
-    final railPadding = isHorizontalNavBar ? 48.0 : 80.0;
 
     return ValueListenableBuilder(
       valueListenable: context.settingsModel.useTvPageLayout,
@@ -99,23 +96,25 @@ class _BodyWidgetState extends State<BodyWidget> {
                   child: SizedBox(
                     height:
                         useTvPageLayout
-                            ? screenHeight - (kFullRailHeight + kHalfRailHeight)
+                            ? screenHeight -
+                                (context.railData.railFullHeight +
+                                    context.railData.railHalfHeight)
                             : 0.0,
                   ),
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
-                    final railData = widget.rails[index];
+                    final railContent = widget.rails[index];
                     return TvRail(
-                      data: railData,
+                      data: railContent,
                       railIndex: index,
                       railScrollController: TvRailScrollController(
                         scrollController: _pageModel.getHorizontalController(
-                          railData.id,
+                          railContent.id,
                         ),
-                        tileWidth: kTileWidth,
-                        tileSpacing: kTileSpacing,
-                        railPadding: railPadding,
+                        tileWidth: context.railData.tileSize.width,
+                        tileSpacing: context.railData.tilesSpacing,
+                        railPadding: context.railData.railHorizontalPadding,
                       ),
                       onFocusChange: (_) {
                         if (useTvPageLayout) _onFocusChange(index);
@@ -129,7 +128,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                   }, childCount: widget.rails.length),
                 ),
                 // save some space at the bottom to make rail scroll nice
-                SliverToBoxAdapter(child: SizedBox(height: kHalfRailHeight)),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: context.railData.tileSize.height),
+                ),
               ],
             ),
           ],

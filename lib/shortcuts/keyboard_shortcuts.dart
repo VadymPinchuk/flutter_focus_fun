@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/activate_secondary_intent.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/long_press_activator.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/single_click_activator.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
 
 class KeyboardShortcuts {
-  final UiExperience uiExperience;
+  final UserExperience experience;
 
-  const KeyboardShortcuts({required this.uiExperience});
+  const KeyboardShortcuts({required this.experience});
 
   Map<ShortcutActivator, Intent>? shortcuts() => {
     // Activation

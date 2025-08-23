@@ -66,7 +66,7 @@ class _TvTileState extends State<TvTile> {
             // Conditionally apply the padding for the border.
             padding: EdgeInsets.all(applyFocusEffects ? 3.0 : 0.0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(11.0),
+              borderRadius: BorderRadius.circular(12.0),
               // Conditionally apply the gradient border using theme colors.
               gradient:
                   applyFocusEffects

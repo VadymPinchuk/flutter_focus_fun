@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
@@ -18,7 +19,7 @@ class MobileContentRail extends StatelessWidget {
     return SliverMainAxisGroup(
       slivers: [
         SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          padding: EdgeInsets.symmetric(horizontal: context.railData.railHorizontalPadding, vertical: context.railData.railVerticalPadding),
           sliver: SliverToBoxAdapter(
             child: Text(
               data.title,
@@ -28,11 +29,11 @@ class MobileContentRail extends StatelessWidget {
         ),
         SliverToBoxAdapter(
           child: SizedBox(
-            height: 120,
+            height: context.railData.tileSize.height,
             child: ListView.separated(
               controller: horizontalController,
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.symmetric(horizontal: context.railData.railHorizontalPadding),
               itemCount: data.items.length,
               separatorBuilder: (context, index) => const SizedBox(width: 8.0),
               itemBuilder: (context, index) {

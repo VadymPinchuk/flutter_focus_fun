@@ -42,7 +42,9 @@ class ContentTile extends StatelessWidget {
                   children: [
                     Text(
                       item.title,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
+                      overflow: TextOverflow.clip,
+                      maxLines: 1,
                       style: const TextStyle(
                         color: AppColors.tileTitle,
                         fontWeight: FontWeight.bold,
@@ -55,7 +57,9 @@ class ContentTile extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       item.description,
-                      textAlign: TextAlign.center,
+                      textAlign: TextAlign.start,
+                      overflow: TextOverflow.clip,
+                      maxLines: 1,
                       style: TextStyle(
                         color: AppColors.tileDescription,
                         fontSize: 12,
@@ -63,8 +67,6 @@ class ContentTile extends StatelessWidget {
                           Shadow(blurRadius: 2.0, color: AppColors.tileShadow),
                         ],
                       ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),

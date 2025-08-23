@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/scroll/tv_rail_scroll_controller.dart';
@@ -23,18 +22,21 @@ class TvRail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final railData = context.railData;
     return ValueListenableBuilder(
       valueListenable: context.settingsModel.useTvFixedFocusController,
       builder: (_, isFixedFocusUsed, _) {
         return SizedBox(
-          height: kFullRailHeight,
+          height: railData.railFullHeight,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: kRailPadding),
+            padding: EdgeInsets.symmetric(
+              vertical: railData.railVerticalPadding,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: kTitleHeight,
+                  height: railData.titleHeight,
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: railScrollController.railPadding,
@@ -49,9 +51,9 @@ class TvRail extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: kRailTitlePadding),
+                SizedBox(height: railData.railTitleSpacing),
                 SizedBox(
-                  height: kRailHeight,
+                  height: railData.tileSize.height,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     controller: railScrollController.scrollController,
@@ -61,8 +63,7 @@ class TvRail extends StatelessWidget {
                     ),
                     itemCount: data.items.length,
                     separatorBuilder:
-                        (_, _) =>
-                            SizedBox(width: railScrollController.tileSpacing),
+                        (_, _) => SizedBox(width: railData.tilesSpacing),
                     itemBuilder: (_, index) {
                       final item = data.items[index];
                       return TvTile(

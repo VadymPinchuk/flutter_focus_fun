@@ -11,7 +11,7 @@ import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
 import 'package:flutter_focus_fun_tv_demo/policy/grid_row_traversal_policy.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
 
 class ScreenScaffold extends StatefulWidget {
   const ScreenScaffold({super.key});
@@ -114,12 +114,12 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
               ),
             ],
           ),
-          ValueListenableBuilder<UiExperience>(
-            valueListenable: context.settingsModel.uiExperience,
+          ValueListenableBuilder<UserExperience>(
+            valueListenable: context.settingsModel.experience,
             builder:
-                (_, uiExperience, _) => switch (uiExperience) {
-                  UiExperience.tv => const SizedBox.shrink(),
-                  UiExperience.mobile => Align(
+                (_, experience, _) => switch (experience) {
+                  UserExperience.tv => const SizedBox.shrink(),
+                  UserExperience.mobile => Align(
                     alignment: Alignment.topCenter,
                     child: MobileStatusBarOverlay(),
                   ),
@@ -130,16 +130,16 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
             onKeyEvent: (node, event) {
               return _focusOnMainPanel(event);
             },
-            child: ValueListenableBuilder<UiExperience>(
-              valueListenable: context.settingsModel.uiExperience,
+            child: ValueListenableBuilder<UserExperience>(
+              valueListenable: context.settingsModel.experience,
               builder:
-                  (_, uiExperience, _) => switch (uiExperience) {
-                    UiExperience.tv => TvNavBar(
+                  (_, experience, _) => switch (experience) {
+                    UserExperience.tv => TvNavBar(
                       parentNode: _navBarScopeNode,
                       selectedIndex: _selectedIndex,
                       onItemSelected: handleNavBarClick,
                     ),
-                    UiExperience.mobile => Align(
+                    UserExperience.mobile => Align(
                       alignment: Alignment.bottomCenter,
                       child: MobileNavBar(
                         parentNode: _navBarScopeNode,

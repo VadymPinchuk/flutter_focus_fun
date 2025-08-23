@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/body_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/mobile_rail.dart';
 
@@ -40,11 +40,11 @@ class _AnyPageState extends State<AnyPage> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: context.settingsModel.uiExperience,
+      valueListenable: context.settingsModel.experience,
       builder:
-          (_, uiExperience, _) => switch (uiExperience) {
-            UiExperience.tv => BodyWidget(rails: _railsData),
-            UiExperience.mobile => CustomScrollView(
+          (_, experience, _) => switch (experience) {
+            UserExperience.tv => BodyWidget(rails: _railsData),
+            UserExperience.mobile => CustomScrollView(
               controller: _verticalScrollController,
               slivers: [
                 SliverToBoxAdapter(

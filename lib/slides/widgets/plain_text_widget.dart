@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 
 /// A widget that renders a single block of text with a larger font size.
 class PlainTextWidget extends StatelessWidget {

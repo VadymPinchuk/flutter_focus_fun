@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/footer_widget.dart';
 
@@ -35,8 +34,7 @@ class TemplateSlide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isHorizontalNavBar =
-        context.settingsModel.uiExperience.value.isMobile;
+    final isHorizontalNavBar = context.settingsModel.experience.value.isMobile;
     final railPadding = isHorizontalNavBar ? 48.0 : 80.0;
 
     return Stack(
@@ -63,7 +61,7 @@ class TemplateSlide extends StatelessWidget {
           alignment: Alignment.bottomRight,
           padding: EdgeInsets.symmetric(
             horizontal: railPadding,
-            vertical: kRailHeight / 2,
+            vertical: context.railData.tileSize.height / 2,
           ),
           child: const FooterWidget(),
         ),
