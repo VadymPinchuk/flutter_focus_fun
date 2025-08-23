@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/data/mock_rail_data.dart';
+import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class MobileContentRail extends StatelessWidget {

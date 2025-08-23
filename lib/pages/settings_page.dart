@@ -49,7 +49,6 @@ class _TvSettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ;
     return Center(
       child: SizedBox(
         width: MediaQuery.sizeOf(context).width / 2,

@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart'
-    show ContentItem;
-import 'package:uuid/uuid.dart';
+import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
+import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 
-const _uuid = Uuid();
-
-class ContentRailData {
-  final String id;
-  final String title;
-  final List<ContentItem> items;
-
-  ContentRailData({required this.title, required this.items}) : id = _uuid.v4();
-}
-
-// Generates a large set of mock data for the UI.
 final List<ContentRailData> mockData = [
   ContentRailData(
     title: 'The Focus System',
