@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_strings.dart';
 
 class FooterWidget extends StatelessWidget {
   const FooterWidget({super.key});
@@ -13,7 +14,7 @@ class FooterWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
-            'No touch. No gestures. Can you still build a Great UX?',
+            AppStrings.talkTitle,
             style: TextStyle(color: Colors.white, fontSize: 18.0),
           ),
           const Text(
