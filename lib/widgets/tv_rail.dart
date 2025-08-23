@@ -5,6 +5,8 @@ import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/scroll/tv_rail_scroll_controller.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/tv_tile.dart';
 
+import '../app_colors.dart';
+
 class TvRail extends StatelessWidget {
   final ContentRailData data;
   final int railIndex;
@@ -39,8 +41,9 @@ class TvRail extends StatelessWidget {
                     ),
                     child: Text(
                       data.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 20.0,
+                        color: AppColors.railTitle,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

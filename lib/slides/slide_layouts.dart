@@ -4,6 +4,7 @@ import 'package:flutter_focus_fun_tv_demo/slides/template_slide.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/bullet_list_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_sample_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/image_widget.dart';
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/plain_text_widget.dart';
 
 /// A slide layout that displays bullet points on the left and a code sample on the right.
 class LeftTextRightCodeLayout extends StatelessWidget {
@@ -18,17 +19,23 @@ class LeftTextRightCodeLayout extends StatelessWidget {
       subtitle: data.subtitle,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 32.0,
         children: [
-          Expanded(child: BulletListWidget(bullets: data.leftBullets ?? [])),
-          Expanded(child: CodeSamplesWidget(codeSnippets: data.codeSamples)),
+          // Left Column
+          Expanded(
+            flex: 2,
+            child: BulletListWidget(bullets: data.leftBullets ?? []),
+          ),
+          const SizedBox(width: 32),
+          // Right Column
+          Expanded(
+            flex: 3,
+            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+          ),
         ],
       ),
     );
   }
 }
-
-// --- Placeholder Layouts for Other Slide Types ---
 
 class SingleTextLayout extends StatelessWidget {
   final SlideData data;
@@ -37,10 +44,16 @@ class SingleTextLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // This layout now chooses between a bullet list or plain text.
+    final Widget textContent =
+        data.plainText != null
+            ? PlainTextWidget(text: data.plainText!)
+            : BulletListWidget(bullets: data.leftBullets ?? []);
+
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: BulletListWidget(bullets: data.leftBullets ?? []),
+      child: textContent,
     );
   }
 }
@@ -122,7 +135,9 @@ class LeftImageRightCodeLayout extends StatelessWidget {
         children: [
           Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
           const SizedBox(width: 32),
-          Expanded(child: CodeSamplesWidget(codeSnippets: data.codeSamples)),
+          Expanded(
+            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+          ),
         ],
       ),
     );
@@ -141,7 +156,9 @@ class LeftCodeRightImageLayout extends StatelessWidget {
       subtitle: data.subtitle,
       child: Row(
         children: [
-          Expanded(child: CodeSamplesWidget(codeSnippets: data.codeSamples)),
+          Expanded(
+            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+          ),
           const SizedBox(width: 32),
           Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
         ],
@@ -160,7 +177,33 @@ class SingleCodeLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: CodeSamplesWidget(codeSnippets: data.codeSamples),
+      child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+    );
+  }
+}
+
+class DoubleCodeLayout extends StatelessWidget {
+  final SlideData data;
+
+  const DoubleCodeLayout({super.key, required this.data});
+
+  // This assumes you might have two code samples, you'd need to add a `codeSample2` field to your data model.
+  @override
+  Widget build(BuildContext context) {
+    return TemplateSlide(
+      title: data.title,
+      subtitle: data.subtitle,
+      child: Row(
+        children: [
+          Expanded(
+            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+          ),
+          const SizedBox(width: 32),
+          Expanded(
+            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+          ),
+        ],
+      ),
     );
   }
 }

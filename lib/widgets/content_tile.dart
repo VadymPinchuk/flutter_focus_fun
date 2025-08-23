@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/detail_page.dart';
 
@@ -24,7 +25,17 @@ class ContentTile extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Stack(
               children: [
-                Center(child: Icon(item.icon, size: 48, color: Colors.white)),
+                Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: Icon(
+                    item.icon,
+                    size: 36.0,
+                    color: AppColors.tileIcon,
+                    shadows: [
+                      Shadow(blurRadius: 2.0, color: AppColors.tileTitle),
+                    ],
+                  ),
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,11 +44,11 @@ class ContentTile extends StatelessWidget {
                       item.title,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: AppColors.tileTitle,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         shadows: [
-                          Shadow(blurRadius: 2.0, color: Colors.black54),
+                          Shadow(blurRadius: 2.0, color: AppColors.tileShadow),
                         ],
                       ),
                     ),
@@ -46,10 +57,10 @@ class ContentTile extends StatelessWidget {
                       item.description,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha: 0.8),
+                        color: AppColors.tileDescription,
                         fontSize: 12,
                         shadows: const [
-                          Shadow(blurRadius: 2.0, color: Colors.black54),
+                          Shadow(blurRadius: 2.0, color: AppColors.tileShadow),
                         ],
                       ),
                       maxLines: 2,

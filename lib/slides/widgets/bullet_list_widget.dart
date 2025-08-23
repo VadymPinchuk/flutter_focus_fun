@@ -8,6 +8,7 @@ class BulletListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fontSize = 22.0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children:
@@ -18,12 +19,15 @@ class BulletListWidget extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         '• ',
-                        style: TextStyle(fontSize: 22, color: Colors.white70),
+                        style: TextStyle(
+                          fontSize: fontSize,
+                          color: Colors.white70,
+                        ),
                       ),
                       Expanded(
-                        child: Text(text, style: const TextStyle(fontSize: 22)),
+                        child: Text(text, style: TextStyle(fontSize: fontSize)),
                       ),
                     ],
                   ),

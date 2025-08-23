@@ -7,11 +7,15 @@ enum SlideType {
   leftImageRightCode,
   leftCodeRightImage,
   singleCode,
+  doubleCode,
+  plainText,
   unknown,
 }
 
 SlideType _slideTypeFromString(String? type) {
   switch (type) {
+    case 'PLAIN_TEXT':
+      return SlideType.plainText;
     case 'SINGLE_TEXT':
       return SlideType.singleText;
     case 'DOUBLE_TEXT':
@@ -28,6 +32,8 @@ SlideType _slideTypeFromString(String? type) {
       return SlideType.leftCodeRightImage;
     case 'SINGLE_CODE':
       return SlideType.singleCode;
+    case 'DOUBLE_CODE':
+      return SlideType.doubleCode;
     default:
       return SlideType.unknown;
   }
@@ -47,46 +53,29 @@ class SlideFooterItem {
   }
 }
 
-/// A class to hold a single code snippet with optional metadata.
-class CodeSample {
-  final String title;
-  final String code;
-  final String language;
-
-  CodeSample({this.title = '', required this.code, this.language = 'dart'});
-
-  factory CodeSample.fromJson(Map<String, dynamic> json) {
-    return CodeSample(
-      title: json['title'] as String? ?? '',
-      code: json['code'] as String,
-      language: json['language'] as String? ?? 'dart',
-    );
-  }
-}
-
 class SlideData {
   final String title;
   final String subtitle;
   final SlideType slideType;
+  final List<String>? plainText;
   final List<String>? leftBullets;
   final List<String>? rightBullets;
   final String? rightImagePath;
   final String? leftImagePath;
   final String? fullWidthImagePath;
   final List<String>? codeSamples;
-  final List<SlideFooterItem>? footers;
 
   SlideData({
     required this.title,
     required this.subtitle,
     required this.slideType,
+    this.plainText,
     this.leftBullets,
     this.rightBullets,
     this.rightImagePath,
     this.leftImagePath,
     this.fullWidthImagePath,
     this.codeSamples,
-    this.footers,
   });
 
   factory SlideData.fromJson(Map<String, dynamic> json) {
@@ -94,6 +83,10 @@ class SlideData {
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
       slideType: _slideTypeFromString(json['slideType'] as String?),
+      plainText:
+          (json['plainText'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList(),
       leftBullets:
           (json['leftBullets'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -108,10 +101,6 @@ class SlideData {
       codeSamples:
           (json['codeSamples'] as List<dynamic>?)
               ?.map((e) => e as String)
-              .toList(),
-      footers:
-          (json['footer'] as List<dynamic>?)
-              ?.map((e) => SlideFooterItem.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
   }

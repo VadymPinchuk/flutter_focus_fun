@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
@@ -162,7 +163,10 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                 color: value ? Colors.white12 : Colors.transparent,
                 borderRadius: BorderRadius.circular(8.0),
                 border: Border.all(
-                  color: _isFocused ? Colors.white : Colors.white24,
+                  color:
+                      _isFocused
+                          ? AppColors.settingsFocused
+                          : AppColors.settingsUnfocused,
                   width: _isFocused ? 2.0 : 1.0,
                   strokeAlign: BorderSide.strokeAlignCenter,
                 ),
@@ -177,7 +181,9 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                           widget.title,
                           style: TextStyle(
                             fontSize: 24,
-                            color: _isFocused ? Colors.white : Colors.white70,
+                            color: AppColors.settingsFocused.withValues(
+                              alpha: _isFocused ? 1.0 : 0.7,
+                            ),
                             fontWeight:
                                 _isFocused ? FontWeight.w500 : FontWeight.w400,
                           ),
@@ -187,7 +193,9 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                           widget.subtitle,
                           style: TextStyle(
                             fontSize: 16,
-                            color: _isFocused ? Colors.white : Colors.white70,
+                            color: AppColors.settingsFocused.withValues(
+                              alpha: _isFocused ? 1.0 : 0.7,
+                            ),
                             fontWeight:
                                 _isFocused ? FontWeight.w500 : FontWeight.w400,
                           ),
@@ -234,7 +242,7 @@ class _TextScaleSlider extends StatelessWidget {
               title,
               style: TextStyle(
                 fontSize: 24,
-                color: Colors.white,
+                color: AppColors.settingsFocused,
                 fontWeight: FontWeight.w400,
                 // color: _isFocused ? Colors.white : Colors.white70,
                 // fontWeight:
@@ -246,7 +254,7 @@ class _TextScaleSlider extends StatelessWidget {
               subtitle,
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white,
+                color: AppColors.settingsFocused,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -268,6 +276,7 @@ class _TextScaleSlider extends StatelessWidget {
                   '${(currentTextScale * 100).toStringAsFixed(0)}%',
                   style: const TextStyle(
                     fontSize: 16,
+                    color: AppColors.settingsFocused,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -316,7 +325,7 @@ class _TextScalerIconButton extends StatelessWidget {
         // Optionally handle focus change if needed
       },
       child: IconButton(
-        icon: Icon(icon, size: 24 * context.textScale),
+        icon: Icon(icon, size: 24.0 * context.textScale),
         color: Colors.white,
         onPressed: onPressed,
       ),

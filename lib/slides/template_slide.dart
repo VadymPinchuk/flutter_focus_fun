@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/footer_widget.dart';
@@ -8,11 +9,11 @@ class _SlideTextStyles {
   static const TextStyle titleStyle = TextStyle(
     fontSize: 72,
     fontWeight: FontWeight.bold,
-    color: Color(0xFFFFFFFF),
+    color: AppColors.contentTitle,
   );
   static const TextStyle subtitleStyle = TextStyle(
     fontSize: 56,
-    color: Color(0xE6FFFFFF),
+    color: AppColors.contentSubtitle,
   );
 }
 
@@ -49,9 +50,9 @@ class TemplateSlide extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: _SlideTextStyles.titleStyle),
-              const SizedBox(height: 8),
+              const SizedBox(height: 8.0),
               Text(subtitle, style: _SlideTextStyles.subtitleStyle),
-              const SizedBox(height: 32),
+              const SizedBox(height: 32.0),
               // Constrain the height of the body content.
               child,
             ],
