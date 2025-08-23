@@ -12,7 +12,7 @@ class SettingsModel {
   /// Determines if the app should use a side navigation rail (TV) or a
   /// bottom navigation bar (mobile).
   final ValueNotifier<UserExperience> experience = ValueNotifier(
-    UserExperience.mobile,
+    UserExperience.tv,
   );
 
   void toggleUiExperience() {
@@ -53,7 +53,7 @@ class SettingsModel {
   final ValueNotifier<double> textScaleFactor = ValueNotifier(1.0);
 
   /// Controls the number of tiles displayed per row in content grids.
-  final ValueNotifier<double> tilesPerRowCount = ValueNotifier(3.0);
+  final ValueNotifier<double> tilesPerRowCount = ValueNotifier(7.0);
 
   /// Disposes the notifiers to prevent memory leaks.
   void dispose() {
