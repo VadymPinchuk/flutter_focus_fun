@@ -65,7 +65,7 @@ class _BodyWidgetState extends State<BodyWidget> {
 
     _verticalScrollController.animateTo(
       clampedOffset,
-      duration:  Duration(milliseconds: 100),
+      duration: Duration(milliseconds: 100),
       curve: Curves.easeInOut,
     );
   }
@@ -79,11 +79,16 @@ class _BodyWidgetState extends State<BodyWidget> {
 
     return ValueListenableBuilder(
       valueListenable: context.settingsModel.useTvPageLayout,
-      builder: (_, useTvPageLayout, __) {
+      builder: (_, useTvPageLayout, _) {
         return Stack(
           children: [
             useTvPageLayout
-                ? const DynamicBackground()
+                ? ValueListenableBuilder(
+                  valueListenable: context.pageUiModel.focusedItem,
+                  builder:
+                      (_, focusedItem, _) =>
+                          DynamicBackground(focusedItem: focusedItem),
+                )
                 : const SizedBox.shrink(),
             CustomScrollView(
               physics: const NeverScrollableScrollPhysics(),

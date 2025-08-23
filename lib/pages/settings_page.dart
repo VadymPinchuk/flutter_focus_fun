@@ -49,9 +49,10 @@ class _TvSettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ;
     return Center(
       child: SizedBox(
-        width: 600 * context.textScale,
+        width: MediaQuery.sizeOf(context).width / 2,
         child: ListView(
           padding: const EdgeInsets.all(32.0),
           children: [
@@ -164,6 +165,7 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                 border: Border.all(
                   color: _isFocused ? Colors.white : Colors.white24,
                   width: _isFocused ? 2.0 : 1.0,
+                  strokeAlign: BorderSide.strokeAlignCenter,
                 ),
               ),
               child: Row(

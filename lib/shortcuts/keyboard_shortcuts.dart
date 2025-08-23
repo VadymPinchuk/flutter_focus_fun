@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/activate_secondary_intent.dart';
-import 'package:flutter_focus_fun_tv_demo/shortcuts/add_intent.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/long_press_activator.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/single_click_activator.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/ui_experience.dart';
@@ -20,7 +19,7 @@ class KeyboardShortcuts {
         ]):
         const ActivateIntent(),
 
-    // Dismissal
+    // Menu opening
     const SingleActivator(LogicalKeyboardKey.contextMenu): const MenuIntent(),
 
     // Long Press activation
@@ -29,9 +28,6 @@ class KeyboardShortcuts {
 
     // Dismissal
     const SingleActivator(LogicalKeyboardKey.escape): const DismissIntent(),
-
-    // Playlist (+)
-    const SingleActivator(LogicalKeyboardKey.f16): const AddIntent(),
 
     // Keyboard traversal
     const SingleActivator(LogicalKeyboardKey.tab): const NextFocusIntent(),

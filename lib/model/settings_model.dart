@@ -12,7 +12,7 @@ class SettingsModel {
   /// Determines if the app should use a side navigation rail (TV) or a
   /// bottom navigation bar (mobile).
   final ValueNotifier<UiExperience> uiExperience = ValueNotifier(
-    UiExperience.tv,
+    UiExperience.mobile,
   );
 
   void toggleUiExperience() {
@@ -22,28 +22,28 @@ class SettingsModel {
 
   /// Determines if a visual decoration (e.g., a border or scale effect)
   /// should be shown on the currently focused item.
-  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(true);
+  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(false);
 
   void toggleFocusDecoration() {
     useFocusDecoration.value = !useFocusDecoration.value;
   }
 
   /// Determines if rail has a fixed focus or it is scrolled as usual.
-  final ValueNotifier<bool> useTvFixedFocusController = ValueNotifier(true);
+  final ValueNotifier<bool> useTvFixedFocusController = ValueNotifier(false);
 
   void toggleTvFixedFocus() {
     useTvFixedFocusController.value = !useTvFixedFocusController.value;
   }
 
   /// Determines if arrow keys should be used for focus-based navigation.
-  final ValueNotifier<bool> useTvPageLayout = ValueNotifier(true);
+  final ValueNotifier<bool> useTvPageLayout = ValueNotifier(false);
 
   void toggleTvPageLayout() {
     useTvPageLayout.value = !useTvPageLayout.value;
   }
 
   /// Determines if a custom focus traversal policy should be used
-  final ValueNotifier<bool> useCustomTraversalPolicy = ValueNotifier(true);
+  final ValueNotifier<bool> useCustomTraversalPolicy = ValueNotifier(false);
 
   void toggleTraversalPolicy() {
     useCustomTraversalPolicy.value = !useCustomTraversalPolicy.value;

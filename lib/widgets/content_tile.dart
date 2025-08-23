@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/mobile_detail_page.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/detail_page.dart';
 
 class ContentTile extends StatelessWidget {
   final ContentItem item;
@@ -15,11 +15,9 @@ class ContentTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => MobileDetailPage(item: item),
-              ),
-            );
+            Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => DetailPage(item: item)));
           },
           child: Container(
             color: item.color,
@@ -48,7 +46,7 @@ class ContentTile extends StatelessWidget {
                       item.description,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white.withValues(alpha:0.8),
+                        color: Colors.white.withValues(alpha: 0.8),
                         fontSize: 12,
                         shadows: const [
                           Shadow(blurRadius: 2.0, color: Colors.black54),

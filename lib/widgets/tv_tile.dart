@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
+import 'package:flutter_focus_fun_tv_demo/pages/detail_page.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class TvTile extends StatefulWidget {
@@ -39,6 +41,22 @@ class _TvTileState extends State<TvTile> {
             if (hasFocus) {
               context.pageUiModel.focusedItem.value = widget.item;
             }
+          },
+          onKeyEvent: (FocusNode node, KeyEvent event) {
+            if (event is KeyUpEvent) return KeyEventResult.ignored;
+            switch (event.logicalKey) {
+              case LogicalKeyboardKey.enter:
+              case LogicalKeyboardKey.numpadEnter:
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => DetailPage(item: widget.item),
+                  ),
+                );
+                return KeyEventResult.handled;
+              default:
+                break;
+            }
+            return KeyEventResult.ignored;
           },
           child: AnimatedContainer(
             duration: kAnimationDuration,

@@ -23,7 +23,7 @@ class TvRail extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: context.settingsModel.useTvFixedFocusController,
-      builder: (_, isFixedFocusUsed, __) {
+      builder: (_, isFixedFocusUsed, _) {
         return SizedBox(
           height: kFullRailHeight,
           child: Padding(
@@ -58,7 +58,7 @@ class TvRail extends StatelessWidget {
                     ),
                     itemCount: data.items.length,
                     separatorBuilder:
-                        (_, __) =>
+                        (_, _) =>
                             SizedBox(width: railScrollController.tileSpacing),
                     itemBuilder: (_, index) {
                       final item = data.items[index];
