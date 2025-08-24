@@ -33,6 +33,7 @@ class _TvTileState extends State<TvTile> {
         final bool applyFocusEffects = useDecoration && _isFocused;
         return Focus(
           autofocus: widget.autofocus,
+          debugLabel: widget.item.title,
           onFocusChange: (hasFocus) {
             setState(() {
               _isFocused = hasFocus;

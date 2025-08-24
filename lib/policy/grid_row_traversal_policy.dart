@@ -42,46 +42,6 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
     return sorted;
   }
 
-  /// Compares two rects by the closest vertical edge to [target].
-  static int _verticalCompareClosestEdge(Offset target, Rect a, Rect b) {
-    final double aCoord =
-        (a.top - target.dy).abs() < (a.bottom - target.dy).abs()
-            ? a.top
-            : a.bottom;
-    final double bCoord =
-        (b.top - target.dy).abs() < (b.bottom - target.dy).abs()
-            ? b.top
-            : b.bottom;
-    return (aCoord - target.dy).abs().compareTo((bCoord - target.dy).abs());
-  }
-
-  /// Sorts [nodes] by the closest vertical edge to [target], breaking ties by horizontal distance.
-  static Iterable<FocusNode> _sortClosestEdgesByDistancePreferVertical(
-    Offset target,
-    Iterable<FocusNode> nodes,
-  ) {
-    final List<FocusNode> sorted = nodes.toList();
-    mergeSort<FocusNode>(
-      sorted,
-      compare: (FocusNode nodeA, FocusNode nodeB) {
-        final int vertical = _verticalCompareClosestEdge(
-          target,
-          nodeA.rect,
-          nodeB.rect,
-        );
-        if (vertical == 0) {
-          return _horizontalCompare(
-            target,
-            nodeA.rect.center,
-            nodeB.rect.center,
-          );
-        }
-        return vertical;
-      },
-    );
-    return sorted;
-  }
-
   /// Filters and sorts [nodes] horizontally for left/right navigation.
   ///
   /// Only nodes to the left (for left) or right (for right) of [target] are considered.
@@ -114,38 +74,6 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
     return sorted;
   }
 
-  /// Filters and sorts [nodes] vertically for up/down navigation.
-  ///
-  /// Only nodes above (for up) or below (for down) [target] are considered.
-  Iterable<FocusNode> _sortAndFilterVertically(
-    TraversalDirection direction,
-    Rect target,
-    Iterable<FocusNode> nodes,
-  ) {
-    assert(
-      direction == TraversalDirection.up ||
-          direction == TraversalDirection.down,
-    );
-    final Iterable<FocusNode> filtered =
-        direction == TraversalDirection.up
-            ? nodes.where(
-              (FocusNode node) =>
-                  node.rect != target && node.rect.center.dy <= target.top,
-            )
-            : nodes.where(
-              (FocusNode node) =>
-                  node.rect != target && node.rect.center.dy >= target.bottom,
-            );
-    final List<FocusNode> sorted = filtered.toList();
-    mergeSort<FocusNode>(
-      sorted,
-      compare:
-          (FocusNode a, FocusNode b) =>
-              a.rect.center.dy.compareTo(b.rect.center.dy),
-    );
-    return sorted;
-  }
-
   /// Handles directional focus traversal from [currentNode] in [direction].
   ///
   /// Returns true if a node was focused, otherwise falls back to the superclass.
@@ -168,18 +96,10 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
         );
         break;
       case TraversalDirection.up:
-        final nodesAbove = _sortAndFilterVertically(
-          direction,
-          focusedChild.rect,
+        found = _findFirstInPrevRow(
+          focusedChild,
           nearestScope.traversalDescendants,
         );
-        if (nodesAbove.isNotEmpty) {
-          found =
-              _sortClosestEdgesByDistancePreferVertical(
-                focusedChild.rect.center,
-                nodesAbove,
-              ).first;
-        }
         break;
       case TraversalDirection.left:
       case TraversalDirection.right:
@@ -219,7 +139,7 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
 
   /// Finds the first node in the next row below [focusedChild].
   ///
-  /// Returns the leftmost node in the next row, or null if none found.
+  /// Returns the leftmost fully visible node in the next row, or null
   FocusNode? _findFirstInNextRow(
     FocusNode focusedChild,
     Iterable<FocusNode> nodes,
@@ -231,8 +151,32 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
     final double nextRowTop = below.first.rect.top;
     final nextRow =
         below.where((n) => (n.rect.top - nextRowTop).abs() < 1.0).toList();
-    nextRow.sort((a, b) => a.rect.left.compareTo(b.rect.left));
-    return nextRow.first;
+    final fullyVisible =
+        nextRow.where((node) => node.rect.left >= 0.0).toList();
+    fullyVisible.sort((a, b) => a.rect.left.compareTo(b.rect.left));
+    return fullyVisible.first;
+  }
+
+  /// Finds the first node in the closest row above [focusedChild].
+  ///
+  /// Returns the leftmost fully visible node in the previous row, or null
+  FocusNode? _findFirstInPrevRow(
+    FocusNode focusedChild,
+    Iterable<FocusNode> nodes,
+  ) {
+    final double currentTop = focusedChild.rect.top;
+    final above = nodes.where((n) => n.rect.bottom < currentTop).toList();
+    if (above.isEmpty) return null;
+    above.sort((a, b) => a.rect.bottom.compareTo(b.rect.bottom));
+    final double prevRowBottom = above.last.rect.bottom;
+    final prevRow =
+        above
+            .where((n) => (n.rect.bottom - prevRowBottom).abs() < 1.0)
+            .toList();
+    final fullyVisible =
+        prevRow.where((node) => node.rect.left >= 0.0).toList();
+    fullyVisible.sort((a, b) => a.rect.left.compareTo(b.rect.left));
+    return fullyVisible.first;
   }
 
   /// Handles focus traversal when no node is currently focused.
@@ -249,21 +193,7 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
 
   /// Requests focus for [chosenNode] and applies scroll alignment based on [direction].
   bool foundNodeToFocus(FocusNode chosenNode, TraversalDirection direction) {
-    final alignmentPolicy = switch (direction) {
-      TraversalDirection.up || TraversalDirection.left =>
-        ScrollPositionAlignmentPolicy.keepVisibleAtStart,
-      TraversalDirection.right ||
-      TraversalDirection.down => ScrollPositionAlignmentPolicy.keepVisibleAtEnd,
-    };
     chosenNode.requestFocus();
-    // Optionally, use the callback for animated scrolling:
-    // requestFocusCallback(
-    //   chosenNode,
-    //   alignmentPolicy: alignmentPolicy,
-    //   alignment: 0.5,
-    //   curve: Curves.easeOut,
-    //   duration: const Duration(milliseconds: 300),
-    // );
     return true;
   }
 
