@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data/slide_data.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/slide_data.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/template_slide.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/bullet_list_widget.dart';
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_sample_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/image_widget.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/plain_text_widget.dart';
 
 /// A slide layout that displays bullet points on the left and a code sample on the right.
 class LeftTextRightCodeLayout extends StatelessWidget {
@@ -21,10 +20,7 @@ class LeftTextRightCodeLayout extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Left Column
-          Expanded(
-            flex: 2,
-            child: BulletListWidget(bullets: data.leftBullets ?? []),
-          ),
+          Expanded(flex: 2, child: BodyTextWidget(bullets: data.leftBullets)),
           const SizedBox(width: 32),
           // Right Column
           Expanded(
@@ -44,16 +40,13 @@ class SingleTextLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // This layout now chooses between a bullet list or plain text.
-    final Widget textContent =
-        data.plainText != null
-            ? PlainTextWidget(text: data.plainText!)
-            : BulletListWidget(bullets: data.leftBullets ?? []);
-
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: textContent,
+      child: BodyTextWidget(
+        plainText: data.plainText,
+        bullets: data.leftBullets,
+      ),
     );
   }
 }
@@ -70,9 +63,9 @@ class DoubleTextLayout extends StatelessWidget {
       subtitle: data.subtitle,
       child: Row(
         children: [
-          Expanded(child: BulletListWidget(bullets: data.leftBullets ?? [])),
+          Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
           const SizedBox(width: 32),
-          Expanded(child: BulletListWidget(bullets: data.rightBullets ?? [])),
+          Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
         ],
       ),
     );
@@ -91,7 +84,7 @@ class LeftTextRightImageLayout extends StatelessWidget {
       subtitle: data.subtitle,
       child: Row(
         children: [
-          Expanded(child: BulletListWidget(bullets: data.leftBullets ?? [])),
+          Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
           const SizedBox(width: 32),
           Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
         ],
@@ -114,7 +107,7 @@ class LeftImageRightTextLayout extends StatelessWidget {
         children: [
           Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
           const SizedBox(width: 32),
-          Expanded(child: BulletListWidget(bullets: data.rightBullets ?? [])),
+          Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
         ],
       ),
     );
@@ -187,7 +180,6 @@ class DoubleCodeLayout extends StatelessWidget {
 
   const DoubleCodeLayout({super.key, required this.data});
 
-  // This assumes you might have two code samples, you'd need to add a `codeSample2` field to your data model.
   @override
   Widget build(BuildContext context) {
     return TemplateSlide(
@@ -203,6 +195,42 @@ class DoubleCodeLayout extends StatelessWidget {
             child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class TextWithCodeLayout extends StatelessWidget {
+  final SlideData data;
+
+  const TextWithCodeLayout({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return TemplateSlide(
+      title: data.title,
+      subtitle: data.subtitle,
+      child: ListView.separated(
+        itemCount: data.textWithCodePairs?.length ?? 0,
+        separatorBuilder:
+            (context, index) => const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: Divider(),
+            ),
+        itemBuilder: (context, index) {
+          final pair = data.textWithCodePairs![index];
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(flex: 2, child: BodyTextWidget(plainText: pair.text)),
+              const SizedBox(width: 32),
+              Expanded(
+                flex: 3,
+                child: CodeSamplesWidget(codeSnippets: [pair.codeSample]),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 
 /// A widget that renders a list of strings as a formatted bullet list.
 class BulletListWidget extends StatelessWidget {
@@ -23,11 +24,17 @@ class BulletListWidget extends StatelessWidget {
                         '• ',
                         style: TextStyle(
                           fontSize: fontSize,
-                          color: Colors.white70,
+                          color: AppColors.contentBody,
                         ),
                       ),
                       Expanded(
-                        child: Text(text, style: TextStyle(fontSize: fontSize)),
+                        child: Text(
+                          text,
+                          style: TextStyle(
+                            fontSize: fontSize,
+                            color: AppColors.contentBody,
+                          ),
+                        ),
                       ),
                     ],
                   ),

@@ -1,41 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/code_sample.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 /// A widget that renders a string of code with syntax highlighting.
 class CodeSamplesWidget extends StatelessWidget {
-  final List<String>? codeSnippets;
+  final List<CodeSample> codeSnippets;
 
   const CodeSamplesWidget({super.key, required this.codeSnippets});
 
   @override
   Widget build(BuildContext context) {
-    return codeSnippets.letOrElse(
-      (snippets) => Column(
-        spacing: 32.0,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children:
-            snippets
-                .map(
-                  (code) => ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: SyntaxView(
-                      code: code,
-                      syntax: Syntax.DART,
-                      syntaxTheme: context.syntaxTheme,
-                      withLinesCount: false,
-                      expanded: false,
-                      selectable: false,
-                      withZoom: false,
-                    ),
+    return ListView.separated(
+      itemCount: codeSnippets.length,
+      separatorBuilder: (context, index) => const SizedBox(height: 16),
+      itemBuilder: (context, index) {
+        final sample = codeSnippets[index];
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (sample.title.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  sample.title,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.white70,
+                    fontWeight: FontWeight.bold,
                   ),
-                )
-                .toList(),
-      ),
-      orElse: () => const SizedBox.shrink(),
+                ),
+              ),
+            Flexible(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SyntaxView(
+                  code: sample.code,
+                  syntax: Syntax.DART,
+                  syntaxTheme: context.syntaxTheme,
+                  withLinesCount: false,
+                  expanded: true, // Let it expand within the Flexible widget
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

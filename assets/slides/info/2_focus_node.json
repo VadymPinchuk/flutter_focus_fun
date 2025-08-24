@@ -1,0 +1,17 @@
+{
+  "title": "The Atom: FocusNode",
+  "subtitle": "The brain of a focusable Widget",
+  "slideType": "PLAIN_TEXT",
+  "plainText": [
+    "A FocusNode is the core data structure that represents a single focusable part of your UI. ",
+    "It holds the current state and is the object we interact with to manage focus programmatically.",
+    " ",
+    "  • It's the source of truth for the Focus state (node.hasFocus).",
+    "  • It's a ChangeNotifier. We can listen to its focus state changes.",
+    "    This is great for updating a widget's appearance, like changing its border color when it becomes active.",
+    "  • We must manage its lifecycle.",
+    "    If we create a FocusNode by ourselves (typically in a StatefulWidget), we are responsible for calling its dispose() method to prevent memory leaks.",
+    "  • It gives us direct control.",
+    "    We can tell a widget to become focused \"node.requestFocus()\", or to lose focus \"node.unfocus()\"."
+  ]
+}

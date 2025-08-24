@@ -1,0 +1,18 @@
+{
+  "title": "Why care about Focus?",
+  "subtitle": "The key to building apps that work everywhere.",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
+  "leftBullets": [
+    "It's the **cursor for your keyboard**, telling your app which widget is active and ready for input.",
+    " ",
+    "**Build for Everyone**: ",
+    "Proper focus management is non-negotiable for accessibility, making apps usable with screen readers and assistive tech.",
+    " ",
+    "**Power Up Desktop & Web**:",
+    "Go beyond the mouse with intuitive tab-based navigation and powerful keyboard shortcuts.",
+    " ",
+    "**Conquer the 10-Foot Experience**:",
+    "On TV, focus isn't just a feature—it's the **entire user interface**."
+  ],
+  "rightImagePath": "assets/images/multi_device.png"
+}

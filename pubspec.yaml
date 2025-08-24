@@ -52,5 +52,6 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/slides/
+    - assets/slides/info/
     - assets/slides/about/
 

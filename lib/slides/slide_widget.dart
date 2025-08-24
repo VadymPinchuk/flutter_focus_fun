@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/data/slide_data.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/slide_data.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/slide_types.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/slide_layouts.dart';
 
 class SlideWidget extends StatelessWidget {
@@ -41,6 +42,8 @@ class SlideWidget extends StatelessWidget {
             return SingleCodeLayout(data: slideData);
           case SlideType.doubleCode:
             return DoubleCodeLayout(data: slideData);
+          case SlideType.textWithCode:
+            return TextWithCodeLayout(data: slideData);
           case SlideType.unknown:
             return Center(
               child: Text(

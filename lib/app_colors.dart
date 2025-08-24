@@ -6,7 +6,7 @@ class AppColors {
   static const contentBody = Color(0xE6FFFFFF);
 
   static const footerTitle = Color(0xFFFFFFFF);
-  static const footerConnectors = Color(0xB3B1B1B1);
+  static const footerConnectors = Color(0xB3BDBDBD);
 
   static const railTitle = Color(0xFFC7EDFD);
   static const tileTitle = Color(0xFFFFFFFF);

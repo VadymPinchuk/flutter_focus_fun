@@ -8,12 +8,14 @@ import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class TvTile extends StatefulWidget {
   final bool autofocus;
+  final int index;
   final ContentItem item;
   final void Function(bool hasFocus) onFocusChange;
 
   const TvTile({
     super.key,
     this.autofocus = false,
+    required this.index,
     required this.item,
     required this.onFocusChange,
   });
@@ -87,7 +89,7 @@ class _TvTileState extends State<TvTile> {
               // When focused, always show at full opacity.
               opacity: _isFocused ? 1.0 : (useDecoration ? 0.75 : 1.0),
               duration: kAnimationDuration,
-              child: ContentTile(item: widget.item),
+              child: ContentTile(index: widget.index, item: widget.item),
             ),
           ),
         );

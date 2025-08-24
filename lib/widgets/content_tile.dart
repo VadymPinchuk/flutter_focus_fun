@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/pages/detail_page.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 
 class ContentTile extends StatelessWidget {
+  final int index;
   final ContentItem item;
 
-  const ContentTile({super.key, required this.item});
+  const ContentTile({super.key, required this.index, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +29,32 @@ class ContentTile extends StatelessWidget {
               children: [
                 Align(
                   alignment: AlignmentDirectional.topEnd,
-                  child: Icon(
-                    item.icon,
-                    size: 36.0,
-                    color: AppColors.tileIcon,
-                    shadows: [
-                      Shadow(blurRadius: 2.0, color: AppColors.tileTitle),
-                    ],
+                  child: item.icon.letOrElse(
+                    (icon) => Icon(
+                      item.icon,
+                      size: 36.0,
+                      color: AppColors.tileIcon,
+                      shadows: [
+                        Shadow(blurRadius: 2.0, color: AppColors.tileTitle),
+                      ],
+                    ),
+                    orElse:
+                        () => Text(
+                          index.toString(),
+                          textAlign: TextAlign.end,
+                          maxLines: 1,
+                          style: const TextStyle(
+                            color: AppColors.tileTitle,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 2.0,
+                                color: AppColors.tileShadow,
+                              ),
+                            ],
+                          ),
+                        ),
                   ),
                 ),
                 Column(

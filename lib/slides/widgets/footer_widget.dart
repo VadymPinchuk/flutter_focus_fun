@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/app_strings.dart';
 
 class FooterWidget extends StatelessWidget {
@@ -13,28 +14,28 @@ class FooterWidget extends StatelessWidget {
       children: [
         Text(
           AppStrings.talkTitle,
-          style: TextStyle(color: Colors.white, fontSize: 18.0),
+          style: TextStyle(color: AppColors.footerTitle, fontSize: 20.0),
         ),
-        Text('by', style: TextStyle(color: Colors.white70, fontSize: 16.0)),
+        Text(
+          'by',
+          style: TextStyle(color: AppColors.footerConnectors, fontSize: 18.0),
+        ),
         Image.asset(
           'assets/images/hat.png',
-          height: 32,
+          height: 42,
           errorBuilder:
               (c, e, s) => const Icon(Icons.person, color: Colors.white70),
         ),
-        Text('for', style: TextStyle(color: Colors.white70, fontSize: 16.0)),
-        FlutterLogo(
-          size: 32,
-          textColor: Colors.white,
-          style: FlutterLogoStyle.markOnly,
-          curve: Curves.easeInOut,
+        Text(
+          'for',
+          style: TextStyle(color: AppColors.footerConnectors, fontSize: 18.0),
         ),
-        // Image.asset(
-        //   'assets/images/conference.png',
-        //   height: 32,
-        //   errorBuilder:
-        //       (c, e, s) => const Icon(Icons.groups, color: Colors.white70),
-        // ),
+        Image.asset(
+          'assets/images/flutter_community.png',
+          height: 56,
+          errorBuilder:
+              (c, e, s) => const Icon(Icons.groups, color: Colors.white70),
+        ),
       ],
     );
   }

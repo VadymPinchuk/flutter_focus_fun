@@ -67,6 +67,7 @@ class TvRail extends StatelessWidget {
                     itemBuilder: (_, index) {
                       final item = data.items[index];
                       return TvTile(
+                        index: index + 1,
                         item: item,
                         autofocus: railIndex == 0 && index == 0,
                         onFocusChange: (hasFocus) {

@@ -38,7 +38,7 @@ class MobileContentRail extends StatelessWidget {
               separatorBuilder: (context, index) => const SizedBox(width: 8.0),
               itemBuilder: (context, index) {
                 final item = data.items[index];
-                return ContentTile(item: item);
+                return ContentTile(index: index + 1, item: item);
               },
             ),
           ),
