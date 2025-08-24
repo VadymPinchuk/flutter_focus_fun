@@ -1,9 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
-import 'package:flutter_focus_fun_tv_demo/scrollable_ensure_alignment.dart'
-    show ScrollableX;
 
 /// A custom [FocusTraversalPolicy] for grid layouts that enables
 /// intuitive row and column navigation using keyboard or remote controls.
@@ -11,72 +7,10 @@ import 'package:flutter_focus_fun_tv_demo/scrollable_ensure_alignment.dart'
 /// - Horizontal navigation (left/right) moves within a row.
 /// - Vertical navigation (up/down) jumps between rows, focusing the closest item.
 class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
-  /// Compares two offsets by their vertical distance to [target].
-  static int _verticalCompare(Offset target, Offset a, Offset b) {
-    return (a.dy - target.dy).abs().compareTo((b.dy - target.dy).abs());
-  }
-
-  /// Compares two offsets by their horizontal distance to [target].
-  static int _horizontalCompare(Offset target, Offset a, Offset b) {
-    return (a.dx - target.dx).abs().compareTo((b.dx - target.dx).abs());
-  }
-
-  /// Sorts [nodes] by horizontal distance to [target], breaking ties by vertical distance.
-  static Iterable<FocusNode> _sortByDistancePreferHorizontal(
-    Offset target,
-    Iterable<FocusNode> nodes,
-  ) {
-    final List<FocusNode> sorted = nodes.toList();
-    mergeSort<FocusNode>(
-      sorted,
-      compare: (FocusNode nodeA, FocusNode nodeB) {
-        final Offset a = nodeA.rect.center;
-        final Offset b = nodeB.rect.center;
-        final int horizontal = _horizontalCompare(target, a, b);
-        if (horizontal == 0) {
-          return _verticalCompare(target, a, b);
-        }
-        return horizontal;
-      },
-    );
-    return sorted;
-  }
-
-  /// Filters and sorts [nodes] horizontally for left/right navigation.
-  ///
-  /// Only nodes to the left (for left) or right (for right) of [target] are considered.
-  Iterable<FocusNode> _sortAndFilterHorizontally(
-    TraversalDirection direction,
-    Rect target,
-    Iterable<FocusNode> nodes,
-  ) {
-    assert(
-      direction == TraversalDirection.left ||
-          direction == TraversalDirection.right,
-    );
-    final Iterable<FocusNode> filtered =
-        direction == TraversalDirection.left
-            ? nodes.where(
-              (FocusNode node) =>
-                  node.rect != target && node.rect.center.dx <= target.left,
-            )
-            : nodes.where(
-              (FocusNode node) =>
-                  node.rect != target && node.rect.center.dx >= target.right,
-            );
-    final List<FocusNode> sorted = filtered.toList();
-    mergeSort<FocusNode>(
-      sorted,
-      compare:
-          (FocusNode a, FocusNode b) =>
-              a.rect.center.dx.compareTo(b.rect.center.dx),
-    );
-    return sorted;
-  }
-
   /// Handles directional focus traversal from [currentNode] in [direction].
   ///
   /// Returns true if a node was focused, otherwise falls back to the superclass.
+  /// DO NOT CALL SUPER
   @override
   bool inDirection(FocusNode currentNode, TraversalDirection direction) {
     final nearestScope = currentNode.nearestScope;
@@ -84,7 +18,7 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
 
     final FocusNode? focusedChild = nearestScope.focusedChild;
     if (focusedChild == null) {
-      return inDirectionNoCurrentFocus(currentNode, direction);
+      return _inDirectionNoCurrentFocus(currentNode, direction);
     }
 
     FocusNode? found;
@@ -102,39 +36,20 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
         );
         break;
       case TraversalDirection.left:
-      case TraversalDirection.right:
-        Iterable<FocusNode> eligibleNodes = _sortAndFilterHorizontally(
-          direction,
-          focusedChild.rect,
+        found = _findPreviousInTheRow(
+          focusedChild,
           nearestScope.traversalDescendants,
         );
-        if (eligibleNodes.isNotEmpty) {
-          if (direction == TraversalDirection.left) {
-            eligibleNodes = eligibleNodes.toList().reversed;
-          }
-          final Rect band = Rect.fromLTRB(
-            -double.infinity,
-            focusedChild.rect.top,
-            double.infinity,
-            focusedChild.rect.bottom,
-          );
-          final Iterable<FocusNode> inBand = eligibleNodes.where(
-            (FocusNode node) => !node.rect.intersect(band).isEmpty,
-          );
-          if (inBand.isNotEmpty) {
-            found =
-                _sortByDistancePreferHorizontal(
-                  focusedChild.rect.center,
-                  inBand,
-                ).first;
-          }
-        }
+        break;
+      case TraversalDirection.right:
+        found = _findNextInTheRow(
+          focusedChild,
+          nearestScope.traversalDescendants,
+        );
         break;
     }
-    if (found != null) {
-      return foundNodeToFocus(found, direction);
-    }
-    return false;
+    found?.requestFocus();
+    return found != null;
   }
 
   /// Finds the first node in the next row below [focusedChild].
@@ -179,39 +94,54 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
     return fullyVisible.first;
   }
 
+  /// Finds all nodes in the same row as [focusedChild].
+  Iterable<FocusNode> _findEligibleInSameRow(
+    FocusNode focusedChild,
+    Iterable<FocusNode> nodes,
+  ) {
+    final double currentTop = focusedChild.rect.top;
+    final double currentBottom = focusedChild.rect.bottom;
+    return nodes.where(
+      (n) => n.rect.top == currentTop && n.rect.bottom == currentBottom,
+    );
+  }
+
+  /// Finds the first node to the left of [focusedChild].
+  FocusNode? _findPreviousInTheRow(
+    FocusNode focusedChild,
+    Iterable<FocusNode> nodes,
+  ) {
+    final eligible = _findEligibleInSameRow(focusedChild, nodes);
+    final eligibleToLeft =
+        eligible.where((n) => n.rect.right < focusedChild.rect.left).toList();
+    if (eligibleToLeft.isEmpty) return null;
+    eligibleToLeft.sort((a, b) => a.rect.right.compareTo(b.rect.right));
+    return eligibleToLeft.last;
+  }
+
+  /// Finds the first node to the right of [focusedChild].
+  FocusNode? _findNextInTheRow(
+    FocusNode focusedChild,
+    Iterable<FocusNode> nodes,
+  ) {
+    final eligible = _findEligibleInSameRow(focusedChild, nodes);
+    final eligibleToRight =
+        eligible.where((n) => n.rect.left > focusedChild.rect.right).toList();
+    if (eligibleToRight.isEmpty) return null;
+    eligibleToRight.sort((a, b) => a.rect.left.compareTo(b.rect.left));
+    return eligibleToRight.first;
+  }
+
   /// Handles focus traversal when no node is currently focused.
   ///
   /// Focuses the first eligible node in [direction], or [currentNode] if none found.
-  bool inDirectionNoCurrentFocus(
+  bool _inDirectionNoCurrentFocus(
     FocusNode currentNode,
     TraversalDirection direction,
   ) {
     final FocusNode firstFocus =
         findFirstFocusInDirection(currentNode, direction) ?? currentNode;
-    return foundNodeToFocus(firstFocus, direction);
-  }
-
-  /// Requests focus for [chosenNode] and applies scroll alignment based on [direction].
-  bool foundNodeToFocus(FocusNode chosenNode, TraversalDirection direction) {
-    chosenNode.requestFocus();
+    firstFocus.requestFocus();
     return true;
   }
-
-  /// Callback to request focus and ensure the node is visible in a scrollable.
-  @override
-  TraversalRequestFocusCallback get requestFocusCallback => (
-    FocusNode node, {
-    ScrollPositionAlignmentPolicy? alignmentPolicy,
-    double? alignment,
-    Duration? duration,
-    Curve? curve,
-  }) {
-    node.requestFocus();
-    ScrollableX.ensureCenterVerticalAlignment(
-      node.context!,
-      alignmentPolicy,
-      duration: kAnimationDuration,
-      curve: curve ?? Curves.easeOut,
-    );
-  };
 }
