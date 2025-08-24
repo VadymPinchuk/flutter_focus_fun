@@ -7,10 +7,13 @@
     "It demonstrates approaches to code structure, widget usage, and performance tweaks for no-gesture environments.",
     "The code does not necessarily reflect production-quality standards and may contain inconsistencies for demonstrative purposes.",
     " ",
-    "Key areas of simplification include:",
+    "¯\\_(ツ)_/¯",
+    " ",
+    "Key things to know:",
     "  • State management is intentionally basic.",
     "  • Styling is minimal.",
-    "  • Hardcoded values are used for clarity.",
+    "  • Hardcoded values are used heavily.",
+    "  • Some solutions are borrowed.",
     "  • The primary focus is on UX, not UI polish."
   ]
 }
