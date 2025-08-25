@@ -1,4 +1,5 @@
-import 'package:flutter_focus_fun_tv_demo/data_models/code_sample.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/code_snippet.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/slide_types.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/text_code_pair.dart';
 
@@ -7,8 +8,8 @@ class SlideData {
   final String subtitle;
   final SlideType slideType;
   final String? plainText;
-  final List<String>? leftBullets;
-  final List<String>? rightBullets;
+  final List<BulletPoint>? leftBullets;
+  final List<BulletPoint>? rightBullets;
   final String? rightImagePath;
   final String? leftImagePath;
   final String? fullWidthImagePath;
@@ -37,11 +38,11 @@ class SlideData {
       plainText: json['plainText'] as String?,
       leftBullets:
           (json['leftBullets'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => BulletPoint.fromJson(e as Map<String, dynamic>))
               .toList(),
       rightBullets:
           (json['rightBullets'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => BulletPoint.fromJson(e as Map<String, dynamic>))
               .toList(),
       rightImagePath: json['rightImagePath'] as String?,
       leftImagePath: json['leftImagePath'] as String?,

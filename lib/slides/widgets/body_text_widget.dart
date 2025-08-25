@@ -1,9 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/bullet_list_widget.dart';
 
 class BodyTextWidget extends StatelessWidget {
-  final List<String>? bullets;
+  final List<BulletPoint>? bullets;
   final String? plainText;
 
   const BodyTextWidget({super.key, this.bullets, this.plainText});

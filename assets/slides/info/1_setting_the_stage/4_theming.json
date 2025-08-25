@@ -3,10 +3,26 @@
   "subtitle": "Managing styles for different viewing distances.",
   "slideType": "LEFT_TEXT_RIGHT_CODE",
   "leftBullets": [
-    "TV UIs require much larger fonts and UI elements to be legible from a distance.",
-    "Higher contrast is crucial for readability in a living room environment.",
-    "Create separate themes for each platform to manage these differences cleanly.",
-    "This approach keeps platform-specific styling organized and easy to modify."
+    {
+      "title": "Increased Font Size",
+      "description": "TV UIs require much larger text to be legible from a distance."
+    },
+    {
+      "title": "Higher Contrast",
+      "description": "Crucial for readability in a bright or dark living room environment."
+    },
+    {
+      "title": "Separate Themes",
+      "description": "Create distinct ThemeData objects for each platform to manage differences cleanly."
+    },
+    {
+      "title": "Organized Styling",
+      "description": "This approach keeps platform-specific design tokens easy to modify."
+    },
+    {
+      "title": "Clear Focus States",
+      "description": "Themes should define highly visible styles for focused widgets."
+    }
   ],
   "codeSamples": [
     {

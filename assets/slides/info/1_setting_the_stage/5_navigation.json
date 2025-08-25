@@ -1,0 +1,28 @@
+{
+  "title": "Rethinking Navigation",
+  "subtitle": "Why a Bottom Nav Bar fails on TV and how to adapt.",
+  "slideType": "LEFT_IMAGE_RIGHT_TEXT",
+  "leftImagePath": "assets/images/flutter_community.png",
+  "rightBullets": [
+    {
+      "title": "Designed for Thumbs",
+      "description": "Bottom navigation bars are optimized for touch, not D-pad input."
+    },
+    {
+      "title": "Side Rail Navigation",
+      "description": "TV UIs favor a left-side rail for easy up/down traversal with a remote."
+    },
+    {
+      "title": "Consistent Accessibility",
+      "description": "This layout keeps navigation consistently available without crossing the screen."
+    },
+    {
+      "title": "Focus-First Mindset",
+      "description": "It's a fundamental shift from 'touch-first' to 'focus-first' interaction design."
+    },
+    {
+      "title": "Maximizes Content Area",
+      "description": "A vertical rail leaves more horizontal space for wide-format video and media."
+    }
+  ]
+}

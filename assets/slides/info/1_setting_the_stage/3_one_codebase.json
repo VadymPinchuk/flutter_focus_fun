@@ -3,11 +3,26 @@
   "subtitle": "Structuring app to serve mobile and TV UIs... And more",
   "slideType": "LEFT_TEXT_RIGHT_CODE",
   "leftBullets": [
-    "A single codebase is achievable with a clean separation of platform-specific UI.",
-    "Create a top-level 'platform-aware' widget to choose the correct layout.",
-    "Use a simple check (e.g., `isTv`) at the root of your app to decide.",
-    "This keeps core logic separate from platform-specific navigation.",
-    "As option - low-level 'platform-aware' widgets to switch on a widget level."
+    {
+      "title": "Single Codebase",
+      "description": "Achievable with a clean separation of platform-specific UI."
+    },
+    {
+      "title": "Platform-Aware Widgets",
+      "description": "Use a top-level widget to choose the correct layout for mobile or TV."
+    },
+    {
+      "title": "Conditional Logic",
+      "description": "experience.isTV"
+    },
+    {
+      "title": "Clean Separation",
+      "description": "Keeps your core business logic isolated from UI/UX-specific code."
+    },
+    {
+      "title": "Granular Control",
+      "description": "This pattern can be used for individual widgets, not just the whole scaffold."
+    }
   ],
   "codeSamples": [
     {

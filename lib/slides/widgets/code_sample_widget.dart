@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/code_sample.dart';
+import 'package:flutter_focus_fun_tv_demo/data_models/code_snippet.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 /// A widget that renders a string of code with syntax highlighting.

@@ -49,9 +49,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/icons/
     - assets/images/
     - assets/slides/
-    - assets/slides/info/
     - assets/slides/about/
+    - assets/slides/info/1_setting_the_stage/
 
