@@ -1,24 +1,22 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/bullet_list_widget.dart';
 
 class BodyTextWidget extends StatelessWidget {
   final List<BulletPoint>? bullets;
-  final String? plainText;
+  final List<String>? plainText;
 
   const BodyTextWidget({super.key, this.bullets, this.plainText});
 
   @override
   Widget build(BuildContext context) {
-    if (plainText != null) {
-      return Text(
-        plainText!,
-        style: const TextStyle(
-          fontSize: 24.0,
-          height: 1.5,
-          color: AppColors.contentBody,
-        ),
+    final textEntities = plainText;
+    if (textEntities != null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: 8.0,
+        children: textEntities.map((text) => BodyText(text)).toList(),
       );
     }
     if (bullets != null) {

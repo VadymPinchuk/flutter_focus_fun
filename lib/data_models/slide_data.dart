@@ -7,7 +7,7 @@ class SlideData {
   final String title;
   final String subtitle;
   final SlideType slideType;
-  final String? plainText;
+  final List<String>? plainText;
   final List<BulletPoint>? leftBullets;
   final List<BulletPoint>? rightBullets;
   final String? rightImagePath;
@@ -35,7 +35,10 @@ class SlideData {
       title: json['title'] as String,
       subtitle: json['subtitle'] as String,
       slideType: _slideTypeFromString(json['slideType'] as String?),
-      plainText: json['plainText'] as String?,
+      plainText:
+          (json['plainText'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList(),
       leftBullets:
           (json['leftBullets'] as List<dynamic>?)
               ?.map((e) => BulletPoint.fromJson(e as Map<String, dynamic>))

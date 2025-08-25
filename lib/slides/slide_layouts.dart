@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/slide_data.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/template_slide.dart';
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_sample_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/image_widget.dart';
@@ -222,7 +223,7 @@ class TextWithCodeLayout extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(flex: 2, child: BodyTextWidget(plainText: pair.text)),
+              Expanded(flex: 2, child: BodyText(pair.text)),
               const SizedBox(width: 32),
               Expanded(
                 flex: 3,
