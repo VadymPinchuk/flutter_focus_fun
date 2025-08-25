@@ -5,7 +5,7 @@ import 'package:flutter_focus_fun_tv_demo/pages/detail_page.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 
 class ContentTile extends StatelessWidget {
-  final int index;
+  final String index;
   final ContentItem item;
 
   const ContentTile({super.key, required this.index, required this.item});
@@ -46,7 +46,7 @@ class ContentTile extends StatelessWidget {
                     ),
                     orElse:
                         () => Text(
-                          index.toString(),
+                          index,
                           textAlign: TextAlign.end,
                           maxLines: 1,
                           style: const TextStyle(

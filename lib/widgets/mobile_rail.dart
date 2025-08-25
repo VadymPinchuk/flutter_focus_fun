@@ -5,21 +5,27 @@ import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class MobileContentRail extends StatelessWidget {
+  final int index;
   final ContentRailData data;
   final ScrollController horizontalController;
 
   const MobileContentRail({
     super.key,
+    required this.index,
     required this.data,
     required this.horizontalController,
   });
 
   @override
   Widget build(BuildContext context) {
+    final railIndex = index + 1;
     return SliverMainAxisGroup(
       slivers: [
         SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: context.railData.railHorizontalPadding, vertical: context.railData.railVerticalPadding),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.railData.railHorizontalPadding,
+            vertical: context.railData.railVerticalPadding,
+          ),
           sliver: SliverToBoxAdapter(
             child: Text(
               data.title,
@@ -33,12 +39,17 @@ class MobileContentRail extends StatelessWidget {
             child: ListView.separated(
               controller: horizontalController,
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: context.railData.railHorizontalPadding),
+              padding: EdgeInsets.symmetric(
+                horizontal: context.railData.railHorizontalPadding,
+              ),
               itemCount: data.items.length,
               separatorBuilder: (context, index) => const SizedBox(width: 8.0),
               itemBuilder: (context, index) {
                 final item = data.items[index];
-                return ContentTile(index: index + 1, item: item);
+                return ContentTile(
+                  index: "$railIndex.${index + 1}",
+                  item: item,
+                );
               },
             ),
           ),

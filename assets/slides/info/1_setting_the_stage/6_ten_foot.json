@@ -1,0 +1,28 @@
+{
+  "title": "Designing for the \"10-Foot Experience\"",
+  "subtitle": "What it is and why it changes everything.",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
+  "leftBullets": [
+    {
+      "title": "Distant Viewing",
+      "description": "Designing for large screens viewed from a distance (approx. 10 feet / 3 meters)."
+    },
+    {
+      "title": "\"Lean-Back\" Experience",
+      "description": "Unlike the \"lean-in\" nature of mobile, users are relaxed and less precise."
+    },
+    {
+      "title": "Legibility is Key",
+      "description": "Text and UI elements must be large and have high contrast to be readable."
+    },
+    {
+      "title": "Simplicity Wins",
+      "description": "UIs must be clean and uncluttered to avoid overwhelming the user."
+    },
+    {
+      "title": "Navigability is Everything",
+      "description": "Interactions are driven by a D-pad, making clear, predictable focus essential."
+    }
+  ],
+  "rightImagePath": "assets/images/slides/6_ten_foot.png"
+}

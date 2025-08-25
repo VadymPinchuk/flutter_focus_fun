@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
@@ -8,7 +9,7 @@ import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
 
 class TvTile extends StatefulWidget {
   final bool autofocus;
-  final int index;
+  final String index;
   final ContentItem item;
   final void Function(bool hasFocus) onFocusChange;
 
@@ -74,7 +75,6 @@ class _TvTileState extends State<TvTile> {
             padding: EdgeInsets.all(applyFocusEffects ? 3.0 : 0.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12.0),
-              // Conditionally apply the gradient border using theme colors.
               gradient:
                   applyFocusEffects
                       ? LinearGradient(

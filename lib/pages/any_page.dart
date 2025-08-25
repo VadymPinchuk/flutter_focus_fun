@@ -50,11 +50,12 @@ class _AnyPageState extends State<AnyPage> {
                 SliverToBoxAdapter(
                   child: SizedBox(height: MediaQuery.paddingOf(context).top),
                 ),
-                ..._railsData.map((railData) {
+                ..._railsData.indexed.map((railData) {
                   return MobileContentRail(
-                    data: railData,
+                    index: railData.$1,
+                    data: railData.$2,
                     horizontalController: _pageModel.getHorizontalController(
-                      railData.id,
+                      railData.$2.id,
                     ),
                   );
                 }),
