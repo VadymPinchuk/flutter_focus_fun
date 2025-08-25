@@ -1,0 +1,33 @@
+{
+  "title": "Responding to Input: Two Paths",
+  "subtitle": "How focused widget can react to key presses.",
+  "slideType": "DOUBLE_TEXT",
+  "leftBullets": [
+    {
+      "title": "Low-Level: `onKeyEvent`",
+      "description": "Gives you direct, unfiltered access to raw `KeyDownEvent` and `KeyUpEvent` data."
+    },
+    {
+      "title": "Direct and Powerful",
+      "description": "Ideal for games, custom text editors, or listening for specific modifier keys (like Shift or Ctrl)."
+    },
+    {
+      "title": "Bypasses Actions System",
+      "description": "It's a direct line to the keyboard, ignoring the higher-level semantic system."
+    }
+  ],
+  "rightBullets": [
+    {
+      "title": "High-Level: `Actions` & `Intents`",
+      "description": "A semantic system that separates *what* the user wants to do from *how* it gets done."
+    },
+    {
+      "title": "Reusable and Contextual",
+      "description": "The same intent (e.g., 'Save') can be triggered by a key, a button, or a menu item."
+    },
+    {
+      "title": "The Modern Approach",
+      "description": "This is the recommended, idiomatic way to handle most keyboard input in Flutter."
+    }
+  ]
+}

@@ -29,10 +29,11 @@ class KeyboardShortcuts {
     // Dismissal
     const SingleActivator(LogicalKeyboardKey.escape): const DismissIntent(),
 
-    // Keyboard traversal
+    // Keyboard traversal - Web only
     const SingleActivator(LogicalKeyboardKey.tab): const NextFocusIntent(),
     const SingleActivator(LogicalKeyboardKey.tab, shift: true):
         const PreviousFocusIntent(),
+    // Keyboard traversal - TV & Web
     const SingleActivator(
       LogicalKeyboardKey.arrowLeft,
     ): const DirectionalFocusIntent(TraversalDirection.left),

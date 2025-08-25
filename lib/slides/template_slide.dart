@@ -39,7 +39,7 @@ class TemplateSlide extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: context.railData.railHorizontalPadding,
-        vertical: context.railData.tileSize.height / 2,
+        vertical: context.railData.tileSize.height / 4,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

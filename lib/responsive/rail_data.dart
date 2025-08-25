@@ -6,7 +6,7 @@ const double kLandscapeAspectRatio = 16 / 9;
 
 class RailData {
   late final double railFullHeight;
-  late final double railHalfHeight;
+  late final double railQuarterHeight;
   final double railHorizontalPadding;
   final double railVerticalPadding;
   final double railTitleSpacing;
@@ -38,7 +38,7 @@ class RailData {
     required this.railHorizontalPadding,
     required this.tilesSpacing,
     required this.railTitleSpacing,
-  }) : titleHeight = 24.0 * textScale,
+  }) : titleHeight = 26.0 * textScale,
        tilesInRow = tilesCount,
        tileSize = TileMeasureHelper.getTileSize(
          TileMeasureHelper.calculateTileWidth(
@@ -55,10 +55,10 @@ class RailData {
         railTitleSpacing +
         tileSize.height +
         railVerticalPadding * 2;
-    railHalfHeight =
+    railQuarterHeight =
         titleHeight +
         railTitleSpacing +
-        tileSize.height / 2 +
+        tileSize.height / 4 +
         railVerticalPadding;
   }
 

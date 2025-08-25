@@ -58,7 +58,7 @@ class CodeSnippetsWidget extends StatelessWidget {
 
 extension on BuildContext {
   SyntaxTheme get syntaxTheme {
-    final textSize = 24.0 * textScale;
+    final textSize = 20.0 * textScale;
     return SyntaxTheme(
       linesCountColor: const Color.fromARGB(179, 255, 255, 255),
       backgroundColor: const Color(0xFF1E1E1E),

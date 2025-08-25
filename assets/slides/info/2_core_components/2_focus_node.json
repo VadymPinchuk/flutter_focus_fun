@@ -12,8 +12,12 @@
       "description": "You can add listeners to react instantly when the focus state changes."
     },
     {
-      "title": "Lifecycle Management",
-      "description": "You are responsible for calling `dispose()` to prevent memory leaks."
+      "title": "One FocusNode per Widget",
+      "description": "Created in state, used inside of the widget and disposed responsibly."
+    },
+    {
+      "title": "Debug IT",
+      "description": "Use `debugLabel` to have a better understanding where it is."
     },
     {
       "title": "Programmatic Control",
@@ -23,7 +27,7 @@
   "codeSamples": [
     {
       "title": "Manual Management",
-      "code": "  // 1. Create the FocusNode\n  late final FocusNode _node;\n\n  @override\n  void initState() {\n    super.initState();\n    _node = FocusNode(debugLabel: 'CustomButton $label');\n  }\n\n  @override\n  void dispose() {\n    // 2. Don't forget to dispose of it!\n    _node.dispose();\n    ...\n\n  @override\n  Widget build(BuildContext context) {\n    // 3. Attach it to a widget\n    return Focus(focusNode: _node, child: ...);"
+      "code": "   // 1. Create the FocusNode\n   _node = FocusNode(debugLabel: 'CustomButton $label');\n\n  @override\n  Widget build(BuildContext context) {\n    // 2. Attach it to a widget\n    return Focus(focusNode: _node, child: ...);\n  \n       // 3. Use it\n       _node.requestFocus();\n       _node.unfocus();\n\n  @override\n  void dispose() {\n    // 4. Don't forget to dispose it\n    _node.dispose();\n    ..."
     }
   ]
 }

@@ -1,0 +1,29 @@
+{
+  "title": "The Workhorse: `Focus`",
+  "subtitle": "Attaching a `FocusNode` to the Focus Tree.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "Declarative Wrapper",
+      "description": "User friendly facade of `FocusNode`. Essentially, it has all the configs for it."
+    },
+    {
+      "title": "FocusNode Manager",
+      "description": "Responsible for creation/attaching/detaching/disposal of `FocusNode` for/to/from tree."
+    },
+    {
+      "title": "Convenient Callbacks",
+      "description": "Provides an `onFocusChange` and `onKeyEvent` directly from FocusNode."
+    },
+    {
+      "title": "Makes Anything Focusable",
+      "description": "Use it to make non-interactive widgets, like a `Container`, part of the focus system."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "line 125: focus_scope.dart",
+      "code": "  const Focus({\n    super.key,\n    required this.child,\n    this.focusNode,\n    this.parentNode,\n    this.autofocus = false,\n    this.onFocusChange,\n    FocusOnKeyEventCallback? onKeyEvent,\n    bool? canRequestFocus,\n    bool? skipTraversal,\n    bool? descendantsAreFocusable,\n    bool? descendantsAreTraversable,\n    this.includeSemantics = true,\n    String? debugLabel,\n  })"
+    }
+  ]
+}

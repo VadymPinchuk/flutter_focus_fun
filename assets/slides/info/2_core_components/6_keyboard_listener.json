@@ -1,0 +1,29 @@
+{
+  "title": "The Low-Level Way",
+  "subtitle": "For when you need direct access to raw key presses.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "Direct Event Access",
+      "description": "The `onKeyEvent` callback provides a raw `KeyEvent` object with full details."
+    },
+    {
+      "title": "Requires focus",
+      "description": "The listener's child (or one of its descendants) must have focus to receive any events."
+    },
+    {
+      "title": "Handles or Ignores",
+      "description": "`KeyEventResult.handled` to consume, `KeyEventResult.ignored` to let it bubble up."
+    },
+    {
+      "title": "Bypasses Actions",
+      "description": "This is the low-level alternative and does not use the `Intents` system."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "line 49: tv_tile.dart",
+      "code": "onKeyEvent: (FocusNode node, KeyEvent event) {\n  if (event is KeyUpEvent) return KeyEventResult.ignored;\n  switch (event.logicalKey) {\n    case LogicalKeyboardKey.enter:\n    case LogicalKeyboardKey.numpadEnter:\n      // Do magical operation of new screen opening\n      return KeyEventResult.handled;\n    default:\n      break;\n  }\n  return KeyEventResult.ignored;\n}"
+    }
+  ]
+}

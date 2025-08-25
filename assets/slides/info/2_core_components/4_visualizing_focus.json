@@ -1,0 +1,33 @@
+{
+  "title": "It is not focused, until user can see it",
+  "subtitle": "Providing clear visual feedback of active element.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "Clarity is Crucial",
+      "description": "Users must know exactly which element is active at all times. No ambiguity."
+    },
+    {
+      "title": "Beyond Color Alone",
+      "description": "Use borders, scaling, or shadows. Relying only on color can be an accessibility issue."
+    },
+    {
+      "title": "Immediate Feedback",
+      "description": "The visual change should be instant the moment focus moves to or from the widget."
+    },
+    {
+      "title": "Stateful Decoration",
+      "description": "A common pattern is to rebuild the widget and update its appearance based on the `hasFocus` property."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "line 40: tv_tile.dart",
+      "code": "onFocusChange: (hasFocus) {\n      // You can do better here, I bet\n      setState(() => _isFocused = hasFocus);\n}"
+    },
+    {
+      "title": "line 91: tv_tile.dart",
+      "code": "AnimatedOpacity(\n        duration: kAnimationDuration,\n        opacity: _isFocused ? 1.0 : 0.6,\n        child: ContentTile(index: widget.index, item: widget.item),\n)"
+    }
+  ]
+}

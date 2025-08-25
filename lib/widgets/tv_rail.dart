@@ -35,19 +35,17 @@ class TvRail extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                Container(
                   height: railData.titleHeight,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: railScrollController.railPadding,
-                    ),
-                    child: Text(
-                      data.title,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        color: AppColors.railTitle,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: railScrollController.railPadding,
+                  ),
+                  child: Text(
+                    data.title,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: AppColors.railTitle,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

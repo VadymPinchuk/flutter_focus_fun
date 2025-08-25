@@ -1,0 +1,29 @@
+{
+  "title": "The All-in-One ",
+  "subtitle": "`FocusableActionDetector` is the best",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "The Ultimate Convenience",
+      "description": "An all-in-one widget that combines `Focus`, `Shortcuts`, `Actions`, and `MouseRegion` (for hover)."
+    },
+    {
+      "title": "Reduces Boilerplate",
+      "description": "Dramatically reduces widget nesting and boilerplate for custom interactive components."
+    },
+    {
+      "title": "Built-in State Handling",
+      "description": "The `builder` provides the `focusNode` and `isHovered` state directly, making it easy to change the widget's appearance."
+    },
+    {
+      "title": "The Idiomatic Approach",
+      "description": "This is the modern, recommended way to build custom controls that are fully interactive."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "line 1356: actions.dart",
+      "code": "MouseRegion(\n      key: _mouseRegionKey,\n      onEnter: _handleMouseEnter,\n      onExit: _handleMouseExit,\n      cursor: widget.mouseCursor,\n      child: Focus(\n        focusNode: widget.focusNode,\n        onFocusChange: _handleFocusChange,\n        child: widget.child,\n      ),\n    );\n    if (widget.enabled && widget.actions != null && widget.actions!.isNotEmpty) {\n      child = Actions(actions: widget.actions!, child: child);\n    }\n    if (widget.enabled && widget.shortcuts != null && widget.shortcuts!.isNotEmpty) {\n      child = Shortcuts(shortcuts: widget.shortcuts!, child: child);"
+    }
+  ]
+}

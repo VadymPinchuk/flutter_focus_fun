@@ -98,7 +98,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                         useTvPageLayout
                             ? screenHeight -
                                 (context.railData.railFullHeight +
-                                    context.railData.railHalfHeight)
+                                    context.railData.railQuarterHeight)
                             : 0.0,
                   ),
                 ),
