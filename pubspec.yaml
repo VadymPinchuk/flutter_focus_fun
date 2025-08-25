@@ -54,4 +54,9 @@ flutter:
     - assets/slides/
     - assets/slides/about/
     - assets/slides/info/1_setting_the_stage/
+    - assets/slides/info/2_core_components/
+    - assets/slides/info/3_the_big_picture/
+    - assets/slides/info/3_the_big_picture/
+    - assets/slides/info/4_traversal/
+    - assets/slides/info/5_customization/
 

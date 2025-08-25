@@ -1,0 +1,29 @@
+{
+  "title": "The Atom: `FocusNode`",
+  "subtitle": "The brain of a focusable widget.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "Source of Truth",
+      "description": "It holds the current state and knows if a widget has focus (`hasFocus`)."
+    },
+    {
+      "title": "It's a `ChangeNotifier`",
+      "description": "You can add listeners to react instantly when the focus state changes."
+    },
+    {
+      "title": "Lifecycle Management",
+      "description": "You are responsible for calling `dispose()` to prevent memory leaks."
+    },
+    {
+      "title": "Programmatic Control",
+      "description": "Gives you direct control with methods like `requestFocus()` and `unfocus()`."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Manual Management",
+      "code": "  // 1. Create the FocusNode\n  late final FocusNode _node;\n\n  @override\n  void initState() {\n    super.initState();\n    _node = FocusNode(debugLabel: 'CustomButton $label');\n  }\n\n  @override\n  void dispose() {\n    // 2. Don't forget to dispose of it!\n    _node.dispose();\n    ...\n\n  @override\n  Widget build(BuildContext context) {\n    // 3. Attach it to a widget\n    return Focus(focusNode: _node, child: ...);"
+    }
+  ]
+}
