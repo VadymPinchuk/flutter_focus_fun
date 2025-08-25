@@ -2,7 +2,7 @@
   "title": "Rethinking Navigation",
   "subtitle": "Why a BottomNavBar fails on TV? How to adapt?",
   "slideType": "LEFT_IMAGE_RIGHT_TEXT",
-  "leftImagePath": "assets/images/flutter_community.png",
+  "leftImagePath": "assets/images/slides/5_navigation.png",
   "rightBullets": [
     {
       "title": "Designed for Thumbs",
@@ -22,7 +22,7 @@
     },
     {
       "title": "Maximizes Content Area",
-      "description": "A vertical rail leaves more horizontal space for wide-format video and media."
+      "description": "A vertical rail leaves more horizontal space for content rails and main focus is on it."
     }
   ]
 }

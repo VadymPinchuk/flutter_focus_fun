@@ -24,18 +24,14 @@ class LeftTextRightCodeLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(flex: 3, child: BodyTextWidget(bullets: data.leftBullets)),
-          const Separator(),
-          Expanded(
-            flex: 4,
-            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
-          ),
-        ],
-      ),
+      children: [
+        Expanded(flex: 3, child: BodyTextWidget(bullets: data.leftBullets)),
+        const Separator(),
+        Expanded(
+          flex: 4,
+          child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
+        ),
+      ],
     );
   }
 }
@@ -68,13 +64,11 @@ class DoubleTextLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Row(
-        children: [
-          Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
-          const Separator(),
-          Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
-        ],
-      ),
+      children: [
+        Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
+        const Separator(),
+        Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
+      ],
     );
   }
 }
@@ -89,13 +83,11 @@ class LeftTextRightImageLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Row(
-        children: [
-          Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
-          const Separator(),
-          Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
-        ],
-      ),
+      children: [
+        Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
+        const Separator(),
+        Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
+      ],
     );
   }
 }
@@ -110,13 +102,11 @@ class LeftImageRightTextLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Row(
-        children: [
-          Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
-          const Separator(),
-          Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
-        ],
-      ),
+      children: [
+        Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
+        const Separator(),
+        Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
+      ],
     );
   }
 }
@@ -131,17 +121,13 @@ class LeftImageRightCodeLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
-          const Separator(),
-          Expanded(
-            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
-          ),
-        ],
-      ),
+      children: [
+        Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
+        const Separator(),
+        Expanded(
+          child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
+        ),
+      ],
     );
   }
 }
@@ -156,15 +142,13 @@ class LeftCodeRightImageLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Row(
-        children: [
-          Expanded(
-            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
-          ),
-          const Separator(),
-          Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
-        ],
-      ),
+      children: [
+        Expanded(
+          child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
+        ),
+        const Separator(),
+        Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
+      ],
     );
   }
 }
@@ -194,17 +178,15 @@ class DoubleCodeLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Row(
-        children: [
-          Expanded(
-            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
-          ),
-          const Separator(),
-          Expanded(
-            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
-          ),
-        ],
-      ),
+      children: [
+        Expanded(
+          child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
+        ),
+        const Separator(),
+        Expanded(
+          child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
+        ),
+      ],
     );
   }
 }

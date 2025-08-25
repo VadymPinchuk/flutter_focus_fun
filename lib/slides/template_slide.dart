@@ -23,13 +23,15 @@ class _SlideTextStyles {
 class TemplateSlide extends StatelessWidget {
   final String title;
   final String subtitle;
-  final Widget child;
+  final Widget? child;
+  final List<Widget>? children;
 
   const TemplateSlide({
     super.key,
     required this.title,
     required this.subtitle,
-    required this.child,
+    this.child,
+    this.children,
   });
 
   @override
@@ -57,7 +59,15 @@ class TemplateSlide extends StatelessWidget {
           ),
           const SizedBox(height: 32.0),
           // Constrain the height of the body content.
-          Expanded(child: child),
+          Expanded(
+            child:
+                child ??
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: children ?? [],
+                ),
+          ),
           Align(alignment: Alignment.bottomRight, child: const FooterWidget()),
         ],
       ),

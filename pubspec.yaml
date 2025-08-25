@@ -50,6 +50,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/slides/
     - assets/slides/
     - assets/slides/about/
     - assets/slides/info/1_setting_the_stage/

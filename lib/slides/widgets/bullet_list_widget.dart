@@ -40,6 +40,12 @@ class BulletListWidget extends StatelessWidget {
                           fontSize: titleFontSize,
                           color: AppColors.contentBody,
                           fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 2.0,
+                              color: AppColors.textShadow,
+                            ),
+                          ],
                           height: 1.2,
                         ),
                       ),

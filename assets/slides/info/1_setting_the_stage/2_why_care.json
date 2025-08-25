@@ -9,7 +9,7 @@
     },
     {
       "title": "Build for Everyone",
-      "description": "Proper focus management is non-negotiable for accessibility, making apps usable with screen readers and assistive tech."
+      "description": "Proper focus management is non-negotiable for accessibility, making apps usable with assistive tech."
     },
     {
       "title": "Power Up Desktop & Web",
@@ -20,5 +20,5 @@
       "description": "On TV, focus isn't just a feature—it's the **entire user interface**."
     }
   ],
-  "rightImagePath": "assets/images/flutter_community.png"
+  "rightImagePath": "assets/images/slides/2_why_care.png"
 }

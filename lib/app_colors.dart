@@ -5,6 +5,8 @@ class AppColors {
   static const contentSubtitle = Color(0xB3FFFFFF);
   static const contentBody = Color(0xE6FFFFFF);
 
+  static const textShadow = Color(0x801C1C1C);
+
   static const footerTitle = Color(0xFFFFFFFF);
   static const footerConnectors = Color(0xB3BDBDBD);
 

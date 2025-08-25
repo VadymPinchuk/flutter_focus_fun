@@ -8,13 +8,10 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Image.asset(
-        imagePath,
-        fit: BoxFit.contain,
-        errorBuilder: (c, e, s) => const Placeholder(),
-      ),
+    return Image.asset(
+      imagePath,
+      fit: BoxFit.contain,
+      errorBuilder: (c, e, s) => const Placeholder(),
     );
   }
 }
