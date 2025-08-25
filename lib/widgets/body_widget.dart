@@ -4,7 +4,7 @@ import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/scroll/tv_rail_scroll_controller.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_background.dart';
+import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_content.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/rail_wrapper.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/tv_rail.dart';
 
@@ -84,7 +84,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                   valueListenable: context.pageUiModel.focusedItem,
                   builder:
                       (_, focusedItem, _) =>
-                          DynamicBackground(focusedItem: focusedItem),
+                          DynamicContent(focusedItem: focusedItem),
                 )
                 : const SizedBox.shrink(),
             CustomScrollView(

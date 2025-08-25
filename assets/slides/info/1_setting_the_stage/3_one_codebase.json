@@ -27,7 +27,7 @@
   "codeSamples": [
     {
       "title": "line X: not_in_the_project.dart",
-      "code": "UserExperience experience() {\n    if (kIsWeb) return UserExperience.web;\n    return switch (platform) {\n        TargetPlatform.android || TargetPlatform.iOS =>\n             UserExperience.mobile;\n        TargetPlatform.linux => UserExperience.tv;\n        _ => throw Exception('platform unsupported');\n    }\n}"
+      "code": "UserExperience experience() {\n    if (kIsWeb) return UserExperience.web;\n    return switch (platform) {\n        TargetPlatform.android || TargetPlatform.iOS =>\n             UserExperience.mobile;\n        TargetPlatform.linux => UserExperience.tv;\n        _ => throw Exception('platform unsupported');"
     },
     {
       "title": "line 136: screen_scaffold.dart",

@@ -3,10 +3,10 @@ import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/slide_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 
-class DynamicBackground extends StatelessWidget {
+class DynamicContent extends StatelessWidget {
   final ContentItem? focusedItem;
 
-  const DynamicBackground({super.key, this.focusedItem});
+  const DynamicContent({super.key, this.focusedItem});
 
   @override
   Widget build(BuildContext context) {

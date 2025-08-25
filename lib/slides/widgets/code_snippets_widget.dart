@@ -13,13 +13,16 @@ class CodeSnippetsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      padding: EdgeInsets.zero,
       itemCount: codeSnippets.length,
-      separatorBuilder: (context, index) => const SizedBox(height: 16),
-      itemBuilder: (context, index) {
+
+      separatorBuilder: (_, _) => const SizedBox(height: 16),
+      itemBuilder: (_, index) {
         final sample = codeSnippets[index];
         return Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             if (sample.title.isNotEmpty)
               Padding(

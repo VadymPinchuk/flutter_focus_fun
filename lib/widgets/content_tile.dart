@@ -18,9 +18,15 @@ class ContentTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: GestureDetector(
           onTap: () {
-            Navigator.of(
-              context,
-            ).push(MaterialPageRoute(builder: (_) => DetailPage(item: item)));
+            Navigator.of(context).push(
+              PageRouteBuilder(
+                pageBuilder: (_, _, _) => DetailPage(item: item),
+                transitionsBuilder: (_, animation, _, child) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+                transitionDuration: const Duration(milliseconds: 300),
+              ),
+            );
           },
           child: Container(
             color: item.color,

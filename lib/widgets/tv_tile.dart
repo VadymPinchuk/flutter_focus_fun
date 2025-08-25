@@ -51,8 +51,12 @@ class _TvTileState extends State<TvTile> {
               case LogicalKeyboardKey.enter:
               case LogicalKeyboardKey.numpadEnter:
                 Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => DetailPage(item: widget.item),
+                  PageRouteBuilder(
+                    pageBuilder: (_, _, _) => DetailPage(item: widget.item),
+                    transitionsBuilder: (_, animation, _, child) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                    transitionDuration: const Duration(milliseconds: 300),
                   ),
                 );
                 return KeyEventResult.handled;
@@ -87,7 +91,7 @@ class _TvTileState extends State<TvTile> {
             child: AnimatedOpacity(
               // When not focused, dim the tile only if decorations are enabled.
               // When focused, always show at full opacity.
-              opacity: _isFocused ? 1.0 : (useDecoration ? 0.75 : 1.0),
+              opacity: _isFocused ? 1.0 : (useDecoration ? 0.6 : 1.0),
               duration: kAnimationDuration,
               child: ContentTile(index: widget.index, item: widget.item),
             ),

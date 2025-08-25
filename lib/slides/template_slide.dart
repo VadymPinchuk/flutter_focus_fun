@@ -42,9 +42,19 @@ class TemplateSlide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: _SlideTextStyles.titleStyle),
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: _SlideTextStyles.titleStyle,
+          ),
           const SizedBox(height: 8.0),
-          Text(subtitle, style: _SlideTextStyles.subtitleStyle),
+          Text(
+            subtitle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: _SlideTextStyles.subtitleStyle,
+          ),
           const SizedBox(height: 32.0),
           // Constrain the height of the body content.
           Expanded(child: child),

@@ -35,6 +35,7 @@ class BulletListWidget extends StatelessWidget {
                     children: [
                       Text(
                         bullet.title,
+                        maxLines: 1,
                         style: TextStyle(
                           fontSize: titleFontSize,
                           color: AppColors.contentBody,
@@ -47,6 +48,8 @@ class BulletListWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 4.0),
                           child: Text(
                             bullet.description!,
+                            maxLines: 2,
+                            overflow: TextOverflow.clip,
                             style: TextStyle(
                               fontSize: descriptionFontSize,
                               color: AppColors.contentBody.withValues(

@@ -1,6 +1,6 @@
 {
   "title": "Rethinking Navigation",
-  "subtitle": "Why a Bottom Nav Bar fails on TV and how to adapt.",
+  "subtitle": "Why a BottomNavBar fails on TV? How to adapt?",
   "slideType": "LEFT_IMAGE_RIGHT_TEXT",
   "leftImagePath": "assets/images/flutter_community.png",
   "rightBullets": [

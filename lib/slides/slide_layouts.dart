@@ -3,8 +3,15 @@ import 'package:flutter_focus_fun_tv_demo/data_models/slide_data.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/template_slide.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text_widget.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_sample_widget.dart';
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_snippets_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/image_widget.dart';
+
+class Separator extends StatelessWidget {
+  const Separator({super.key});
+
+  @override
+  Widget build(BuildContext context) => const SizedBox(width: 64);
+}
 
 /// A slide layout that displays bullet points on the left and a code sample on the right.
 class LeftTextRightCodeLayout extends StatelessWidget {
@@ -18,14 +25,13 @@ class LeftTextRightCodeLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Left Column
-          Expanded(flex: 2, child: BodyTextWidget(bullets: data.leftBullets)),
-          const SizedBox(width: 32),
-          // Right Column
+          Expanded(flex: 3, child: BodyTextWidget(bullets: data.leftBullets)),
+          const Separator(),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
         ],
@@ -65,7 +71,7 @@ class DoubleTextLayout extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
-          const SizedBox(width: 32),
+          const Separator(),
           Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
         ],
       ),
@@ -86,7 +92,7 @@ class LeftTextRightImageLayout extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
-          const SizedBox(width: 32),
+          const Separator(),
           Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
         ],
       ),
@@ -107,7 +113,7 @@ class LeftImageRightTextLayout extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
-          const SizedBox(width: 32),
+          const Separator(),
           Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
         ],
       ),
@@ -126,9 +132,11 @@ class LeftImageRightCodeLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
-          const SizedBox(width: 32),
+          const Separator(),
           Expanded(
             child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
@@ -153,7 +161,7 @@ class LeftCodeRightImageLayout extends StatelessWidget {
           Expanded(
             child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
-          const SizedBox(width: 32),
+          const Separator(),
           Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
         ],
       ),
@@ -191,7 +199,7 @@ class DoubleCodeLayout extends StatelessWidget {
           Expanded(
             child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
-          const SizedBox(width: 32),
+          const Separator(),
           Expanded(
             child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
@@ -212,6 +220,7 @@ class TextWithCodeLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       child: ListView.separated(
+        padding: EdgeInsets.zero,
         itemCount: data.textWithCodePairs?.length ?? 0,
         separatorBuilder:
             (context, index) => const Padding(
@@ -223,10 +232,10 @@ class TextWithCodeLayout extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(flex: 2, child: BodyText(pair.text)),
-              const SizedBox(width: 32),
+              Expanded(flex: 3, child: BodyText(pair.text)),
+              const Separator(),
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: CodeSnippetsWidget(codeSnippets: [pair.codeSample]),
               ),
             ],

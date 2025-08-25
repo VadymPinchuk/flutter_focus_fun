@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_background.dart';
+import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_content.dart';
 
 class DetailPage extends StatelessWidget {
   final ContentItem item;
@@ -21,7 +21,7 @@ class DetailPage extends StatelessWidget {
       ),
       extendBodyBehindAppBar: true,
       body: Stack(
-        children: [BackgroundImage(), DynamicBackground(focusedItem: item)],
+        children: [BackgroundImage(), DynamicContent(focusedItem: item)],
       ),
     );
   }
