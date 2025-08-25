@@ -9,35 +9,33 @@ class BulletListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fontSize = 22.0;
+    final fontSize = 24.0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 16.0,
       children:
           bullets
               .map(
-                (text) => Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '• ',
+                (text) => Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '• ',
+                      style: TextStyle(
+                        fontSize: fontSize,
+                        color: AppColors.contentBody,
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        text,
                         style: TextStyle(
                           fontSize: fontSize,
                           color: AppColors.contentBody,
                         ),
                       ),
-                      Expanded(
-                        child: Text(
-                          text,
-                          style: TextStyle(
-                            fontSize: fontSize,
-                            color: AppColors.contentBody,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               )
               .toList(),

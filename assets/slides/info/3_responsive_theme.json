@@ -1,0 +1,17 @@
+{
+  "title": "Beyond Screen Size: Responsive Theming",
+  "subtitle": "Managing styles for different viewing distances.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    "TV UIs require much larger fonts and UI elements to be legible from a distance.",
+    "Higher contrast is crucial for readability in a living room environment.",
+    "Create separate themes for each platform to manage these differences cleanly.",
+    "This approach keeps platform-specific styling organized and easy to modify."
+  ],
+  "codeSamples": [
+    {
+      "title": "app_theme.dart",
+      "code": "import 'package:flutter/material.dart';\n\nclass AppTheme {\n  static ThemeData get mobileTheme {\n    return ThemeData(\n      brightness: Brightness.light,\n      primarySwatch: Colors.blue,\n      textTheme: const TextTheme(\n        bodyMedium: TextStyle(fontSize: 14),\n        headlineMedium: TextStyle(fontSize: 24),\n      ),\n    );\n  }\n\n  static ThemeData get tvTheme {\n    return ThemeData(\n      brightness: Brightness.dark,\n      primarySwatch: Colors.orange,\n      textTheme: const TextTheme(\n        bodyMedium: TextStyle(fontSize: 22, color: Colors.white),\n        headlineMedium: TextStyle(fontSize: 48, color: Colors.white),\n      ),\n    );\n  }\n}"
+    }
+  ]
+}

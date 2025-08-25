@@ -1,7 +1,7 @@
 {
   "title": "Why care about Focus?",
   "subtitle": "The key to building apps that work everywhere.",
-  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
   "leftBullets": [
     "It's the **cursor for your keyboard**, telling your app which widget is active and ready for input.",
     " ",
@@ -14,5 +14,10 @@
     "**Conquer the 10-Foot Experience**:",
     "On TV, focus isn't just a feature—it's the **entire user interface**."
   ],
-  "rightImagePath": "assets/images/multi_device.png"
+  "codeSamples": [
+    {
+      "title": "\"rightImagePath\": \"assets/images/multi_device.png\"",
+      "code": "import 'package:flutter/foundation.dart' show kIsWeb;\n\n// A simple check. In a real app, this could be more robust,\n// checking for specific TV operating systems.\nbool get isTv => kIsWeb; // For this example, we'll treat web as TV\n\nvoid main() {\n  runApp(const MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  const MyApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      // Conditionally load the correct top-level UI\n      home: isTv ? const TvScaffold() : const MobileScaffold(),\n    );\n  }\n}"
+    }
+  ]
 }

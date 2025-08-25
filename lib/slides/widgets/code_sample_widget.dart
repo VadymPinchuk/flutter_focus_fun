@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/code_sample.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 
 /// A widget that renders a string of code with syntax highlighting.
-class CodeSamplesWidget extends StatelessWidget {
-  final List<CodeSample> codeSnippets;
+class CodeSnippetsWidget extends StatelessWidget {
+  final List<CodeSnippet> codeSnippets;
 
-  const CodeSamplesWidget({super.key, required this.codeSnippets});
+  const CodeSnippetsWidget({super.key, required this.codeSnippets});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class CodeSamplesWidget extends StatelessWidget {
         final sample = codeSnippets[index];
         return Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (sample.title.isNotEmpty)
               Padding(
@@ -26,8 +27,8 @@ class CodeSamplesWidget extends StatelessWidget {
                 child: Text(
                   sample.title,
                   style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.white70,
+                    fontSize: 20,
+                    color: AppColors.contentBody,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -40,7 +41,8 @@ class CodeSamplesWidget extends StatelessWidget {
                   syntax: Syntax.DART,
                   syntaxTheme: context.syntaxTheme,
                   withLinesCount: false,
-                  expanded: true, // Let it expand within the Flexible widget
+                  withZoom: false,
+                  expanded: false,
                 ),
               ),
             ),

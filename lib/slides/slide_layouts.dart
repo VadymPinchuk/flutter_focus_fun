@@ -25,7 +25,7 @@ class LeftTextRightCodeLayout extends StatelessWidget {
           // Right Column
           Expanded(
             flex: 3,
-            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
         ],
       ),
@@ -129,7 +129,7 @@ class LeftImageRightCodeLayout extends StatelessWidget {
           Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
           const SizedBox(width: 32),
           Expanded(
-            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
         ],
       ),
@@ -150,7 +150,7 @@ class LeftCodeRightImageLayout extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
           const SizedBox(width: 32),
           Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
@@ -170,7 +170,7 @@ class SingleCodeLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+      child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
     );
   }
 }
@@ -188,11 +188,11 @@ class DoubleCodeLayout extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
           const SizedBox(width: 32),
           Expanded(
-            child: CodeSamplesWidget(codeSnippets: data.codeSamples ?? []),
+            child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
           ),
         ],
       ),
@@ -226,7 +226,7 @@ class TextWithCodeLayout extends StatelessWidget {
               const SizedBox(width: 32),
               Expanded(
                 flex: 3,
-                child: CodeSamplesWidget(codeSnippets: [pair.codeSample]),
+                child: CodeSnippetsWidget(codeSnippets: [pair.codeSample]),
               ),
             ],
           );

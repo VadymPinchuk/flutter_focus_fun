@@ -12,7 +12,7 @@ class SlideData {
   final String? rightImagePath;
   final String? leftImagePath;
   final String? fullWidthImagePath;
-  final List<CodeSample>? codeSamples;
+  final List<CodeSnippet>? codeSamples;
   final List<TextCodePair>? textWithCodePairs; // New field
 
   SlideData({
@@ -48,7 +48,7 @@ class SlideData {
       fullWidthImagePath: json['fullWidthImagePath'] as String?,
       codeSamples:
           (json['codeSamples'] as List<dynamic>?)
-              ?.map((e) => CodeSample.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => CodeSnippet.fromJson(e as Map<String, dynamic>))
               .toList(),
       textWithCodePairs:
           (json['textWithCodePairs'] as List<dynamic>?)

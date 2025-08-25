@@ -1,0 +1,22 @@
+{
+  "title": "One Codebase, N Experiences",
+  "subtitle": "Structuring app to serve mobile and TV UIs... And more",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    "A single codebase is achievable with a clean separation of platform-specific UI.",
+    "Create a top-level 'platform-aware' widget to choose the correct layout.",
+    "Use a simple check (e.g., `isTv`) at the root of your app to decide.",
+    "This keeps core logic separate from platform-specific navigation.",
+    "As option - low-level 'platform-aware' widgets to switch on a widget level."
+  ],
+  "codeSamples": [
+    {
+      "title": "line X: not_in_the_project.dart",
+      "code": "UserExperience experience() {\n    if (kIsWeb) return UserExperience.web;\n    return switch (platform) {\n        TargetPlatform.android || TargetPlatform.iOS =>\n             UserExperience.mobile;\n        TargetPlatform.linux => UserExperience.tv;\n        _ => throw Exception('platform unsupported');\n    }\n}"
+    },
+    {
+      "title": "line 136: screen_scaffold.dart",
+      "code": "switch (experience) {\n    UserExperience.tv => TvNavBar(...),\n    UserExperience.mobile => MobileNavBar(...),\n    UserExperience.web => ...\n}"
+    }
+  ]
+}

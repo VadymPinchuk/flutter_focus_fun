@@ -14,7 +14,7 @@ class BodyTextWidget extends StatelessWidget {
       return Text(
         plainText!,
         style: const TextStyle(
-          fontSize: 24,
+          fontSize: 24.0,
           height: 1.5,
           color: AppColors.contentBody,
         ),
