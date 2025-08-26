@@ -9,7 +9,7 @@
     },
     {
       "title": "Sample Console Output",
-      "code": "FocusManager(2)\n │ primaryFocus: FocusNode#12345(Nav Rail Item 2)\n │\n └─FocusScopeNode#abcde(TV Scaffold Scope)\n   │\n   ├─FocusScopeNode#fghij(Nav Rail Scope)\n   │ │   focus: FocusNode#54321(Nav Rail Item 1)\n   │ │   active: true\n   │ │\n   │ └─FocusNode#12345(Nav Rail Item 2)   <-- ★ PRIMARY FOCUS\n   │\n   └─FocusScopeNode#klmno(Page Content Scope)\n     │\n     └─FocusNode#pqrst(Movie Poster 1)\n"
+      "code": "flutter: FocusManager#cf6f0\nflutter:  │ primaryFocus: FocusNode#dd2ef(The Focus Tree [PRIMARY FOCUS])\nflutter:  │ primaryFocusCreator: Focus ← _ActionsScope ← Actions ←\nflutter:  │   ValueListenableBuilder<bool> ← TvTile ← RepaintBoundary ←\nflutter:  │   IndexedSemantics ← _SelectionKeepAlive ←\nflutter:  │   NotificationListener<KeepAliveNotification> ← KeepAlive ←\nflutter:  │   AutomaticKeepAlive ← KeyedSubtree ← SliverList ← SliverPadding\nflutter:  │   ← Viewport ← IgnorePointer-[GlobalKey#3354f] ← Semantics ←\nflutter:  │   Listener ← _GestureSemantics ←\nflutter:  │   RawGestureDetector-[LabeledGlobalKey<RawGestureDetectorState>#5b68e]\nflutter:  │   ← ⋯\nflutter:  │\nflutter:  └─rootScope: FocusScopeNode#38c92(Root Focus Scope [IN FOCUS PATH])\nflutter:    │ IN FOCUS PATH\nflutter:    │ focusedChildren: FocusScopeNode#95ab0(View Scope [IN FOCUS PATH])\nflutter:    │\nflutter:                              │   │ context: FocusScope-[<'PageScopeNode 1'>]\nflutter:                              │   │ IN FOCUS PATH\nflutter:                              │   │ focusedChildren: FocusNode#dd2ef(The Focus Tree [PRIMARY FOCUS]),\n"
     }
   ]
 }
