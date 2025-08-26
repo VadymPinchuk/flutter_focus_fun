@@ -49,6 +49,18 @@ class _PresentationAppState extends State<PresentationApp> {
                 builder:
                     (ctx) => CallbackShortcuts(
                       bindings: {
+                        // LogicalKeySet(LogicalKeyboardKey.digit1): () {
+                        //   settingsModel.toggleUiExperience();
+                        // },
+                        // LogicalKeySet(LogicalKeyboardKey.digit2): () {
+                        //   settingsModel.toggleFocusDecoration();
+                        // },
+                        // LogicalKeySet(LogicalKeyboardKey.digit3): () {
+                        //   settingsModel.toggleTvPageLayout();
+                        // },
+                        // LogicalKeySet(LogicalKeyboardKey.digit4): () {
+                        //   settingsModel.toggleTraversalPolicy();
+                        // },
                         LogicalKeySet(LogicalKeyboardKey.digit9): () {
                           FocusDebugger.instance.toggleIt();
                         },

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
@@ -9,7 +11,7 @@ final List<ContentRailData> mockHomeData = List.generate(20, (railIndex) {
 
   return ContentRailData(
     title: 'Rail Topic ${railIndex + 1}',
-    items: List.generate(20, (tileIndex) {
+    items: List.generate(Random().nextInt(10) + 1, (tileIndex) {
       return ContentItem(
         title: 'Tile ${railIndex + 1}.${tileIndex + 1}',
         description: 'A dummy item description',

@@ -71,14 +71,14 @@ class _ScreenScaffoldState extends State<ScreenScaffold> {
     ).let(
       (page) => ValueListenableBuilder(
         valueListenable: context.settingsModel.useCustomTraversalPolicy,
-        builder: (_, usePolicy, _) {
-          return usePolicy
-              ? FocusTraversalGroup(
-                policy: GridRowTraversalPolicy(),
-                child: page,
-              )
-              : page;
-        },
+        builder:
+            (_, usePolicy, _) => FocusTraversalGroup(
+              policy:
+                  usePolicy
+                      ? GridRowTraversalPolicy()
+                      : ReadingOrderTraversalPolicy(),
+              child: page,
+            ),
       ),
     );
   }
