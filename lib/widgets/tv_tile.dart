@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
@@ -34,23 +32,11 @@ class _TvTileState extends State<TvTile> {
       valueListenable: context.settingsModel.useFocusDecoration,
       builder: (context, useDecoration, child) {
         final bool applyFocusEffects = useDecoration && _isFocused;
-        return Focus(
-          autofocus: widget.autofocus,
-          debugLabel: widget.item.title,
-          onFocusChange: (hasFocus) {
-            setState(() {
-              _isFocused = hasFocus;
-            });
-            widget.onFocusChange(hasFocus);
-            if (hasFocus) {
-              context.pageUiModel.focusedItem.value = widget.item;
-            }
-          },
-          onKeyEvent: (FocusNode node, KeyEvent event) {
-            if (event is KeyUpEvent) return KeyEventResult.ignored;
-            switch (event.logicalKey) {
-              case LogicalKeyboardKey.enter:
-              case LogicalKeyboardKey.numpadEnter:
+        return Actions(
+          actions: {
+            // Handling Actions based on Intent we want to support.
+            ActivateIntent: CallbackAction<ActivateIntent>(
+              onInvoke: (_) {
                 Navigator.of(context).push(
                   PageRouteBuilder(
                     pageBuilder: (_, _, _) => DetailPage(item: widget.item),
@@ -60,40 +46,52 @@ class _TvTileState extends State<TvTile> {
                     transitionDuration: const Duration(milliseconds: 300),
                   ),
                 );
-                return KeyEventResult.handled;
-              default:
-                break;
-            }
-            return KeyEventResult.ignored;
-          },
-          child: AnimatedContainer(
-            duration: kAnimationDuration,
-            // Conditionally apply the scale transform.
-            transform: Matrix4.identity()..scale(applyFocusEffects ? 1.1 : 1.0),
-            transformAlignment: Alignment.center,
-            // Conditionally apply the padding for the border.
-            padding: EdgeInsets.all(applyFocusEffects ? 3.0 : 0.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.0),
-              gradient:
-                  applyFocusEffects
-                      ? LinearGradient(
-                        colors: [
-                          context.colors.primary,
-                          context.colors.secondary,
-                          context.colors.inversePrimary,
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      )
-                      : null,
+                return null;
+              },
             ),
-            child: AnimatedOpacity(
-              // When not focused, dim the tile only if decorations are enabled.
-              // When focused, always show at full opacity.
-              opacity: _isFocused ? 1.0 : (useDecoration ? 0.6 : 1.0),
+          },
+          child: Focus(
+            autofocus: widget.autofocus,
+            debugLabel: widget.item.title,
+            onFocusChange: (hasFocus) {
+              setState(() {
+                _isFocused = hasFocus;
+              });
+              widget.onFocusChange(hasFocus);
+              if (hasFocus) {
+                context.pageUiModel.focusedItem.value = widget.item;
+              }
+            },
+            child: AnimatedContainer(
               duration: kAnimationDuration,
-              child: ContentTile(index: widget.index, item: widget.item),
+              // Conditionally apply the scale transform.
+              transform:
+                  Matrix4.identity()..scale(applyFocusEffects ? 1.1 : 1.0),
+              transformAlignment: Alignment.center,
+              // Conditionally apply the padding for the border.
+              padding: EdgeInsets.all(applyFocusEffects ? 3.0 : 0.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                gradient:
+                    applyFocusEffects
+                        ? LinearGradient(
+                          colors: [
+                            context.colors.primary,
+                            context.colors.secondary,
+                            context.colors.inversePrimary,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        )
+                        : null,
+              ),
+              child: AnimatedOpacity(
+                // When not focused, dim the tile only if decorations are enabled.
+                // When focused, always show at full opacity.
+                opacity: _isFocused ? 1.0 : (useDecoration ? 0.6 : 1.0),
+                duration: kAnimationDuration,
+                child: ContentTile(index: widget.index, item: widget.item),
+              ),
             ),
           ),
         );

@@ -1,0 +1,24 @@
+{
+  "title": "Shortcuts",
+  "subtitle": "Actions & Intents in Action",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
+  "leftBullets": [
+    {
+      "title": "Key Press",
+      "description": "The user presses a key combination, like `Enter`."
+    },
+    {
+      "title": "Shortcut Mapping",
+      "description": "The `Shortcuts` widget finds a match and fires the corresponding `ActivateIntent`."
+    },
+    {
+      "title": "Back to Focus",
+      "description": "Flutter searches up the widget tree from the currently focused widget."
+    },
+    {
+      "title": "Action Found & Invoked",
+      "description": "It finds the nearest `Actions` widget that maps the `ActivateIntent` to a `ActivateAction` and calls its `invoke` method."
+    }
+  ],
+  "rightImagePath": "assets/images/slides/8_actions_intents_in_action.png"
+}

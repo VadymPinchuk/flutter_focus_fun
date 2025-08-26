@@ -1,28 +1,32 @@
 {
-  "title": "Actions & Intents",
+  "title": "The Smart Way",
   "subtitle": "Decoupling *what* we want from *how* it's done.",
   "slideType": "LEFT_TEXT_RIGHT_CODE",
   "leftBullets": [
+    {
+      "title": "FocusNode triggers KeyEvent",
+      "description": "Bubbles it up by the tree to the closest `Shortcuts` widget."
+    },
+    {
+      "title": "The `Shortcuts` Widget",
+      "description": "Maps physical key presses (like Ctrl+S) to a semantic `Intent` and send it to the active FocusNode."
+    },
     {
       "title": "The `Intent`",
       "description": "An immutable object describing *what* the user wants to do (e.g., 'Save', 'Select')."
     },
     {
-      "title": "The `Action`",
-      "description": "A class containing the logic for *how* to execute a specific `Intent`."
-    },
-    {
-      "title": "The `Shortcuts` Widget",
-      "description": "Maps physical key presses (like Ctrl+S) to a semantic `Intent`."
-    },
-    {
       "title": "The `Actions` Widget",
       "description": "Maps an `Intent` to the `Action` class that will handle it."
+    },
+    {
+      "title": "The `Action`",
+      "description": "A class containing the logic for *how* to execute a specific `Intent`."
     }
   ],
   "codeSamples": [
     {
-      "title": "Define a custom Intent @ line 52: keyboard_shortcuts.dart",
+      "title": "Define a custom Intent @ line ~52: keyboard_shortcuts.dart",
       "code": "class MenuIntent extends Intent {\n  const MenuIntent();"
     },
     {
@@ -30,11 +34,11 @@
       "code": "class MenuAction extends Action<MenuIntent> {\n  @override\n  void invoke(MenuIntent intent) => // Do some magic here..."
     },
     {
-      "title": "Map Key to Intent: @ line 23: keyboard_shortcuts.dart",
+      "title": "Map Key to Intent: @ line ~23: keyboard_shortcuts.dart",
       "code": "SingleActivator(LogicalKeyboardKey.contextMenu): MenuIntent(),"
     },
     {
-      "title": "Connection Intent to Action @ line90: screen_scaffold.dart",
+      "title": "Connection Intent to Action @ line ~90: screen_scaffold.dart",
       "code": "MenuIntent: CallbackAction<MenuIntent>(\n  onInvoke: (intent) => _navBarScopeNode.requestFocus(),"
     }
   ]

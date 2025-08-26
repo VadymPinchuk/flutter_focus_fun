@@ -4,7 +4,7 @@
   "slideType": "DOUBLE_TEXT",
   "leftBullets": [
     {
-      "title": "Low-Level: `onKeyEvent`",
+      "title": "Low-Level: `KeyboardListener`",
       "description": "Gives you direct, unfiltered access to raw `KeyDownEvent` and `KeyUpEvent` data."
     },
     {

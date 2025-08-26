@@ -145,6 +145,7 @@ class _TvSettingTileState extends State<_TvSettingTile> {
         });
       },
       onKeyEvent: (FocusNode node, KeyEvent event) {
+        // Handling key press in place to avoid bubbling to the shortcuts
         if (event is KeyUpEvent) return KeyEventResult.ignored;
         if (event.logicalKey == LogicalKeyboardKey.enter) {
           widget.onPressed();

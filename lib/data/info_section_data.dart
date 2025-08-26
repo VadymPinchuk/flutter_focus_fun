@@ -59,56 +59,70 @@ final ContentRailData _secondRail = ContentRailData(
     ContentItem(
       title: 'The Core Components',
       description: 'The fundamental building blocks for focus.',
-      color: Colors.indigo.shade200,
+      color: Colors.indigo.shade900,
       slideAssetPath: 'assets/slides/info/2_core_components/1_intro.json',
     ),
     ContentItem(
       title: 'The Atom',
       description: 'The brain of a focusable widget.',
-      color: Colors.indigo.shade300,
+      color: Colors.indigo.shade800,
       slideAssetPath: 'assets/slides/info/2_core_components/2_focus_node.json',
     ),
     ContentItem(
       title: 'The Workhorse',
       description: 'Bringing a FocusNode to the Widget Tree.',
-      color: Colors.indigo.shade400,
+      color: Colors.deepPurple.shade900,
       slideAssetPath:
           'assets/slides/info/2_core_components/3_focus_widget.json',
     ),
     ContentItem(
       title: 'Visualizing Focus',
       description: 'Providing clear visual feedback for the active element.',
-      color: Colors.indigo.shade500,
+      color: Colors.deepPurple.shade800,
       slideAssetPath:
           'assets/slides/info/2_core_components/4_visualizing_focus.json',
     ),
     ContentItem(
-      title: 'Responding to Input',
+      title: 'Input Response',
       description: 'How to make your focused widget react to key presses.',
-      color: Colors.indigo.shade600,
+      color: Colors.deepPurple.shade700,
       slideAssetPath:
           'assets/slides/info/2_core_components/5_responding_to_input.json',
     ),
     ContentItem(
-      title: 'The Low-Level Way: KeyboardListener',
+      title: 'KeyboardListener',
       description: 'For when you need direct access to raw key presses.',
-      color: Colors.indigo.shade700,
+      color: Colors.deepPurple.shade600,
       slideAssetPath:
           'assets/slides/info/2_core_components/6_keyboard_listener.json',
     ),
     ContentItem(
-      title: 'The High-Level Way: Actions & Intents',
+      title: 'Actions & Intents',
       description: 'Decoupling what the user wants from how it\'s done.',
-      color: Colors.indigo.shade800,
+      color: Colors.deepPurple.shade500,
       slideAssetPath:
           'assets/slides/info/2_core_components/7_actions_intents.json',
     ),
     ContentItem(
+      title: 'Shortcuts',
+      description: 'Actions and Intents in Action ><',
+      color: Colors.deepPurple.shade400,
+      slideAssetPath:
+          'assets/slides/info/2_core_components/8_shortcuts.json',
+    ),
+    ContentItem(
+      title: 'Shortcuts & Callbacks',
+      description: 'Using built-in widgets for common keyboard actions.',
+      color: Colors.purple.shade300,
+      slideAssetPath:
+          'assets/slides/info/2_core_components/9_callback_shortcuts.json',
+    ),
+    ContentItem(
       title: 'The All-in-One: FocusableActionDetector',
       description: 'Your new best friend for interactive components.',
-      color: Colors.indigo.shade900,
+      color: Colors.purple.shade400,
       slideAssetPath:
-          'assets/slides/info/2_core_components/8_focusable_action_detector.json',
+          'assets/slides/info/2_core_components/10_focusable_action_detector.json',
     ),
   ],
 );
@@ -144,7 +158,8 @@ final ContentRailData _thirdRail = ContentRailData(
       title: 'FocusManager in Action',
       description: 'Key methods for interacting with the focus tree.',
       color: Colors.amber.shade800,
-      slideAssetPath: 'assets/slides/info/3_big_picture/5_focus_manager_methods.json',
+      slideAssetPath:
+          'assets/slides/info/3_big_picture/5_focus_manager_methods.json',
     ),
   ],
 );

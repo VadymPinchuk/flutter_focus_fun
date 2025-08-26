@@ -1,0 +1,33 @@
+{
+  "title": "Callbacks + Shortcuts",
+  "subtitle": "Using built-in widgets for common keyboard actions.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "No Boilerplate Needed",
+      "description": "For simple actions, you don't need to create custom `Action` and `Intent` classes."
+    },
+    {
+      "title": "`CallbackShortcuts` Widget",
+      "description": "Directly binds a key press (or shortcut) to a simple `VoidCallback` function."
+    },
+    {
+      "title": "Quick and Easy",
+      "description": "Perfect for scenarios where you just need to trigger a single, self-contained function."
+    },
+    {
+      "title": "Still Requires Focus",
+      "description": "Like all other input widgets, its child must be focused to receive the key events."
+    },
+    {
+      "title": "Wrapper over Focus",
+      "description": "Under the hood, it uses a `Focus` widget"
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "line ~50: main.dart",
+      "code": "CallbackShortcuts(\n    bindings: {\n        LogicalKeySet(LogicalKeyboardKey.digit9): () {\n          FocusDebugger.instance.toggleIt();\n    },\n}"
+    }
+  ]
+}

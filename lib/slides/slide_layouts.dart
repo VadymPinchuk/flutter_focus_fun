@@ -25,10 +25,9 @@ class LeftTextRightCodeLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(flex: 3, child: BodyTextWidget(bullets: data.leftBullets)),
+        Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
         const Separator(),
         Expanded(
-          flex: 4,
           child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
         ),
       ],

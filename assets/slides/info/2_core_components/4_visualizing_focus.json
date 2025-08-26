@@ -22,11 +22,11 @@
   ],
   "codeSamples": [
     {
-      "title": "line 40: tv_tile.dart",
+      "title": "line ~40: tv_tile.dart",
       "code": "onFocusChange: (hasFocus) {\n      // You can do better here, I bet\n      setState(() => _isFocused = hasFocus);\n}"
     },
     {
-      "title": "line 91: tv_tile.dart",
+      "title": "line ~91: tv_tile.dart",
       "code": "AnimatedOpacity(\n        duration: kAnimationDuration,\n        opacity: _isFocused ? 1.0 : 0.6,\n        child: ContentTile(index: widget.index, item: widget.item),\n)"
     }
   ]

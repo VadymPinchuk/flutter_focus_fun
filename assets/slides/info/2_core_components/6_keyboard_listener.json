@@ -1,11 +1,11 @@
 {
-  "title": "The Low-Level Way",
-  "subtitle": "For when you need direct access to raw key presses.",
+  "title": "The Simple Way",
+  "subtitle": "For when you need prompt action on key input",
   "slideType": "LEFT_TEXT_RIGHT_CODE",
   "leftBullets": [
     {
       "title": "Direct Event Access",
-      "description": "The `onKeyEvent` callback provides a raw `KeyEvent` object with full details."
+      "description": "The `onKeyEvent` callback provides a raw `KeyEvent`."
     },
     {
       "title": "Requires focus",
@@ -18,12 +18,16 @@
     {
       "title": "Bypasses Actions",
       "description": "This is the low-level alternative and does not use the `Intents` system."
+    },
+    {
+      "title": "Wrapper over Focus",
+      "description": "Under the hood, it uses a `Focus` widget"
     }
   ],
   "codeSamples": [
     {
-      "title": "line 49: tv_tile.dart",
-      "code": "onKeyEvent: (FocusNode node, KeyEvent event) {\n  if (event is KeyUpEvent) return KeyEventResult.ignored;\n  switch (event.logicalKey) {\n    case LogicalKeyboardKey.enter:\n    case LogicalKeyboardKey.numpadEnter:\n      // Do magical operation of new screen opening\n      return KeyEventResult.handled;\n    default:\n      break;\n  }\n  return KeyEventResult.ignored;\n}"
+      "title": "line ~147: settings_page.dart",
+      "code": "onKeyEvent: (FocusNode node, KeyEvent event) {\n    // Handling key press in place to avoid bubbling to the shortcuts\n    if (event is KeyUpEvent) return KeyEventResult.ignored;\n    if (event.logicalKey == LogicalKeyboardKey.enter) {\n      widget.onPressed();\n      return KeyEventResult.handled;\n    }\n    if (event.logicalKey == LogicalKeyboardKey.numpadEnter) {\n      widget.onPressed();\n      return KeyEventResult.handled;\n    }\n    return KeyEventResult.ignored;\n},"
     }
   ]
 }

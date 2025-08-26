@@ -26,7 +26,7 @@ class _RailWrapperState extends State<RailWrapper> {
             return AnimatedOpacity(
               duration: const Duration(milliseconds: 300),
               opacity: isVisible ? 1.0 : 0.0,
-              child: child,
+              child: IgnorePointer(ignoring: !isVisible, child: child),
             );
           },
           child: widget.child,
