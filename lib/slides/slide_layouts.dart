@@ -25,7 +25,12 @@ class LeftTextRightCodeLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
+        Expanded(
+          child: BodyTextWidget(
+            bullets: data.leftBullets,
+            plainText: data.plainText,
+          ),
+        ),
         const Separator(),
         Expanded(
           child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
@@ -64,9 +69,19 @@ class DoubleTextLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
+        Expanded(
+          child: BodyTextWidget(
+            bullets: data.leftBullets,
+            plainText: data.plainText,
+          ),
+        ),
         const Separator(),
-        Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
+        Expanded(
+          child: BodyTextWidget(
+            bullets: data.rightBullets,
+            plainText: data.plainText,
+          ),
+        ),
       ],
     );
   }
@@ -83,7 +98,12 @@ class LeftTextRightImageLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(child: BodyTextWidget(bullets: data.leftBullets)),
+        Expanded(
+          child: BodyTextWidget(
+            bullets: data.leftBullets,
+            plainText: data.plainText,
+          ),
+        ),
         const Separator(),
         Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
       ],
@@ -104,7 +124,12 @@ class LeftImageRightTextLayout extends StatelessWidget {
       children: [
         Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
         const Separator(),
-        Expanded(child: BodyTextWidget(bullets: data.rightBullets)),
+        Expanded(
+          child: BodyTextWidget(
+            bullets: data.rightBullets,
+            plainText: data.plainText,
+          ),
+        ),
       ],
     );
   }

@@ -1,11 +1,12 @@
 {
   "title": "The Core Components",
   "subtitle": "The fundamental building blocks for focus and interactivity.",
-  "slideType": "SINGLE_TEXT",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
   "plainText": [
     "Now that we've set the stage, it's time to dive into the code.",
     "",
     "This section covers the essential, low-level widgets and classes that form the foundation of Flutter's focus system.",
     "Understanding these core components is the key to building any kind of focus-based interaction."
-  ]
+  ],
+  "rightImagePath": "assets/images/slides/2_1_intro.png"
 }
