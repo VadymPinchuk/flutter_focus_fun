@@ -1,0 +1,24 @@
+{
+  "title": "The Focus Tree",
+  "subtitle": "How Flutter organizes all focusable widgets.",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
+  "leftBullets": [
+    {
+      "title": "A Parent-Child Hierarchy",
+      "description": "Flutter organizes all focusable widgets into a tree structure, much like the widget tree itself."
+    },
+    {
+      "title": "`FocusNode`s are Leaves",
+      "description": "Individual focusable widgets are the leaves of this tree."
+    },
+    {
+      "title": "`FocusScopeNode`s are Branches",
+      "description": "Scopes act as containers or branches, grouping related nodes together."
+    },
+    {
+      "title": "Defines Traversal",
+      "description": "This tree structure is what Flutter uses to determine the default navigation order."
+    }
+  ],
+  "rightImagePath": "assets/images/flutter_community.png"
+}

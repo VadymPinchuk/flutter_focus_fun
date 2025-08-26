@@ -1,0 +1,15 @@
+{
+  "title": "\"Why Can't I Focus on This?!\"",
+  "subtitle": "Using `debugDumpFocusTree()` to visualize your focus tree.",
+  "slideType": "SINGLE_CODE",
+  "codeSamples": [
+    {
+      "title": "Call this function from a button press or in `initState` to see the current tree.",
+      "code": "debugDumpFocusTree();"
+    },
+    {
+      "title": "Sample Console Output",
+      "code": "FocusManager(2)\n │ primaryFocus: FocusNode#12345(Nav Rail Item 2)\n │\n └─FocusScopeNode#abcde(TV Scaffold Scope)\n   │\n   ├─FocusScopeNode#fghij(Nav Rail Scope)\n   │ │   focus: FocusNode#54321(Nav Rail Item 1)\n   │ │   active: true\n   │ │\n   │ └─FocusNode#12345(Nav Rail Item 2)   <-- ★ PRIMARY FOCUS\n   │\n   └─FocusScopeNode#klmno(Page Content Scope)\n     │\n     └─FocusNode#pqrst(Movie Poster 1)\n"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "title": "`FocusManager` in Action",
+  "subtitle": "Key methods for interacting with the focus tree.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "`requestFocus(FocusNode node)`",
+      "description": "The primary way to programmatically set focus to a specific node."
+    },
+    {
+      "title": "`primaryFocus` (getter)",
+      "description": "Lets you find out which node in the entire application currently has focus."
+    },
+    {
+      "title": "`nextFocus()` / `previousFocus()`",
+      "description": "Triggers traversal based on the active policy. This is what the system calls when you press Tab."
+    },
+    {
+      "title": "`applyFocusChanges()`",
+      "description": "Forces the manager to process any pending focus changes immediately."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Using the FocusManager",
+      "code": "// Get the manager instance\nfinal manager = FocusManager.instance;\n\n// Move focus to a specific node\nmanager.requestFocus(_mySpecialNode);\n\n// Check which node is currently active\nprint('Current focus: ${manager.primaryFocus?.debugLabel}');\n\n// Manually trigger traversal (rarely needed)\nmanager.nextFocus();"
+    }
+  ]
+}
