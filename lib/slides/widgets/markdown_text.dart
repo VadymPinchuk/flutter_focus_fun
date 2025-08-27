@@ -28,7 +28,7 @@ final _sharedStyleSheet = MarkdownStyleSheet(
   code: TextStyle(
     fontSize: 22.0,
     color: Colors.amber.shade200,
-    backgroundColor: Colors.white.withValues(alpha: 0.1),
+    backgroundColor: AppColors.contentBody.withValues(alpha: 0.1),
     fontFamily: 'monospace',
   ),
   // Style for H1 headers (e.g., "# Header")
@@ -46,7 +46,7 @@ final _sharedStyleSheet = MarkdownStyleSheet(
   // You can also define styles for other elements like lists, links, etc.
   listBullet: TextStyle(
     fontSize: 24.0,
-    color: Colors.white.withValues(alpha: 0.75),
+    color: AppColors.contentBody.withValues(alpha: 0.75),
   ),
 );
 

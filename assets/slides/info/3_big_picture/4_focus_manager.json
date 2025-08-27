@@ -4,7 +4,7 @@
   "slideType": "SINGLE_TEXT",
   "plainText": [
     "At the very top of the focus tree sits the `FocusManager`, a global singleton that acts as the ultimate authority on focus for your entire application.",
-    "You can access it from anywhere in your code via `FocusManager.instance`. You never create your own; there is only one for the whole app.",
+    "We can access it from anywhere in your code via `FocusManager.instance`. We NEVER create your own; there is ONLY ONE for the whole app.",
     "Its most important property is `primaryFocus`, which always points to the single `FocusNode` that is currently receiving keyboard events. If nothing is focused, it's `null`.",
     "The `FocusManager` also serves as the last line of defense, processing default traversal keys (like Tab and arrow keys) that are not handled by any focused widgets lower down in the tree."
   ]

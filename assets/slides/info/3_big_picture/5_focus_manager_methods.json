@@ -5,25 +5,25 @@
   "leftBullets": [
     {
       "title": "`requestFocus(FocusNode node)`",
-      "description": "The primary way to programmatically set focus to a specific node."
+      "description": "The primary way to programmatically set focus. Use this to jump focus anywhere in the tree."
     },
     {
       "title": "`primaryFocus` (getter)",
-      "description": "Lets you find out which node in the entire application currently has focus."
+      "description": "Lets you find out which node in the entire application currently has focus. Great for debugging."
     },
     {
-      "title": "`nextFocus()` / `previousFocus()`",
-      "description": "Triggers traversal based on the active policy. This is what the system calls when you press Tab."
+      "title": "`addKeyEventCallback()`",
+      "description": "A powerful hook to listen to *all* key events globally, before they are sent to the focused widget."
     },
     {
-      "title": "`applyFocusChanges()`",
-      "description": "Forces the manager to process any pending focus changes immediately."
+      "title": "`removeKeyEventCallback()`",
+      "description": "Always remember to remove your callback when it's no longer needed to prevent memory leaks."
     }
   ],
   "codeSamples": [
     {
       "title": "Using the FocusManager",
-      "code": "// Get the manager instance\nfinal manager = FocusManager.instance;\n\n// Move focus to a specific node\nmanager.requestFocus(_mySpecialNode);\n\n// Check which node is currently active\nprint('Current focus: ${manager.primaryFocus?.debugLabel}');\n\n// Manually trigger traversal (rarely needed)\nmanager.nextFocus();"
+      "code": "final manager = FocusManager.instance;\n\n// Move focus to a specific node\nmanager.requestFocus(_mySpecialNode);\n\n// Logging which node is currently active\nmanager.primaryFocus?.debugLabel;\n\n// Listen to focus changes, wherever you want\nmanager.addListener(focusListener);\n\n// Don't forget to remove it later!\nmanager.removeListener(focusListener);"
     }
   ]
 }
