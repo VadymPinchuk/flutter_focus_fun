@@ -2,19 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/footer_widget.dart';
-
-/// A private class to hold the text styles for the slide.
-class _SlideTextStyles {
-  static const TextStyle titleStyle = TextStyle(
-    fontSize: 64.0,
-    fontWeight: FontWeight.bold,
-    color: AppColors.contentTitle,
-  );
-  static const TextStyle subtitleStyle = TextStyle(
-    fontSize: 52.0,
-    color: AppColors.contentSubtitle,
-  );
-}
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 /// The base layout for all presentation slides.
 ///
@@ -44,19 +32,9 @@ class TemplateSlide extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: _SlideTextStyles.titleStyle,
-          ),
+          _SlideTitle(title),
           const SizedBox(height: 8.0),
-          Text(
-            subtitle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: _SlideTextStyles.subtitleStyle,
-          ),
+          _SlideSubTitle(subtitle),
           const SizedBox(height: 32.0),
           // Constrain the height of the body content.
           Expanded(
@@ -74,3 +52,45 @@ class TemplateSlide extends StatelessWidget {
     );
   }
 }
+
+class _SlideTitle extends StatelessWidget {
+  final String text;
+
+  const _SlideTitle(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    // Use MarkdownBody for rendering without extra padding or scrolling.
+    // This is ideal for embedding within a slide layout.
+    return MarkdownBody(data: text, styleSheet: _templateTextStyle(64.0, 1.0));
+  }
+}
+
+class _SlideSubTitle extends StatelessWidget {
+  final String text;
+
+  const _SlideSubTitle(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    // Use MarkdownBody for rendering without extra padding or scrolling.
+    // This is ideal for embedding within a slide layout.
+    return MarkdownBody(data: text, styleSheet: _templateTextStyle(52.0, 0.7));
+  }
+}
+
+MarkdownStyleSheet _templateTextStyle(double size, double alpha) =>
+    MarkdownStyleSheet(
+      p: TextStyle(
+        fontSize: size,
+        color: AppColors.contentTitle.withValues(alpha: alpha),
+        fontWeight: FontWeight.bold,
+        height: 1.5,
+      ),
+      code: TextStyle(
+        fontSize: size,
+        color: Colors.amber.shade200.withValues(alpha: alpha),
+        fontWeight: FontWeight.bold,
+        fontFamily: 'monospace',
+      ),
+    );

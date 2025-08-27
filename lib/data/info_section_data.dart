@@ -111,7 +111,7 @@ final ContentRailData _secondRail = ContentRailData(
           'assets/slides/info/2_core_components/8_shortcuts.json',
     ),
     ContentItem(
-      title: 'Shortcuts & Callbacks',
+      title: 'CallbackShortcuts',
       description: 'Using built-in widgets for common keyboard actions.',
       color: Colors.purple.shade300,
       slideAssetPath:

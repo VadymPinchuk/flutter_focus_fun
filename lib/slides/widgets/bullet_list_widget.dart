@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
+import 'package:flutter_focus_fun_tv_demo/slides/widgets/markdown_text.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 /// A widget that renders a list of BulletPoint objects as a formatted list.
 class BulletListWidget extends StatelessWidget {
@@ -26,44 +28,21 @@ class BulletListWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: titleFontSize,
                     color: AppColors.contentBody,
-                    height: 1.2,
+                    height: 1.5,
                   ),
                 ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        bullet.title,
-                        maxLines: 1,
-                        style: TextStyle(
-                          fontSize: titleFontSize,
-                          color: AppColors.contentBody,
-                          fontWeight: FontWeight.bold,
-                          shadows: [
-                            Shadow(
-                              blurRadius: 2.0,
-                              color: AppColors.textShadow,
-                            ),
-                          ],
-                          height: 1.2,
-                        ),
+                      MarkdownBody(
+                        data: bullet.title,
+                        styleSheet: plainBoldStyleSheet,
                       ),
                       if (bullet.description != null)
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
-                          child: Text(
-                            bullet.description!,
-                            maxLines: 2,
-                            overflow: TextOverflow.clip,
-                            style: TextStyle(
-                              fontSize: descriptionFontSize,
-                              color: AppColors.contentBody.withValues(
-                                alpha: 0.8,
-                              ),
-                              height: 1.2,
-                            ),
-                          ),
+                          child: MarkdownText(text: bullet.description!),
                         ),
                     ],
                   ),
