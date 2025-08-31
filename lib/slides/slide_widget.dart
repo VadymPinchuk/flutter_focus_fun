@@ -44,6 +44,8 @@ class SlideWidget extends StatelessWidget {
             return DoubleCodeLayout(data: slideData);
           case SlideType.textWithCode:
             return TextWithCodeLayout(data: slideData);
+          case SlideType.singleImage:
+            return SingleImageLayout(data: slideData);
           case SlideType.unknown:
             return Center(
               child: Text(

@@ -163,14 +163,20 @@ final ContentRailData _thirdRail = ContentRailData(
       slideAssetPath:
           'assets/slides/info/3_big_picture/5_focus_manager_methods.json',
     ),
+    ContentItem(
+      title: 'You think you know focus?',
+      description: 'Are you sure?',
+      color: AppColors.emerald6,
+      slideAssetPath: 'assets/slides/info/3_big_picture/6_joke.json',
+    ),
   ],
 );
 
 final ContentRailData _fourthRail = ContentRailData(
-  title: 'Management & Traversal',
+  title: 'Traversal Control',
   items: [
     ContentItem(
-      title: 'Management & Traversal',
+      title: 'Traversal Control',
       description: 'Controlling the user\'s navigation path through the app.',
       color: AppColors.crimson1,
       slideAssetPath: 'assets/slides/info/4_traversal/1_intro.json',
@@ -191,7 +197,8 @@ final ContentRailData _fourthRail = ContentRailData(
       title: 'Creating Focus Zones with `FocusScope`',
       description: 'Using the `FocusScope` widget to trap focus.',
       color: AppColors.crimson4,
-      slideAssetPath: 'assets/slides/info/4_traversal/4_focus_scope_widget.json',
+      slideAssetPath:
+          'assets/slides/info/4_traversal/4_focus_scope_widget.json',
     ),
     ContentItem(
       title: 'Under the Hood: `FocusScopeNode`',
@@ -215,19 +222,22 @@ final ContentRailData _fourthRail = ContentRailData(
       title: '`FocusTraversalGroup`',
       description: 'Defining an area for custom navigation rules.',
       color: AppColors.crimson8,
-      slideAssetPath: 'assets/slides/info/4_traversal/8_focus_traversal_group.json',
+      slideAssetPath:
+          'assets/slides/info/4_traversal/8_focus_traversal_group.json',
     ),
     ContentItem(
       title: '`FocusTraversalPolicy`',
       description: 'The "rulebook" for how to navigate.',
       color: AppColors.crimson9,
-      slideAssetPath: 'assets/slides/info/4_traversal/9_focus_traversal_policy.json',
+      slideAssetPath:
+          'assets/slides/info/4_traversal/9_focus_traversal_policy.json',
     ),
     ContentItem(
       title: '`ReadingOrderTraversalPolicy`',
       description: 'Understanding the baseline traversal behavior.',
       color: AppColors.crimson10,
-      slideAssetPath: 'assets/slides/info/4_traversal/10_reading_order_policy.json',
+      slideAssetPath:
+          'assets/slides/info/4_traversal/10_reading_order_policy.json',
     ),
   ],
 );

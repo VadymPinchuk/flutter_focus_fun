@@ -10,6 +10,7 @@ class SlideData {
   final List<String>? plainText;
   final List<BulletPoint>? leftBullets;
   final List<BulletPoint>? rightBullets;
+  final String? imagePath;
   final String? rightImagePath;
   final String? leftImagePath;
   final String? fullWidthImagePath;
@@ -23,6 +24,7 @@ class SlideData {
     this.plainText,
     this.leftBullets,
     this.rightBullets,
+    this.imagePath,
     this.rightImagePath,
     this.leftImagePath,
     this.fullWidthImagePath,
@@ -47,6 +49,7 @@ class SlideData {
           (json['rightBullets'] as List<dynamic>?)
               ?.map((e) => BulletPoint.fromJson(e as Map<String, dynamic>))
               .toList(),
+      imagePath: json['imagePath'] as String?,
       rightImagePath: json['rightImagePath'] as String?,
       leftImagePath: json['leftImagePath'] as String?,
       fullWidthImagePath: json['fullWidthImagePath'] as String?,
@@ -86,6 +89,8 @@ SlideType _slideTypeFromString(String? type) {
       return SlideType.plainText;
     case 'TEXT_WITH_CODE':
       return SlideType.textWithCode;
+    case 'SINGLE_IMAGE':
+      return SlideType.singleImage;
     default:
       return SlideType.unknown;
   }

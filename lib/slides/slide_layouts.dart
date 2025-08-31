@@ -192,6 +192,21 @@ class SingleCodeLayout extends StatelessWidget {
   }
 }
 
+class SingleImageLayout extends StatelessWidget {
+  final SlideData data;
+
+  const SingleImageLayout({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return TemplateSlide(
+      title: data.title,
+      subtitle: data.subtitle,
+      child: ImageWidget(imagePath: data.imagePath ?? ''),
+    );
+  }
+}
+
 class DoubleCodeLayout extends StatelessWidget {
   final SlideData data;
 

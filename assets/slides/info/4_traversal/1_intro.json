@@ -1,6 +1,6 @@
 {
-  "title": "Management & Traversal",
-  "subtitle": "Rail 4: Controlling the user's navigation path through the app.",
+  "title": "Traversal Control",
+  "subtitle": "Controlling the navigation path through the app.",
   "slideType": "SINGLE_TEXT",
   "plainText": [
     "Now that we have our core components, it's time to manage them.",

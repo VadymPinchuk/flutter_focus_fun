@@ -48,6 +48,7 @@ class AppColors {
   static const Color emerald3 = Color(0xFF065F46);
   static const Color emerald4 = Color(0xFF064E3B);
   static const Color emerald5 = Color(0xFF022C22);
+  static const Color emerald6 = Color(0xFF0C1E1C);
 
   // Rail 4: Revised Crimson Alert
   static const Color crimson1 = Color(0xFF7D3A49);

@@ -10,5 +10,6 @@ enum SlideType {
   doubleCode,
   plainText,
   textWithCode,
+  singleImage,
   unknown,
 }
