@@ -1,0 +1,24 @@
+{
+  "title": "Dividing the Screen: Scopes",
+  "subtitle": "Separating focus between the Nav Bar and the main content.",
+  "slideType": "LEFT_IMAGE_RIGHT_TEXT",
+  "leftImagePath": "assets/images/slides/4_3_scoping.png",
+  "rightBullets": [
+    {
+      "title": "The Problem",
+      "description": "With a manual approach, how does focus ever leave the navigation bar to get to the main page content?"
+    },
+    {
+      "title": "The Solution: `FocusScope`",
+      "description": "We treat the navigation bar and the page body as two separate, self-contained 'focus zones'."
+    },
+    {
+      "title": "Zone 1: Navigation",
+      "description": "Focus traversal (up/down arrows) is trapped within the navigation items."
+    },
+    {
+      "title": "Zone 2: Content",
+      "description": "When the user navigates right, we programmatically move focus to the content area, which then manages its own internal focus."
+    }
+  ]
+}

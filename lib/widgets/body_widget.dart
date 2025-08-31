@@ -83,8 +83,9 @@ class _BodyWidgetState extends State<BodyWidget> {
                 ? ValueListenableBuilder(
                   valueListenable: context.pageUiModel.focusedItem,
                   builder:
-                      (_, focusedItem, _) =>
-                          DynamicContent(focusedItem: focusedItem),
+                      (_, focusedItem, _) => _ImageMask(
+                        child: DynamicContent(focusedItem: focusedItem),
+                      ),
                 )
                 : const SizedBox.shrink(),
             CustomScrollView(
@@ -102,6 +103,7 @@ class _BodyWidgetState extends State<BodyWidget> {
                             : 0.0,
                   ),
                 ),
+
                 SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
                     final railContent = widget.rails[index];
@@ -136,6 +138,34 @@ class _BodyWidgetState extends State<BodyWidget> {
           ],
         );
       },
+    );
+  }
+}
+
+class _ImageMask extends StatelessWidget {
+  const _ImageMask({required this.child});
+
+  final Widget child;
+
+  LinearGradient get _bottomGradient => LinearGradient(
+    colors: [
+      Colors.black,
+      Colors.black,
+      Colors.black.withValues(alpha: 0.8),
+      Colors.black.withValues(alpha: 0.3),
+      Colors.black.withValues(alpha: 0.0),
+    ],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    stops: const [0.0, 0.1, 0.6, 0.7, 1.0],
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      shaderCallback: _bottomGradient.createShader,
+      blendMode: BlendMode.dstIn,
+      child: child,
     );
   }
 }

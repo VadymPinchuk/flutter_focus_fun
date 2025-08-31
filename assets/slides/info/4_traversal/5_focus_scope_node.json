@@ -1,0 +1,11 @@
+{
+  "title": "Under the Hood: `FocusScopeNode`",
+  "subtitle": "The object that powers the `FocusScope` widget.",
+  "slideType": "SINGLE_TEXT",
+  "plainText": [
+    "`FocusScopeNode` is the underlying state object that the `FocusScope` widget creates and manages.",
+    "It's a special type of `FocusNode` that acts as a container for other `FocusNode`s, forming a 'scope' in the focus tree.",
+    "Its main job is to manage focus for its descendants, track the last-focused child, and serve as the boundary for traversal policies.",
+    "While you often interact with the `FocusScope` widget declaratively, you pass a `FocusScopeNode` to it when you need programmatic control, just as you do with `Focus` and `FocusNode`."
+  ]
+}

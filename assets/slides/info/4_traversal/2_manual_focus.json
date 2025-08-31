@@ -1,0 +1,29 @@
+{
+  "title": "The Direct Approach: Manual Focus",
+  "subtitle": "A rigid but simple way to manage focus in a list.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "Stateful Management",
+      "description": "The most basic method. You use a `StatefulWidget` to hold the index of the currently focused item."
+    },
+    {
+      "title": "Listen for Keys",
+      "description": "Wrap your widget in a `KeyboardListener` or `Focus` widget to capture D-pad arrow key presses."
+    },
+    {
+      "title": "Update State",
+      "description": "When a key is pressed, you manually update the index in `setState` and call `requestFocus()` on the corresponding `FocusNode`."
+    },
+    {
+      "title": "Brittle & Limited",
+      "description": "This approach is simple for a single list but doesn't scale well and breaks Flutter's declarative focus system."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Manual Focus in a StatefulWidget",
+      "code": "class _MyNavState extends State<MyNav> {\n  int _selectedIndex = 0;\n  late List<FocusNode> _focusNodes;\n\n  void _handleKeyEvent(KeyEvent event) {\n    if (event is KeyDownEvent) {\n      if (event.logicalKey == LogicalKeyboardKey.arrowDown) {\n        setState(() {\n          _selectedIndex = (_selectedIndex + 1) % widget.itemCount;\n          _focusNodes[_selectedIndex].requestFocus();\n        });\n      } else if (event.logicalKey == LogicalKeyboardKey.arrowUp) {\n        setState(() {\n          _selectedIndex = (_selectedIndex - 1 + widget.itemCount) % widget.itemCount;\n          _focusNodes[_selectedIndex].requestFocus();\n        });\n      }\n    }\n  }\n  // ... build method uses KeyboardListener and _focusNodes\n}"
+    }
+  ]
+}

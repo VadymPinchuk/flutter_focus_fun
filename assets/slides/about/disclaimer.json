@@ -7,7 +7,7 @@
     "It demonstrates approaches to code structure, widget usage, and performance tweaks for no-gesture environments.",
     "The code does not necessarily reflect production-quality standards and may contain inconsistencies for demonstrative purposes.",
     " ",
-    "¯\\_(ツ)_/¯",
+    "`¯\\_(ツ)_/¯`",
     "  • State management is intentionally basic.",
     "  • Styling is minimal.",
     "  • Hardcoded values are used heavily.",

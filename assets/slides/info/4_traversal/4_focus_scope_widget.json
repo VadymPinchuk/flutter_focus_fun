@@ -1,0 +1,33 @@
+{
+  "title": "Creating Focus Zones with `FocusScope`",
+  "subtitle": "Using the `onKeyEvent` handler to manage scope transitions.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "Defining Zones",
+      "description": "We wrap our two main UI areas, in separate `FocusScope` widgets to create distinct focus zones."
+    },
+    {
+      "title": "Intercepting Events",
+      "description": "The `onKeyEvent` handler on a `FocusScope` allows us to listen for key events if they are not handled by the children."
+    },
+    {
+      "title": "The Escape Route",
+      "description": "When the user presses 'right' in the nav bar scope, `_focusOnMainPanel` is called, moving focus to the content. When 'left' is pressed in the content scope, `_maybeFocusOnNavBar` moves focus back."
+    },
+    {
+      "title": "Controlled Navigation",
+      "description": "This pattern gives you precise control over how and when the user can navigate between zones."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "line 63: screen_scaffold.dart",
+      "code": "FocusScope(\n      key: Key('PageScopeNode $index'),\n      node: focusNode,\n      onKeyEvent: (node, event) {\n        return _maybeFocusOnNavBar(pageScopeNodes[index], event);\n      },\n      child: pages[index],"
+    },
+    {
+      "title": "line 128: screen_scaffold.dart",
+      "code": "FocusScope(\n      node: _navBarScopeNode,\n      onKeyEvent: (node, event) {\n          return _focusOnMainPanel(event);\n      },\n      child: TvNavBar "
+    }
+  ]
+}

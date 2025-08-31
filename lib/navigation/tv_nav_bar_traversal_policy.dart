@@ -13,15 +13,6 @@ class TvNavBarTraversalPolicy extends FocusTraversalPolicy
   TvNavBarTraversalPolicy({required this.navBarNodes});
 
   @override
-  Iterable<FocusNode> sortDescendants(
-    Iterable<FocusNode> descendants,
-    FocusNode currentNode,
-  ) {
-    // Default sorting behavior (can be customized if needed).
-    return descendants;
-  }
-
-  @override
   bool inDirection(FocusNode currentNode, TraversalDirection direction) {
     if (direction == TraversalDirection.up ||
         direction == TraversalDirection.down) {
@@ -38,10 +29,19 @@ class TvNavBarTraversalPolicy extends FocusTraversalPolicy
           return true;
         }
       }
-      return false; // Prevent vertical navigation outside the side menu.
+      // Prevent vertical navigation outside the side menu.
+      return false;
     }
-
     // Allow unrestricted horizontal navigation.
     return super.inDirection(currentNode, direction);
+  }
+
+  @override
+  Iterable<FocusNode> sortDescendants(
+    Iterable<FocusNode> descendants,
+    FocusNode currentNode,
+  ) {
+    // Default sorting behavior (can be customized if needed).
+    return descendants;
   }
 }

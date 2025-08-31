@@ -1,0 +1,10 @@
+{
+  "title": "Management & Traversal",
+  "subtitle": "Rail 4: Controlling the user's navigation path through the app.",
+  "slideType": "SINGLE_TEXT",
+  "plainText": [
+    "Now that we have our core components, it's time to manage them.",
+    "This section is all about controlling the user's journey. We'll learn how to create boundaries with `FocusScope` and define explicit navigation rules with `FocusTraversalPolicy`.",
+    "Mastering these tools is the key to creating a predictable and intuitive ten-foot experience."
+  ]
+}

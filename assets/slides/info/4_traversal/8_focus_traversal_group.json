@@ -1,0 +1,29 @@
+{
+  "title": "Grouping for Traversal: `FocusTraversalGroup`",
+  "subtitle": "Defining a specific area for custom navigation rules.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "The First Step",
+      "description": "`FocusTraversalGroup` is a widget that groups a set of focusable descendants together."
+    },
+    {
+      "title": "Defining Boundaries",
+      "description": "Its primary job is to mark a boundary. Any traversal policy applied to it will only affect the widgets inside the group."
+    },
+    {
+      "title": "Requires a Policy",
+      "description": "On its own, this widget doesn't change the traversal order. It must be paired with a `FocusTraversalPolicy` to have any effect."
+    },
+    {
+      "title": "The Container",
+      "description": "Think of it as the container for your custom navigation logic. You put the widgets inside, then you tell the container what the rules are."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Wrapping Widgets in a Group",
+      "code": "// To apply a custom order to this Column,\n// we first wrap it in a FocusTraversalGroup.\n\nFocusTraversalGroup(\n  // The 'policy' property is where we'll define\n  // the custom navigation rules in the next step.\n  // policy: MyCustomPolicy(), \n  child: Column(\n    children: [\n      ElevatedButton(child: Text('Button A')),\n      ElevatedButton(child: Text('Button B')),\n      ElevatedButton(child: Text('Button C')),\n    ],\n  ),\n)"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Defining the Rules: `FocusTraversalPolicy`",
+  "subtitle": "The \"rulebook\" for how to navigate within a group.",
+  "slideType": "SINGLE_TEXT",
+  "plainText": [
+    "A `FocusTraversalPolicy` is an abstract class that contains the logic for finding the next focusable widget within a `FocusTraversalGroup`.",
+    "You create your own custom navigation rules by extending this class and overriding its methods, most importantly `sortDescendants`.",
+    "The `sortDescendants` method gives you a list of all focusable nodes within the group. Your job is to sort this list into the desired traversal order.",
+    "Once sorted, Flutter uses this list to automatically handle methods like `nextFocus`, `previousFocus`, `first` and `last`. You rarely need to override them directly.",
+    "This is the core of creating custom navigation experiences for complex layouts like grids, where the default 'reading order' isn't sufficient."
+  ]
+}

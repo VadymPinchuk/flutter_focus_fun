@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 
@@ -7,6 +8,8 @@ final List<ContentRailData> infoSectionRails = [
   _firstRail,
   _secondRail,
   _thirdRail,
+  _fourthRail,
+  _fifthRail,
 ];
 
 final ContentRailData _firstRail = ContentRailData(
@@ -15,39 +18,39 @@ final ContentRailData _firstRail = ContentRailData(
     ContentItem(
       title: 'FFF',
       description: 'Intro',
-      color: Colors.teal.shade400,
+      color: AppColors.indigo1,
       slideAssetPath: 'assets/slides/info/1_setting_the_stage/1_intro.json',
     ),
     ContentItem(
       title: 'What Focus is for?',
       description: 'The key to building apps that work everywhere.',
-      color: Colors.teal.shade500,
+      color: AppColors.indigo2,
       slideAssetPath: 'assets/slides/info/1_setting_the_stage/2_why_care.json',
     ),
     ContentItem(
       title: 'One Codebase',
       description: 'Serving both mobile and TV UIs.',
-      color: Colors.teal.shade600,
+      color: AppColors.indigo3,
       slideAssetPath:
           'assets/slides/info/1_setting_the_stage/3_one_codebase.json',
     ),
     ContentItem(
       title: 'Responsive Theming',
       description: 'Managing styles for different view distances.',
-      color: Colors.teal.shade700,
+      color: AppColors.indigo4,
       slideAssetPath: 'assets/slides/info/1_setting_the_stage/4_theming.json',
     ),
     ContentItem(
       title: 'Rethinking Navigation',
       description: 'Why a Bottom Nav Bar fails on TV.',
-      color: Colors.teal.shade800,
+      color: AppColors.indigo5,
       slideAssetPath:
           'assets/slides/info/1_setting_the_stage/5_navigation.json',
     ),
     ContentItem(
       title: 'The "10-Foot Experience"',
       description: 'What it is and why it changes everything.',
-      color: Colors.teal.shade900,
+      color: AppColors.indigo6,
       slideAssetPath: 'assets/slides/info/1_setting_the_stage/6_ten_foot.json',
     ),
   ],
@@ -59,68 +62,67 @@ final ContentRailData _secondRail = ContentRailData(
     ContentItem(
       title: 'The Core Components',
       description: 'The fundamental building blocks for focus.',
-      color: Colors.indigo.shade900,
+      color: AppColors.ruby1,
       slideAssetPath: 'assets/slides/info/2_core_components/1_intro.json',
     ),
     ContentItem(
       title: 'The Atom',
       description: 'The brain of a focusable widget.',
-      color: Colors.indigo.shade800,
+      color: AppColors.ruby2,
       slideAssetPath: 'assets/slides/info/2_core_components/2_focus_node.json',
     ),
     ContentItem(
       title: 'The Workhorse',
       description: 'Bringing a FocusNode to the Widget Tree.',
-      color: Colors.deepPurple.shade900,
+      color: AppColors.ruby3,
       slideAssetPath:
           'assets/slides/info/2_core_components/3_focus_widget.json',
     ),
     ContentItem(
       title: 'Visualizing Focus',
       description: 'Providing clear visual feedback for the active element.',
-      color: Colors.deepPurple.shade800,
+      color: AppColors.ruby4,
       slideAssetPath:
           'assets/slides/info/2_core_components/4_visualizing_focus.json',
     ),
     ContentItem(
       title: 'Input Response',
       description: 'How to make your focused widget react to key presses.',
-      color: Colors.deepPurple.shade700,
+      color: AppColors.ruby5,
       slideAssetPath:
           'assets/slides/info/2_core_components/5_responding_to_input.json',
     ),
     ContentItem(
       title: 'KeyboardListener',
       description: 'For when you need direct access to raw key presses.',
-      color: Colors.deepPurple.shade600,
+      color: AppColors.ruby6,
       slideAssetPath:
           'assets/slides/info/2_core_components/6_keyboard_listener.json',
     ),
     ContentItem(
       title: 'Actions & Intents',
       description: 'Decoupling what the user wants from how it\'s done.',
-      color: Colors.deepPurple.shade500,
+      color: AppColors.ruby7,
       slideAssetPath:
           'assets/slides/info/2_core_components/7_actions_intents.json',
     ),
     ContentItem(
       title: 'Shortcuts',
       description: 'Actions and Intents in Action ><',
-      color: Colors.deepPurple.shade400,
-      slideAssetPath:
-          'assets/slides/info/2_core_components/8_shortcuts.json',
+      color: AppColors.ruby8,
+      slideAssetPath: 'assets/slides/info/2_core_components/8_shortcuts.json',
     ),
     ContentItem(
       title: 'CallbackShortcuts',
       description: 'Using built-in widgets for common keyboard actions.',
-      color: Colors.purple.shade300,
+      color: AppColors.ruby9,
       slideAssetPath:
           'assets/slides/info/2_core_components/9_callback_shortcuts.json',
     ),
     ContentItem(
       title: 'The All-in-One: FocusableActionDetector',
       description: 'Your new best friend for interactive components.',
-      color: Colors.purple.shade400,
+      color: AppColors.ruby10,
       slideAssetPath:
           'assets/slides/info/2_core_components/10_focusable_action_detector.json',
     ),
@@ -133,33 +135,110 @@ final ContentRailData _thirdRail = ContentRailData(
     ContentItem(
       title: 'The Big Picture',
       description: 'Understanding the high-level architecture.',
-      color: Colors.amber.shade400,
+      color: AppColors.emerald1,
       slideAssetPath: 'assets/slides/info/3_big_picture/1_intro.json',
     ),
     ContentItem(
       title: 'The Focus Tree',
       description: 'How Flutter organizes all focusable widgets.',
-      color: Colors.amber.shade500,
+      color: AppColors.emerald2,
       slideAssetPath: 'assets/slides/info/3_big_picture/2_focus_tree.json',
     ),
     ContentItem(
       title: 'Debugging Focus',
       description: 'Using `debugDumpFocusTree()` to visualize your focus tree.',
-      color: Colors.amber.shade600,
+      color: AppColors.emerald3,
       slideAssetPath: 'assets/slides/info/3_big_picture/3_debugging_focus.json',
     ),
     ContentItem(
       title: 'FocusManager',
       description: 'The singleton that orchestrates the entire focus system.',
-      color: Colors.amber.shade700,
+      color: AppColors.emerald4,
       slideAssetPath: 'assets/slides/info/3_big_picture/4_focus_manager.json',
     ),
     ContentItem(
-      title: 'FocusManager in Action',
+      title: 'Boss in Action',
       description: 'Key methods for interacting with the focus tree.',
-      color: Colors.amber.shade800,
+      color: AppColors.emerald5,
       slideAssetPath:
           'assets/slides/info/3_big_picture/5_focus_manager_methods.json',
+    ),
+  ],
+);
+
+final ContentRailData _fourthRail = ContentRailData(
+  title: 'Management & Traversal',
+  items: [
+    ContentItem(
+      title: 'Management & Traversal',
+      description: 'Controlling the user\'s navigation path through the app.',
+      color: AppColors.crimson1,
+      slideAssetPath: 'assets/slides/info/4_traversal/1_intro.json',
+    ),
+    ContentItem(
+      title: 'The Direct Approach: Manual Focus',
+      description: 'A rigid way to manage focus in your TV Nav Bar.',
+      color: AppColors.crimson2,
+      slideAssetPath: 'assets/slides/info/4_traversal/2_manual_focus.json',
+    ),
+    ContentItem(
+      title: 'Dividing the Screen: Scopes',
+      description: 'Separating focus between the Nav Bar and the main content.',
+      color: AppColors.crimson3,
+      slideAssetPath: 'assets/slides/info/4_traversal/3_scoping_ui.json',
+    ),
+    ContentItem(
+      title: 'Creating Focus Zones with `FocusScope`',
+      description: 'Using the `FocusScope` widget to trap focus.',
+      color: AppColors.crimson4,
+      slideAssetPath: 'assets/slides/info/4_traversal/4_focus_scope_widget.json',
+    ),
+    ContentItem(
+      title: 'Under the Hood: `FocusScopeNode`',
+      description: 'The object that powers the `FocusScope` widget.',
+      color: AppColors.crimson5,
+      slideAssetPath: 'assets/slides/info/4_traversal/5_focus_scope_node.json',
+    ),
+    ContentItem(
+      title: 'Jumping the Gap: Navigating Scopes',
+      description: 'Programmatically moving focus from one scope to another.',
+      color: AppColors.crimson6,
+      slideAssetPath: 'assets/slides/info/4_traversal/6_navigating_scopes.json',
+    ),
+    ContentItem(
+      title: 'The Default Path',
+      description: 'How Flutter decides where to go next out-of-the-box.',
+      color: AppColors.crimson7,
+      slideAssetPath: 'assets/slides/info/4_traversal/7_default_traversal.json',
+    ),
+    ContentItem(
+      title: '`FocusTraversalGroup`',
+      description: 'Defining an area for custom navigation rules.',
+      color: AppColors.crimson8,
+      slideAssetPath: 'assets/slides/info/4_traversal/8_focus_traversal_group.json',
+    ),
+    ContentItem(
+      title: '`FocusTraversalPolicy`',
+      description: 'The "rulebook" for how to navigate.',
+      color: AppColors.crimson9,
+      slideAssetPath: 'assets/slides/info/4_traversal/9_focus_traversal_policy.json',
+    ),
+    ContentItem(
+      title: '`ReadingOrderTraversalPolicy`',
+      description: 'Understanding the baseline traversal behavior.',
+      color: AppColors.crimson10,
+      slideAssetPath: 'assets/slides/info/4_traversal/10_reading_order_policy.json',
+    ),
+  ],
+);
+final ContentRailData _fifthRail = ContentRailData(
+  title: 'Management & Traversal',
+  items: [
+    ContentItem(
+      title: 'Management & Traversal',
+      description: 'Controlling the user\'s navigation path through the app.',
+      color: Colors.teal.shade200,
+      slideAssetPath: 'assets/slides/info/4_traversal/1_intro.json',
     ),
   ],
 );
