@@ -227,6 +227,13 @@ final ContentRailData _fourthRail = ContentRailData(
       slideAssetPath:
           'assets/slides/info/4_traversal/8_reading_order_policy.json',
     ),
+    ContentItem(
+      title: 'The Default Path... to Madness',
+      description: 'What happens when `ReadingOrderTraversalPolicy` meets a grid',
+      color: AppColors.amber9,
+      slideAssetPath:
+      'assets/slides/info/4_traversal/9_madness.json',
+    ),
   ],
 );
 final ContentRailData _fifthRail = ContentRailData(
