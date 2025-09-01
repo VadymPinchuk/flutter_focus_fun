@@ -1,0 +1,34 @@
+{
+  "title": "Defining the Rules: `FocusTraversalPolicy`",
+  "subtitle": "The \"rulebook\" for how to navigate within a group.",
+  "slideType": "LEFT_TEXT_RIGHT_CODE",
+  "leftBullets": [
+    {
+      "title": "The Rulebook",
+      "description": "An abstract class that contains the logic for finding the next focusable widget within a `FocusTraversalGroup`."
+    },
+    {
+      "title": "Your Custom Rules",
+      "description": "You create your own navigation logic by extending this class and overriding its methods, most importantly `sortDescendants`."
+    },
+    {
+      "title": "The Key Method: `sortDescendants`",
+      "description": "Provides a list of all focusable nodes in the group. Your job is to sort this list into the desired traversal order."
+    },
+    {
+      "title": "Automatic Traversal",
+      "description": "Once sorted, Flutter uses your list to automatically handle methods like `nextFocus`, `previousFocus`, `first`, and `last`."
+    },
+    {
+      "title": "Might be cumbersome",
+      "description": "Consider using `DirectionalFocusTraversalPolicyMixin` mixin to simplify handling navigation."
+    }
+  ],
+  "codeSamples": [
+    {
+      "title": "Basic methods",
+      "code": "class CustomTraversalPolicy extends FocusTraversalPolicy{\n\n   @override\n   FocusNode? findFirstFocusInDirection(\n         FocusNode currentNode,\n         TraversalDirection direction) \n\n   @override\n   bool inDirection(\n         FocusNode currentNode,\n         TraversalDirection direction)\n\n   @override\n   Iterable<FocusNode> sortDescendants(\n         Iterable<FocusNode> descendants,\n         FocusNode currentNode)\n}"
+    }
+  ]
+}
+

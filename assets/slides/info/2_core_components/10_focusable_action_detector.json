@@ -13,7 +13,7 @@
     },
     {
       "title": "Built-in State Handling",
-      "description": "The `builder` provides the `isFocused` and `isHovered` state directly, making it easy to change the widget's appearance."
+      "description": "The `builder` provides the `isFocused` and `isHovered` state directly, making it easy to change the Widget's ui."
     },
     {
       "title": "Order matters",
@@ -21,7 +21,7 @@
     },
     {
       "title": "The Idiomatic Approach",
-      "description": "This is the modern, recommended way to build custom controls that are fully interactive."
+      "description": "This is the recommended way to build custom fully interactive controls."
     }
   ],
   "codeSamples": [

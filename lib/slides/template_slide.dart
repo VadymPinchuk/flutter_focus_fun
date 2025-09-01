@@ -35,7 +35,7 @@ class TemplateSlide extends StatelessWidget {
           _SlideTitle(title),
           const SizedBox(height: 8.0),
           _SlideSubTitle(subtitle),
-          const SizedBox(height: 32.0),
+          const SizedBox(height: 16.0),
           // Constrain the height of the body content.
           Expanded(
             child:
@@ -46,6 +46,7 @@ class TemplateSlide extends StatelessWidget {
                   children: children ?? [],
                 ),
           ),
+          const SizedBox(height: 16.0),
           Align(alignment: Alignment.bottomRight, child: const FooterWidget()),
         ],
       ),
@@ -75,7 +76,7 @@ class _SlideSubTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use MarkdownBody for rendering without extra padding or scrolling.
     // This is ideal for embedding within a slide layout.
-    return MarkdownBody(data: text, styleSheet: _templateTextStyle(52.0, 0.7));
+    return MarkdownBody(data: text, styleSheet: _templateTextStyle(50.0, 0.7));
   }
 }
 

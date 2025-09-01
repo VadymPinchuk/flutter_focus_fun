@@ -1,0 +1,29 @@
+{
+  "title": "`ReadingOrderTraversalPolicy`",
+  "subtitle": "Why the out-of-the-box solution fails on complex UIs.",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
+  "leftBullets": [
+    {
+      "title": "The Default Behavior",
+      "description": "`ReadingOrderTraversalPolicy` is simple and predictable."
+    },
+    {
+      "title": "How It Works",
+      "description": "It sorts focusable widgets based on their paint order, which usually means top-to-bottom, left-to-right."
+    },
+    {
+      "title": "Where It Shines",
+      "description": "This policy is perfect for simple, linear layouts like forms or vertical lists. It just works, no configuration needed."
+    },
+    {
+      "title": "Where It Fails",
+      "description": "On a grid or other complex 2D layout, this simple top-to-bottom order creates a chaotic experience."
+    },
+    {
+      "title": "The Motivation",
+      "description": "This failure is the primary reason we need to create our own custom traversal policies for TV applications."
+    }
+  ],
+  "rightImagePath": "assets/images/slides/4_8_default_problem.png"
+}
+

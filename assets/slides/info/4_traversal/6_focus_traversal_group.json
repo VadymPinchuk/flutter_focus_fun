@@ -1,6 +1,6 @@
 {
-  "title": "Grouping for Traversal: `FocusTraversalGroup`",
-  "subtitle": "Defining a specific area for custom navigation rules.",
+  "title": "Grouping for Traversal",
+  "subtitle": "`FocusTraversalGroup` - area of custom navigation rules",
   "slideType": "LEFT_TEXT_RIGHT_CODE",
   "leftBullets": [
     {
@@ -22,8 +22,8 @@
   ],
   "codeSamples": [
     {
-      "title": "Wrapping Widgets in a Group",
-      "code": "// To apply a custom order to this Column,\n// we first wrap it in a FocusTraversalGroup.\n\nFocusTraversalGroup(\n  // The 'policy' property is where we'll define\n  // the custom navigation rules in the next step.\n  // policy: MyCustomPolicy(), \n  child: Column(\n    children: [\n      ElevatedButton(child: Text('Button A')),\n      ElevatedButton(child: Text('Button B')),\n      ElevatedButton(child: Text('Button C')),\n    ],\n  ),\n)"
+      "title": "line 53: tv_nav_bar.dart",
+      "code": "FocusTraversalGroup(\n    policy: TvNavBarTraversalPolicy(navBarNodes: navBarNodes),\n    child: Column(\n      mainAxisAlignment: MainAxisAlignment.center,\n      children: [\n        _TvNavBarButton.home(\n            isSelected: selectedIndex == 0,\n            isFocused: isFocused,\n            focusNode: navBarNodes[0],\n            onPressed: () => itemSelected(0),\n        ),\n        _TvNavBarButton.info(\n            isSelected: selectedIndex == 1,\n            isFocused: isFocused,\n            focusNode: navBarNodes[1],\n            onPressed: () => itemSelected(1),\n        ),\n        ..."
     }
   ]
 }

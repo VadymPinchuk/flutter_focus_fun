@@ -26,6 +26,7 @@ class LeftTextRightCodeLayout extends StatelessWidget {
       subtitle: data.subtitle,
       children: [
         Expanded(
+          flex: 5,
           child: BodyTextWidget(
             bullets: data.leftBullets,
             plainText: data.plainText,
@@ -33,6 +34,7 @@ class LeftTextRightCodeLayout extends StatelessWidget {
         ),
         const Separator(),
         Expanded(
+          flex: 4,
           child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
         ),
       ],
@@ -105,7 +107,11 @@ class LeftTextRightImageLayout extends StatelessWidget {
           ),
         ),
         const Separator(),
-        Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
+        Expanded(
+          child: Center(
+            child: ImageWidget(imagePath: data.rightImagePath ?? ''),
+          ),
+        ),
       ],
     );
   }
@@ -122,7 +128,11 @@ class LeftImageRightTextLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
+        Expanded(
+          child: Center(
+            child: ImageWidget(imagePath: data.leftImagePath ?? ''),
+          ),
+        ),
         const Separator(),
         Expanded(
           child: BodyTextWidget(
@@ -202,7 +212,7 @@ class SingleImageLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: ImageWidget(imagePath: data.imagePath ?? ''),
+      child: Center(child: ImageWidget(imagePath: data.imagePath ?? '')),
     );
   }
 }

@@ -178,66 +178,54 @@ final ContentRailData _fourthRail = ContentRailData(
     ContentItem(
       title: 'Traversal Control',
       description: 'Controlling the user\'s navigation path through the app.',
-      color: AppColors.crimson1,
+      color: AppColors.amber1,
       slideAssetPath: 'assets/slides/info/4_traversal/1_intro.json',
     ),
     ContentItem(
       title: 'The Direct Approach: Manual Focus',
       description: 'A rigid way to manage focus in your TV Nav Bar.',
-      color: AppColors.crimson2,
+      color: AppColors.amber2,
       slideAssetPath: 'assets/slides/info/4_traversal/2_manual_focus.json',
     ),
     ContentItem(
       title: 'Dividing the Screen: Scopes',
       description: 'Separating focus between the Nav Bar and the main content.',
-      color: AppColors.crimson3,
+      color: AppColors.amber3,
       slideAssetPath: 'assets/slides/info/4_traversal/3_scoping_ui.json',
     ),
     ContentItem(
       title: 'Creating Focus Zones with `FocusScope`',
       description: 'Using the `FocusScope` widget to trap focus.',
-      color: AppColors.crimson4,
+      color: AppColors.amber4,
       slideAssetPath:
           'assets/slides/info/4_traversal/4_focus_scope_widget.json',
     ),
     ContentItem(
       title: 'Under the Hood: `FocusScopeNode`',
       description: 'The object that powers the `FocusScope` widget.',
-      color: AppColors.crimson5,
+      color: AppColors.amber5,
       slideAssetPath: 'assets/slides/info/4_traversal/5_focus_scope_node.json',
     ),
     ContentItem(
-      title: 'Jumping the Gap: Navigating Scopes',
-      description: 'Programmatically moving focus from one scope to another.',
-      color: AppColors.crimson6,
-      slideAssetPath: 'assets/slides/info/4_traversal/6_navigating_scopes.json',
-    ),
-    ContentItem(
-      title: 'The Default Path',
-      description: 'How Flutter decides where to go next out-of-the-box.',
-      color: AppColors.crimson7,
-      slideAssetPath: 'assets/slides/info/4_traversal/7_default_traversal.json',
-    ),
-    ContentItem(
       title: '`FocusTraversalGroup`',
-      description: 'Defining an area for custom navigation rules.',
-      color: AppColors.crimson8,
+      description: 'Defining a container for custom navigation.',
+      color: AppColors.amber6,
       slideAssetPath:
-          'assets/slides/info/4_traversal/8_focus_traversal_group.json',
+          'assets/slides/info/4_traversal/6_focus_traversal_group.json',
     ),
     ContentItem(
       title: '`FocusTraversalPolicy`',
-      description: 'The "rulebook" for how to navigate.',
-      color: AppColors.crimson9,
+      description: 'The "rulebook" for defining focus order.',
+      color: AppColors.amber7,
       slideAssetPath:
-          'assets/slides/info/4_traversal/9_focus_traversal_policy.json',
+          'assets/slides/info/4_traversal/7_focus_traversal_policy.json',
     ),
     ContentItem(
-      title: '`ReadingOrderTraversalPolicy`',
-      description: 'Understanding the baseline traversal behavior.',
-      color: AppColors.crimson10,
+      title: 'The Default Problem',
+      description: 'Why the default policy fails on complex UIs.',
+      color: AppColors.amber8,
       slideAssetPath:
-          'assets/slides/info/4_traversal/10_reading_order_policy.json',
+          'assets/slides/info/4_traversal/8_reading_order_policy.json',
     ),
   ],
 );
