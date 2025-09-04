@@ -64,7 +64,8 @@ final _headerStyle = MarkdownStyleSheet(
   ),
   code: TextStyle(
     fontSize: 26.0,
-    color: AppColors.golden.withValues(alpha: 0.75),
+    color: AppColors.golden,
+    backgroundColor: AppColors.contentBody.withValues(alpha: 0.2),
     fontWeight: FontWeight.bold,
     fontFamily: 'monospace',
   ),

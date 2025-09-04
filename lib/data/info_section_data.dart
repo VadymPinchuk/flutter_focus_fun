@@ -193,17 +193,17 @@ final ContentRailData _fourthRail = ContentRailData(
       slideAssetPath: 'assets/slides/info/4_traversal/3_scoping_ui.json',
     ),
     ContentItem(
-      title: 'Creating Focus Zones with `FocusScope`',
-      description: 'Using the `FocusScope` widget to trap focus.',
-      color: AppColors.amber4,
-      slideAssetPath:
-          'assets/slides/info/4_traversal/4_focus_scope_widget.json',
-    ),
-    ContentItem(
       title: 'Under the Hood: `FocusScopeNode`',
       description: 'The object that powers the `FocusScope` widget.',
+      color: AppColors.amber4,
+      slideAssetPath: 'assets/slides/info/4_traversal/4_focus_scope_node.json',
+    ),
+    ContentItem(
+      title: 'Creating Focus Zones with `FocusScope`',
+      description: 'Using the `FocusScope` widget to trap focus.',
       color: AppColors.amber5,
-      slideAssetPath: 'assets/slides/info/4_traversal/5_focus_scope_node.json',
+      slideAssetPath:
+          'assets/slides/info/4_traversal/5_focus_scope_widget.json',
     ),
     ContentItem(
       title: '`FocusTraversalGroup`',
@@ -255,7 +255,7 @@ final ContentRailData _fifthRail = ContentRailData(
       description: 'Using `inDirection`.',
       color: AppColors.amethyst2,
       slideAssetPath:
-      'assets/slides/info/5_customization/3_directional_handling.json',
+          'assets/slides/info/5_customization/3_directional_handling.json',
     ),
     ContentItem(
       title: 'Building Your Own System',
