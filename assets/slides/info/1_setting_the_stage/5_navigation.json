@@ -2,7 +2,7 @@
   "title": "Rethinking Navigation",
   "subtitle": "Why a BottomNavBar fails on TV? How to adapt?",
   "slideType": "LEFT_IMAGE_RIGHT_TEXT",
-  "leftImagePath": "assets/images/slides/5_navigation.png",
+  "leftImagePath": "assets/images/slides/1_5_navigation.png",
   "rightBullets": [
     {
       "title": "Designed for Thumbs",

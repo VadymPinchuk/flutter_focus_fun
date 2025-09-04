@@ -82,17 +82,17 @@ class _TvSettingsLayout extends StatelessWidget {
             ),
             getSpacer,
             _TvSettingTile(
-              title: 'Use TV Page Layout',
-              subtitle: 'Switches to a layout optimized for TV',
-              valueListenable: context.settingsModel.useTvPageLayout,
-              onPressed: context.settingsModel.toggleTvPageLayout,
-            ),
-            getSpacer,
-            _TvSettingTile(
               title: 'Use Custom Traversal Policy',
               subtitle: 'Enables custom focus traversal for better navigation',
               valueListenable: context.settingsModel.useCustomTraversalPolicy,
               onPressed: context.settingsModel.toggleTraversalPolicy,
+            ),
+            getSpacer,
+            _TvSettingTile(
+              title: 'Use TV Page Layout',
+              subtitle: 'Switches to a layout optimized for TV',
+              valueListenable: context.settingsModel.useTvPageLayout,
+              onPressed: context.settingsModel.toggleTvPageLayout,
             ),
             getSpacer,
             _TextScaleSlider(

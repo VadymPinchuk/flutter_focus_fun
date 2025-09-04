@@ -57,14 +57,14 @@ class BulletListWidget extends StatelessWidget {
 final _headerStyle = MarkdownStyleSheet(
   p: TextStyle(
     fontSize: 28.0,
-    color: AppColors.amber1,
+    color: AppColors.golden,
     fontWeight: FontWeight.bold,
     height: 1.5,
     shadows: [Shadow(blurRadius: 2.0, color: AppColors.textShadow)],
   ),
   code: TextStyle(
     fontSize: 26.0,
-    color: AppColors.amber1.withValues(alpha: 0.75),
+    color: AppColors.golden.withValues(alpha: 0.75),
     fontWeight: FontWeight.bold,
     fontFamily: 'monospace',
   ),

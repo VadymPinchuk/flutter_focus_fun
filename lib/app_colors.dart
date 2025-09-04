@@ -68,4 +68,7 @@ class AppColors {
   static const Color amethyst4 = Color(0xFF3B1573);
   static const Color amethyst5 = Color(0xFF2C1053);
   static const Color amethyst6 = Color(0xFF1D0B33);
+
+  static const Color golden = Color(0xFFD4AF37);
+
 }
