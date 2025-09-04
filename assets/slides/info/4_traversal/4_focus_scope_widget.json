@@ -1,6 +1,6 @@
 {
   "title": "Creating Focus Zones with `FocusScope`",
-  "subtitle": "Using the `onKeyEvent` handler to manage scope transitions.",
+  "subtitle": "`onKeyEvent` handler to manage scope transitions.",
   "slideType": "LEFT_TEXT_RIGHT_CODE",
   "leftBullets": [
     {

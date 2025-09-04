@@ -107,11 +107,7 @@ class LeftTextRightImageLayout extends StatelessWidget {
           ),
         ),
         const Separator(),
-        Expanded(
-          child: Center(
-            child: ImageWidget(imagePath: data.rightImagePath ?? ''),
-          ),
-        ),
+        Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
       ],
     );
   }
@@ -128,11 +124,7 @@ class LeftImageRightTextLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(
-          child: Center(
-            child: ImageWidget(imagePath: data.leftImagePath ?? ''),
-          ),
-        ),
+        Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
         const Separator(),
         Expanded(
           child: BodyTextWidget(

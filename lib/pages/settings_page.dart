@@ -252,7 +252,7 @@ class _TextScaleSlider extends StatelessWidget {
                 context
                     .settingsModel
                     .textScaleFactor
-                    .value = (currentTextScale - 0.1).clamp(0.8, 1.5);
+                    .value = (currentTextScale - 0.05).clamp(0.8, 1.5);
               },
             ),
             Column(
@@ -282,7 +282,7 @@ class _TextScaleSlider extends StatelessWidget {
                 context
                     .settingsModel
                     .textScaleFactor
-                    .value = (currentTextScale + 0.1).clamp(0.8, 1.5);
+                    .value = (currentTextScale + 0.05).clamp(0.8, 1.5);
               },
             ),
           ],

@@ -20,7 +20,7 @@ class MarkdownText extends StatelessWidget {
 final _sharedStyleSheet = MarkdownStyleSheet(
   // Style for regular paragraph text
   p: const TextStyle(
-    fontSize: 24.0,
+    fontSize: 23.0,
     color: AppColors.contentBody,
     height: 1.5, // Improves readability for blocks of text
   ),

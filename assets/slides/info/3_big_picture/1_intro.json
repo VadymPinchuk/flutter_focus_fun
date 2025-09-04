@@ -1,9 +1,10 @@
 {
   "title": "The Big Picture",
-  "subtitle": "Understanding the high-level architecture of the focus system.",
-  "slideType": "SINGLE_TEXT",
+  "subtitle": "The high-level architecture of the focus system.",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
   "plainText": [
     "We've covered the individual components. Now, let's zoom out and look at how they all fit together.",
     "This section explains the high-level architecture that Flutter uses to organize and manage focus across your entire application. Understanding this structure is key to debugging and building complex navigation."
-  ]
+  ],
+  "rightImagePath": "assets/images/slides/3_1_focus_system.png"
 }

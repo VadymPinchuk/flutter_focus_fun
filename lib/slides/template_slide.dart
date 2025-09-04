@@ -88,6 +88,12 @@ MarkdownStyleSheet _templateTextStyle(double size, double alpha) =>
         fontWeight: FontWeight.bold,
         height: 1.5,
       ),
+      em:  TextStyle(
+        fontSize: size,
+        color: AppColors.emerald1.withValues(alpha: alpha),
+        fontStyle: FontStyle.italic,
+        height: 1.5,
+      ),
       code: TextStyle(
         fontSize: size,
         color: Colors.amber.shade200.withValues(alpha: alpha),
