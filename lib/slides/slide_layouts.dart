@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/slide_data.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/template_slide.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_snippets_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/image_widget.dart';
+import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class Separator extends StatelessWidget {
   const Separator({super.key});
@@ -265,6 +268,65 @@ class TextWithCodeLayout extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class SpeakerIntroLayout extends StatelessWidget {
+  final SlideData data;
+
+  const SpeakerIntroLayout({super.key, required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    return TemplateSlide(
+      title: data.title,
+      subtitle: data.subtitle,
+      children: [
+        Expanded(
+          flex: 2,
+          child: ImageWidget(imagePath: data.leftImagePath ?? ''),
+        ),
+        const SizedBox(width: 32),
+        data.leftBullets.letOrElse(
+          (bullets) => Expanded(
+            flex: 3,
+            child: Column(
+              spacing: 24.0,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children:
+                  bullets
+                      .map(
+                        (bullet) => MarkdownBody(
+                          data: bullet.title,
+                          styleSheet: MarkdownStyleSheet(
+                            p: TextStyle(
+                              fontSize: 32.0,
+                              color: AppColors.railTitle,
+                              fontWeight: FontWeight.bold,
+                              height: 1.5,
+                              shadows: [
+                                Shadow(
+                                  blurRadius: 2.0,
+                                  color: AppColors.textShadow,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+            ),
+          ),
+          orElse: () => const SizedBox.shrink(),
+        ),
+        const SizedBox(width: 32),
+        Expanded(
+          flex: 2,
+          child: ImageWidget(imagePath: data.rightImagePath ?? ''),
+        ),
+      ],
     );
   }
 }

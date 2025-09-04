@@ -67,6 +67,8 @@ class SlideData {
 
 SlideType _slideTypeFromString(String? type) {
   switch (type) {
+    case 'SPEAKER_INTRO':
+      return SlideType.speakerIntro;
     case 'SINGLE_TEXT':
       return SlideType.singleText;
     case 'DOUBLE_TEXT':

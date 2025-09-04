@@ -17,6 +17,7 @@ class BulletListWidget extends StatelessWidget {
     return Column(
       spacing: 24.0,
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children:
           bullets.map((bullet) {
             return Row(
@@ -56,14 +57,14 @@ class BulletListWidget extends StatelessWidget {
 final _headerStyle = MarkdownStyleSheet(
   p: TextStyle(
     fontSize: 28.0,
-    color: Colors.amber.shade500,
+    color: AppColors.amber1,
     fontWeight: FontWeight.bold,
     height: 1.5,
     shadows: [Shadow(blurRadius: 2.0, color: AppColors.textShadow)],
   ),
   code: TextStyle(
     fontSize: 26.0,
-    color: Colors.amber.shade200,
+    color: AppColors.amber1.withValues(alpha: 0.75),
     fontWeight: FontWeight.bold,
     fontFamily: 'monospace',
   ),

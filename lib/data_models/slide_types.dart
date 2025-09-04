@@ -1,4 +1,5 @@
 enum SlideType {
+  speakerIntro,
   singleText,
   doubleText,
   leftTextRightImage,

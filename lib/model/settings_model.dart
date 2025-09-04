@@ -12,7 +12,7 @@ class SettingsModel {
   /// Determines if the app should use a side navigation rail (TV) or a
   /// bottom navigation bar (mobile).
   final ValueNotifier<UserExperience> experience = ValueNotifier(
-    UserExperience.tv,
+    UserExperience.mobile,
   );
 
   void toggleUiExperience() {

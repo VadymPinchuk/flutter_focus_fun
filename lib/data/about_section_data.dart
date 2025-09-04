@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 
@@ -10,9 +11,16 @@ final List<ContentRailData> aboutPageRails = [
       ContentItem(
         title: 'Disclaimer',
         description: 'Important notes about this project.',
-        color: Colors.grey.shade800,
+        color: AppColors.amber1,
         icon: Icons.info_outline,
         slideAssetPath: 'assets/slides/about/disclaimer.json',
+      ),
+      ContentItem(
+        title: 'About',
+        description: 'Lets meet the speaker',
+        color: AppColors.emerald1,
+        icon: Icons.speaker,
+        slideAssetPath: 'assets/slides/about/about.json',
       ),
     ],
   ),

@@ -23,6 +23,8 @@ class SlideWidget extends StatelessWidget {
         final slideData = SlideData.fromJson(json.decode(snapshot.data!));
         // Use a switch statement to build the correct layout based on slideType.
         switch (slideData.slideType) {
+          case SlideType.speakerIntro:
+            return SpeakerIntroLayout(data: slideData);
           case SlideType.plainText:
           case SlideType.singleText:
             return SingleTextLayout(data: slideData);
