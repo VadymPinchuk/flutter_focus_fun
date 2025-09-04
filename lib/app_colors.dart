@@ -60,4 +60,12 @@ class AppColors {
   static const Color amber7 = Color(0xFF532E02);
   static const Color amber8 = Color(0xFF3C2201);
   static const Color amber9 = Color(0xFF261601);
+
+  // Rail 5: Rich Amethyst
+  static const Color amethyst1 = Color(0xFF6D28D9);
+  static const Color amethyst2 = Color(0xFF5B21B6);
+  static const Color amethyst3 = Color(0xFF4C1D95);
+  static const Color amethyst4 = Color(0xFF3B1573);
+  static const Color amethyst5 = Color(0xFF2C1053);
+  static const Color amethyst6 = Color(0xFF1D0B33);
 }

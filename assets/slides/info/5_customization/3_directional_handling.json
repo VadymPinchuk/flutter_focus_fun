@@ -1,0 +1,11 @@
+{
+  "title": "Directional navigation made easy",
+  "subtitle": "Using `inDirection` all in easy way.",
+  "slideType": "SINGLE_CODE",
+  "codeSamples": [
+    {
+      "title": "line 69: grid_row_traversal_policy.dart",
+      "code": "  FocusNode? _findFirstInPrevRow(FocusNode focusedChild, Iterable<FocusNode> nodes) {\n    // get the current node top position\n    final double currentTop = focusedChild.rect.top;\n    // filter out all the nodes that are above the current node\n    final above = nodes.where((n) => n.rect.bottom < currentTop).toList();\n    // if there are no nodes above, return null - no way to focus\n    if (above.isEmpty) return null;\n    // sort the above nodes by their bottom position (closest to current node first)\n    above.sort((a, b) => a.rect.bottom.compareTo(b.rect.bottom));\n    // get the bottom position of the closest row above\n    final double prevRowBottom = above.last.rect.bottom;\n    // filter to get all nodes in that closest row\n    final prevRow = above.where((n) => (n.rect.bottom - prevRowBottom).abs() < 1.0).toList();\n    // from those nodes, get the leftmost fully visible one\n    final fullyVisible = prevRow.where((node) => node.rect.left >= 0.0).toList();\n    // sort by left position to find the leftmost\n    fullyVisible.sort((a, b) => a.rect.left.compareTo(b.rect.left));\n    // return the leftmost fully visible node as the potential node to focus\n    return fullyVisible.first;\n  }\n"
+    }
+  ]
+}

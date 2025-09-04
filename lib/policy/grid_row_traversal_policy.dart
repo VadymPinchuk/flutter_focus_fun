@@ -21,33 +21,24 @@ class GridRowTraversalPolicy extends ReadingOrderTraversalPolicy {
       return _inDirectionNoCurrentFocus(currentNode, direction);
     }
 
-    FocusNode? found;
-    switch (direction) {
-      case TraversalDirection.down:
-        found = _findFirstInNextRow(
-          focusedChild,
-          nearestScope.traversalDescendants,
-        );
-        break;
-      case TraversalDirection.up:
-        found = _findFirstInPrevRow(
-          focusedChild,
-          nearestScope.traversalDescendants,
-        );
-        break;
-      case TraversalDirection.left:
-        found = _findPreviousInTheRow(
-          focusedChild,
-          nearestScope.traversalDescendants,
-        );
-        break;
-      case TraversalDirection.right:
-        found = _findNextInTheRow(
-          focusedChild,
-          nearestScope.traversalDescendants,
-        );
-        break;
-    }
+    FocusNode? found = switch (direction) {
+      TraversalDirection.down => _findFirstInNextRow(
+        focusedChild,
+        nearestScope.traversalDescendants,
+      ),
+      TraversalDirection.up => _findFirstInPrevRow(
+        focusedChild,
+        nearestScope.traversalDescendants,
+      ),
+      TraversalDirection.left => _findPreviousInTheRow(
+        focusedChild,
+        nearestScope.traversalDescendants,
+      ),
+      TraversalDirection.right => _findNextInTheRow(
+        focusedChild,
+        nearestScope.traversalDescendants,
+      ),
+    };
     found?.requestFocus();
     return found != null;
   }

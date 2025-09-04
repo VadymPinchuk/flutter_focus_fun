@@ -13,7 +13,6 @@ class BulletListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final titleFontSize = 24.0;
-    final descriptionFontSize = 22.0;
 
     return Column(
       spacing: 24.0,
@@ -37,7 +36,7 @@ class BulletListWidget extends StatelessWidget {
                     children: [
                       MarkdownBody(
                         data: bullet.title,
-                        styleSheet: plainBoldStyleSheet,
+                        styleSheet: _headerStyle,
                       ),
                       if (bullet.description != null)
                         Padding(
@@ -53,3 +52,19 @@ class BulletListWidget extends StatelessWidget {
     );
   }
 }
+
+final _headerStyle = MarkdownStyleSheet(
+  p: TextStyle(
+    fontSize: 28.0,
+    color: Colors.amber.shade500,
+    fontWeight: FontWeight.bold,
+    height: 1.5,
+    shadows: [Shadow(blurRadius: 2.0, color: AppColors.textShadow)],
+  ),
+  code: TextStyle(
+    fontSize: 26.0,
+    color: Colors.amber.shade200,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'monospace',
+  ),
+);

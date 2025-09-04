@@ -1,0 +1,10 @@
+{
+  "title": "Customization & Conclusions",
+  "subtitle": "Building custom solutions and wrapping it all up.",
+  "slideType": "SINGLE_TEXT",
+  "plainText": [
+    "Welcome to the final section of our journey. We've laid the foundation, explored the core components, and understood the high-level architecture.",
+    "Now, it's time for the payoff.",
+    "In this last rail, we'll build the advanced, custom solutions that solve the navigation challenges we identified. We'll tackle grids, manage scrolling, and then zoom out to summarize the key lessons learned from this entire migration process."
+  ]
+}

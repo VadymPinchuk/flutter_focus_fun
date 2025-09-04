@@ -1,0 +1,24 @@
+{
+  "title": "What We Learned",
+  "subtitle": "The key takeaways from our journey.",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
+  "leftBullets": [
+    {
+      "title": "Focus is Foundational",
+      "description": "It's not just for `TextField`s. It's the core of every non-touch user experience."
+    },
+    {
+      "title": "Think in Scopes",
+      "description": "`FocusScope` is the essential tool for structuring a complex TV UI into logical, manageable zones."
+    },
+    {
+      "title": "Policies Are Your Superpower",
+      "description": "Don't fight the framework. Extend `FocusTraversalPolicy` to create elegant, reusable navigation logic."
+    },
+    {
+      "title": "Don't Forget the Polish",
+      "description": "A great experience is in the details. Manually handling scrolling and state is what separates good from great."
+    }
+  ],
+  "rightImagePath": "assets/images/slides/6_now_i_know_kung_fu.png"
+}

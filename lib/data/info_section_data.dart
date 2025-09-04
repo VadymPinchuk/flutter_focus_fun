@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
@@ -229,21 +228,48 @@ final ContentRailData _fourthRail = ContentRailData(
     ),
     ContentItem(
       title: 'The Default Path... to Madness',
-      description: 'What happens when `ReadingOrderTraversalPolicy` meets a grid',
+      description:
+          'What happens when `ReadingOrderTraversalPolicy` meets a grid',
       color: AppColors.amber9,
-      slideAssetPath:
-      'assets/slides/info/4_traversal/9_madness.json',
+      slideAssetPath: 'assets/slides/info/4_traversal/9_madness.json',
     ),
   ],
 );
 final ContentRailData _fifthRail = ContentRailData(
-  title: 'Management & Traversal',
+  title: 'Customization & Conclusions',
   items: [
     ContentItem(
-      title: 'Management & Traversal',
-      description: 'Controlling the user\'s navigation path through the app.',
-      color: Colors.teal.shade200,
-      slideAssetPath: 'assets/slides/info/4_traversal/1_intro.json',
+      title: 'Customization & Conclusions',
+      description: 'Building custom solutions and wrapping it all up.',
+      color: AppColors.amethyst1,
+      slideAssetPath: 'assets/slides/info/5_customization/1_intro.json',
+    ),
+    ContentItem(
+      title: 'Perfecting Grids',
+      description: 'Implementing a `GridFocusTraversalPolicy`.',
+      color: AppColors.amethyst3,
+      slideAssetPath: 'assets/slides/info/5_customization/2_grid_policy.json',
+    ),
+    ContentItem(
+      title: 'Directional navigation made easy',
+      description: 'Using `inDirection`.',
+      color: AppColors.amethyst2,
+      slideAssetPath:
+      'assets/slides/info/5_customization/3_directional_handling.json',
+    ),
+    ContentItem(
+      title: 'Building Your Own System',
+      description: 'Combining scopes and policies for total control.',
+      color: AppColors.amethyst4,
+      slideAssetPath:
+          'assets/slides/info/5_customization/4_ultimate_customization.json',
+    ),
+    ContentItem(
+      title: 'Key Takeaways',
+      description: 'A summary of our journey from mobile to TV.',
+      color: AppColors.amethyst5,
+      slideAssetPath:
+          'assets/slides/info/5_customization/5_what_we_learned.json',
     ),
   ],
 );

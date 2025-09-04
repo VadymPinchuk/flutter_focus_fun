@@ -52,7 +52,7 @@ final _sharedStyleSheet = MarkdownStyleSheet(
 
 final plainBoldStyleSheet = MarkdownStyleSheet(
   p: const TextStyle(
-    fontSize: 24.0,
+    fontSize: 26.0,
     color: AppColors.contentBody,
     fontWeight: FontWeight.bold,
     height: 1.5,

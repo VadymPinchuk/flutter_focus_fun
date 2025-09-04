@@ -1,0 +1,23 @@
+{
+  "title": "The Ultimate Customization",
+  "subtitle": "For when you need to throw out the rulebook.",
+  "slideType": "SINGLE_TEXT",
+  "leftBullets": [
+    {
+      "title": "Build Your Own System",
+      "description": "Combine `FocusScope`s, custom policies, and manual control to build a completely bespoke navigation system."
+    },
+    {
+      "title": "Total Control, Total Responsibility",
+      "description": "This approach gives you fine-grained control, but requires you to manage the entire focus state yourself."
+    },
+    {
+      "title": "For Unique Layouts",
+      "description": "Ideal for highly unconventional UIs, like radial menus or non-grid layouts, where standard policies don't apply."
+    },
+    {
+      "title": "The Last Resort",
+      "description": "This is a high-effort solution for complex problems. Always try to use the built-in system first!"
+    }
+  ]
+}

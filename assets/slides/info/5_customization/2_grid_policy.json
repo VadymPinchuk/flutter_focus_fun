@@ -1,0 +1,12 @@
+{
+  "title": "Perfecting Grids: A Custom Policy",
+  "subtitle": "Implementing a `GridFocusTraversalPolicy`.",
+  "slideType": "LEFT_IMAGE_RIGHT_CODE",
+  "leftImagePath": "assets/images/slides/5_2_grid_policy_example.png",
+  "codeSamples": [
+    {
+      "title": "line 24: grid_row_traversal_policy.dart",
+      "code": "    FocusNode? found = switch (direction) {\n      TraversalDirection.down => _findFirstInNextRow(\n        focusedChild,\n        nearestScope.traversalDescendants,\n      ),\n      TraversalDirection.up => _findFirstInPrevRow(\n        focusedChild,\n        nearestScope.traversalDescendants,\n      ),\n      TraversalDirection.left => _findPreviousInTheRow(\n        focusedChild,\n        nearestScope.traversalDescendants,\n      ),\n      TraversalDirection.right => _findNextInTheRow(\n        focusedChild,\n        nearestScope.traversalDescendants,\n      ),\n    };\n    found?.requestFocus();\n    return found != null;"
+    }
+  ]
+}
