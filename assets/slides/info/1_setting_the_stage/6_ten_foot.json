@@ -13,11 +13,11 @@
     },
     {
       "title": "Legibility is Key",
-      "description": "Text and UI elements must be large and have high contrast to be readable."
+      "description": "UI components must be large and have high contrast."
     },
     {
       "title": "Simplicity Wins",
-      "description": "UIs must be clean and uncluttered to avoid overwhelming the user."
+      "description": "UIs to be clean and simple for understanding."
     },
     {
       "title": "Navigability is Everything",

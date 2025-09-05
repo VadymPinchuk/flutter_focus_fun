@@ -17,7 +17,7 @@
     },
     {
       "title": "Organized Styling",
-      "description": "This approach keeps platform-specific design tokens easy to modify."
+      "description": "Keeps platform-specific design tokens easy to modify."
     },
     {
       "title": "Clear Focus States",

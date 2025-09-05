@@ -9,7 +9,7 @@
     },
     {
       "title": "Platform-Aware Widgets",
-      "description": "Use a top-level widget to choose the correct layout for mobile or TV."
+      "description": "A widget to choose the correct layout for mobile or TV."
     },
     {
       "title": "Conditional Logic",
@@ -17,7 +17,7 @@
     },
     {
       "title": "Clean Separation",
-      "description": "Keeps your core business logic isolated from UI/UX-specific code."
+      "description": "Keeps core business logic isolated from UI/UX-specific code."
     },
     {
       "title": "Granular Control",

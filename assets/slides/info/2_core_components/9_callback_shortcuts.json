@@ -5,7 +5,7 @@
   "leftBullets": [
     {
       "title": "No Boilerplate Needed",
-      "description": "For simple actions, you don't need to create custom `Action` and `Intent` classes."
+      "description": "For simple actions, no need in `Action` and `Intent` classes."
     },
     {
       "title": "`CallbackShortcuts` Widget",
@@ -13,7 +13,7 @@
     },
     {
       "title": "Quick and Easy",
-      "description": "Perfect for scenarios where you just need to trigger a single, self-contained function."
+      "description": "Perfect for triggering a single, self-contained function."
     },
     {
       "title": "Still Requires Focus",

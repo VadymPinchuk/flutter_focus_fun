@@ -13,11 +13,11 @@
     },
     {
       "title": "Where It Shines",
-      "description": "This policy is perfect for simple, linear layouts like forms or vertical lists. It just works, no configuration needed."
+      "description": "Perfect for simple, linear layouts like vertical lists."
     },
     {
       "title": "Where It Fails",
-      "description": "On a grid or other complex 2D layout, this simple top-to-bottom order creates a chaotic experience."
+      "description": "On complex 2D layout creates a chaotic experience."
     },
     {
       "title": "The Motivation",

@@ -6,16 +6,20 @@
   "rightImagePath": "assets/images/slides/0_2_speaker_photo.png",
   "leftBullets": [
     {
-      "title": "Vadym Pinchuk"
+      "title": "Name",
+      "description": "Vadym Pinchuk"
     },
     {
-      "title": "Software Development Consultant"
+      "title": "Job",
+      "description": "Software Development Consultant"
     },
     {
-      "title": "GDE for Flutter & Dart"
+      "title": "GDE",
+      "description": "Flutter & Dart"
     },
     {
-      "title": "vpinch.uk"
+      "title": "My visit card",
+      "description": "vpinch.uk"
     }
   ]
 }

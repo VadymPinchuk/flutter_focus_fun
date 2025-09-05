@@ -9,7 +9,7 @@
     },
     {
       "title": "Your Custom Rules",
-      "description": "You create your own navigation logic by extending this class and overriding its methods, most importantly `sortDescendants`."
+      "description": "You create your own navigation logic by extending this class."
     },
     {
       "title": "The Key Method: `sortDescendants`",
