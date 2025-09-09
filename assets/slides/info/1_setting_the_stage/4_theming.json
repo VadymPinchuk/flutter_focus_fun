@@ -5,7 +5,7 @@
   "leftBullets": [
     {
       "title": "Increased Font Size",
-      "description": "TV UIs require much larger text to be legible from a distance."
+      "description": "TV UIs require larger text to be legible from a distance."
     },
     {
       "title": "Higher Contrast",
@@ -21,7 +21,7 @@
     },
     {
       "title": "Clear Focus States",
-      "description": "Themes should define highly visible styles for focused widgets."
+      "description": "Theme should define highly visible style for focused widgets."
     }
   ],
   "codeSamples": [

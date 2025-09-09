@@ -15,7 +15,7 @@ class BulletListWidget extends StatelessWidget {
     final titleFontSize = 24.0;
 
     return Column(
-      spacing: 24.0,
+      spacing: 22.0,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children:

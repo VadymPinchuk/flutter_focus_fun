@@ -13,7 +13,7 @@
     },
     {
       "title": "`addKeyEventCallback()`",
-      "description": "A powerful hook to listen to *all* key events globally, before they are sent to the focused widget."
+      "description": "A powerful hook to listen to ALL key events globally, before they are sent to the focused widget."
     },
     {
       "title": "`removeKeyEventCallback()`",

@@ -6,11 +6,11 @@
   "rightBullets": [
     {
       "title": "Designed for Thumbs",
-      "description": "BottomNavBar is optimized for touch, not D-pad input."
+      "description": "BottomNavBar is optimized for fingers, not D-pad."
     },
     {
       "title": "Side Rail Navigation",
-      "description": "TV UIs favor a left-side rail for easy up/down traversal with a remote."
+      "description": "TV UIs benefits of a left-side rail for easy traversal."
     },
     {
       "title": "Consistent Accessibility",

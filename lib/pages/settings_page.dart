@@ -314,7 +314,7 @@ class _TileCountWidget extends StatelessWidget {
                 context
                     .settingsModel
                     .tilesPerRowCount
-                    .value = (currentTileCount - 1.0).clamp(2.0, 7.0);
+                    .value = (currentTileCount - 1.0).clamp(2.0, 9.0);
               },
             ),
             Column(
@@ -344,7 +344,7 @@ class _TileCountWidget extends StatelessWidget {
                 context
                     .settingsModel
                     .tilesPerRowCount
-                    .value = (currentTileCount + 1.0).clamp(2.0, 8.0);
+                    .value = (currentTileCount + 1.0).clamp(2.0, 9.0);
               },
             ),
           ],

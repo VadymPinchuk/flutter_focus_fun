@@ -9,7 +9,7 @@
     },
     {
       "title": "Your Custom Rules",
-      "description": "You create your own navigation logic by extending this class."
+      "description": "Create own navigation logic by extending this class."
     },
     {
       "title": "The Key Method: `sortDescendants`",
@@ -18,10 +18,6 @@
     {
       "title": "Automatic Traversal",
       "description": "Once sorted, Flutter uses your list to automatically handle methods like `nextFocus`, `previousFocus`, `first`, and `last`."
-    },
-    {
-      "title": "Might be cumbersome",
-      "description": "Consider using `DirectionalFocusTraversalPolicyMixin` mixin to simplify handling navigation."
     }
   ],
   "codeSamples": [

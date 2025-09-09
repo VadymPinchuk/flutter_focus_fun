@@ -5,7 +5,7 @@
   "leftBullets": [
     {
       "title": "Source of Truth",
-      "description": "It holds the current state and knows if a widget has focus (`hasFocus`)."
+      "description": "It holds the current state and knows if a widget `hasFocus`."
     },
     {
       "title": "It's a `ChangeNotifier`",

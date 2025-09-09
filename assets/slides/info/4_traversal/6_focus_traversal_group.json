@@ -13,11 +13,11 @@
     },
     {
       "title": "Requires a Policy",
-      "description": "On its own, this widget doesn't change the traversal order. It must be paired with a `FocusTraversalPolicy` to have any effect."
+      "description": "On its own, this widget doesn't change the traversal order. It must be paired with a `FocusTraversalPolicy`."
     },
     {
       "title": "The Container",
-      "description": "Think of it as the container for your custom navigation logic. You put the widgets inside, then you tell the container what the rules are."
+      "description": "Think of it as the container for your custom navigation logic. Put widgets inside, and define rules."
     }
   ],
   "codeSamples": [

@@ -5,15 +5,15 @@
   "leftBullets": [
     {
       "title": "Build Your Own System",
-      "description": "Combine `FocusScope`s, custom policies, and manual control to build a completely bespoke navigation system."
+      "description": "Combine `FocusScope`s, custom policies, and manual control to build navigation system you need."
     },
     {
       "title": "Total Control, Total Responsibility",
-      "description": "This approach gives you fine-grained control, but requires you to manage the entire focus state yourself."
+      "description": "This approach gives you fine-grained control, but requires you to manage the entire focus system."
     },
     {
       "title": "For Unique Layouts",
-      "description": "Ideal for highly unconventional UIs, like radial menus or non-grid layouts, where standard policies don't apply."
+      "description": "Ideal for highly custom UIs, like radial menus or non-grid layouts, where standard policies don't work."
     },
     {
       "title": "The Last Resort",
