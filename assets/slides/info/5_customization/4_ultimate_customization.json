@@ -1,7 +1,7 @@
 {
   "title": "The Ultimate Customization",
   "subtitle": "For when you need to throw out the rulebook.",
-  "slideType": "SINGLE_TEXT",
+  "slideType": "LEFT_TEXT_RIGHT_IMAGE",
   "leftBullets": [
     {
       "title": "Build Your Own System",
@@ -19,5 +19,6 @@
       "title": "The Last Resort",
       "description": "This is a high-effort solution for complex problems. Always try to use the built-in system first!"
     }
-  ]
+  ],
+  "rightImagePath": "assets/images/slides/5_4_fstg.png"
 }
