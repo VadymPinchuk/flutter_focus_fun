@@ -21,7 +21,7 @@
     },
     {
       "title": "Granular Control",
-      "description": "This pattern can be used for individual widgets, not just the whole scaffold."
+      "description": "This pattern can be used for individual widgets as well."
     }
   ],
   "codeSamples": [

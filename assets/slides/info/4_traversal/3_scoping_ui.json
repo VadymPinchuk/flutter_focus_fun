@@ -1,6 +1,6 @@
 {
   "title": "Dividing the Screen: Scopes",
-  "subtitle": "Separating focus between the Nav Bar and the main content.",
+  "subtitle": "Separating zones of NavBar and the main content.",
   "slideType": "LEFT_IMAGE_RIGHT_TEXT",
   "leftImagePath": "assets/images/slides/4_3_scoping.png",
   "rightBullets": [
