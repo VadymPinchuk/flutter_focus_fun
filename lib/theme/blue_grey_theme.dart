@@ -23,13 +23,13 @@ const int _blueGreyPrimaryValue = 0xFF607D8B;
 // --- Dark Blue Grey Theme Color Palette ---
 
 /// A vibrant, cool teal for primary actions and highlights in the dark theme.
-const Color primaryTeal = Color(0xFF4DD0E1);
+const Color primaryAmber = Color(0xFFFFC107);
 
 /// A warm, bright amber for secondary elements and accents.
 const Color secondaryLavender = Color(0xFFB39DDB);
 
 /// A soft lavender for tertiary highlights, providing a subtle touch of color.
-const Color tertiaryAmber = Color(0xFFFFC107);
+const Color tertiaryTeal = Color(0xFF4DD0E1);
 
 /// The main background color, a deep and modern blue-grey.
 const Color backgroundBlueGrey = Color(
@@ -49,14 +49,14 @@ final ThemeData blueGreyTheme = ThemeData(
   // Modern Material 3 ColorScheme
   colorScheme: ColorScheme.dark(
     // Primary colors
-    primary: primaryTeal,
+    primary: primaryAmber,
     onPrimary: Colors.black,
 
     // Secondary colors
     secondary: secondaryLavender,
     onSecondary: Colors.black,
 
-    tertiary: tertiaryAmber,
+    tertiary: tertiaryTeal,
     onTertiary: Colors.black,
 
     // Neutral colors

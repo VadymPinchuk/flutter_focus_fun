@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/theme/background_reverse_gradient_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
 
 /// A widget that renders an image from an asset path.
 class ImageWidget extends StatelessWidget {
@@ -10,15 +10,14 @@ class ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        BackgroundImage(colors: context.backGradient),
-        Image.asset(
-          imagePath,
-          fit: BoxFit.contain,
-          errorBuilder: (c, e, s) => const Placeholder(),
-        ),
-      ],
+    return Container(
+      color: Colors.blueGrey.shade800,
+      padding: EdgeInsets.all(16.0),
+      child: Image.asset(
+        imagePath,
+        fit: BoxFit.contain,
+        errorBuilder: (c, e, s) => const Placeholder(),
+      ),
     );
   }
 }
