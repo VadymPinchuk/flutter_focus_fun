@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/code_snippet.dart';
 import 'package:flutter_syntax_view/flutter_syntax_view.dart';
@@ -29,9 +28,9 @@ class CodeSnippetsWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: Text(
                   sample.title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 20,
-                    color: AppColors.contentBody,
+                    color: Theme.of(context).textTheme.bodyLarge!.color!,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

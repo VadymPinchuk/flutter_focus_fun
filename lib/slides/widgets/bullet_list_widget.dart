@@ -27,7 +27,7 @@ class BulletListWidget extends StatelessWidget {
                   '• ',
                   style: TextStyle(
                     fontSize: titleFontSize,
-                    color: AppColors.contentBody,
+                    color: Theme.of(context).textTheme.headlineLarge!.color!,
                     height: 1.5,
                   ),
                 ),
@@ -63,7 +63,7 @@ extension on BuildContext {
         color: theme.colorScheme.primary,
         fontWeight: FontWeight.bold,
         height: 1.5,
-        shadows: [Shadow(blurRadius: 2.0, color: AppColors.textShadow)],
+        // shadows: [Shadow(blurRadius: 2.0, color: AppColors.textShadow)],
       ),
       code: TextStyle(
         fontSize: 26.0,

@@ -12,7 +12,7 @@ class SettingsModel {
   /// Determines if the app should use a side navigation rail (TV) or a
   /// bottom navigation bar (mobile).
   final ValueNotifier<UserExperience> experience = ValueNotifier(
-    UserExperience.mobile,
+    UserExperience.tv,
   );
 
   void toggleUiExperience() {
@@ -29,38 +29,38 @@ class SettingsModel {
 
   /// Determines if a visual decoration (e.g., a border or scale effect)
   /// should be shown on the currently focused item.
-  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(false);
+  final ValueNotifier<bool> useFocusDecoration = ValueNotifier(true);
 
   void toggleFocusDecoration() {
     useFocusDecoration.value = !useFocusDecoration.value;
   }
 
   /// Determines if rail has a fixed focus or it is scrolled as usual.
-  final ValueNotifier<bool> useTvFixedFocusController = ValueNotifier(false);
+  final ValueNotifier<bool> useTvFixedFocusController = ValueNotifier(true);
 
   void toggleTvFixedFocus() {
     useTvFixedFocusController.value = !useTvFixedFocusController.value;
   }
 
   /// Determines if arrow keys should be used for focus-based navigation.
-  final ValueNotifier<bool> useTvPageLayout = ValueNotifier(false);
+  final ValueNotifier<bool> useTvPageLayout = ValueNotifier(true);
 
   void toggleTvPageLayout() {
     useTvPageLayout.value = !useTvPageLayout.value;
   }
 
   /// Determines if a custom focus traversal policy should be used
-  final ValueNotifier<bool> useCustomTraversalPolicy = ValueNotifier(false);
+  final ValueNotifier<bool> useCustomTraversalPolicy = ValueNotifier(true);
 
   void toggleTraversalPolicy() {
     useCustomTraversalPolicy.value = !useCustomTraversalPolicy.value;
   }
 
   /// Controls the global text scaling factor for the entire application.
-  final ValueNotifier<double> textScaleFactor = ValueNotifier(1.0);
+  final ValueNotifier<double> textScaleFactor = ValueNotifier(1.2);
 
   /// Controls the number of tiles displayed per row in content grids.
-  final ValueNotifier<double> tilesPerRowCount = ValueNotifier(2.0);
+  final ValueNotifier<double> tilesPerRowCount = ValueNotifier(8.0);
 
   /// Disposes the notifiers to prevent memory leaks.
   void dispose() {

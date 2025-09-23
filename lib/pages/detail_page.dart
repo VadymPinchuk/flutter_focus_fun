@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_content.dart';
 
@@ -11,6 +12,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leadingWidth: 72.0,
@@ -21,8 +23,16 @@ class DetailPage extends StatelessWidget {
       ),
       extendBodyBehindAppBar: true,
       body: Stack(
-        children: [BackgroundImage(), DynamicContent(focusedItem: item)],
+        children: [
+          BackgroundImage(colors: context.backGradient),
+          DynamicContent(focusedItem: item),
+        ],
       ),
     );
   }
+}
+
+extension on BuildContext {
+  List<Color>? get backGradient =>
+      Theme.of(this).extension<BackgroundGradientTheme>()?.colors;
 }

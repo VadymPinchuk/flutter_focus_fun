@@ -193,6 +193,7 @@ class _TvNavBarButtonState extends State<_TvNavBarButton> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ValueListenableBuilder<bool>(
       valueListenable: context.settingsModel.useFocusDecoration,
       builder: (context, useDecoration, child) {

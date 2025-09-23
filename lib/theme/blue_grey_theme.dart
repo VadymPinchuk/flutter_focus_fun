@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/background_reverse_gradient_theme.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
 
 import 'background_gradient_theme.dart';
 
@@ -129,7 +131,15 @@ final ThemeData blueGreyTheme = ThemeData(
 
   extensions: <ThemeExtension<dynamic>>[
     BackgroundGradientTheme(
-      colors: [blueGrey[900]!, blueGrey[500]!, blueGrey[900]!],
+      colors: [blueGrey[900]!, blueGrey[900]!, blueGrey[500]!, blueGrey[900]!],
+    ),
+    BackgroundReverseGradientTheme(
+      colors: [
+        neutralBeige[400]!,
+        neutralBeige[400]!,
+        neutralBeige[100]!,
+        neutralBeige[300]!,
+      ],
     ),
   ],
 );

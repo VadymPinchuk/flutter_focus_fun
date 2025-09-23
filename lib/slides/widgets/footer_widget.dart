@@ -7,6 +7,7 @@ class FooterWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       spacing: 8.0,
       mainAxisAlignment: MainAxisAlignment.end,
@@ -14,27 +15,39 @@ class FooterWidget extends StatelessWidget {
       children: [
         Text(
           AppStrings.talkTitle,
-          style: TextStyle(color: AppColors.footerTitle, fontSize: 20.0),
+          style: TextStyle(
+            color: theme.textTheme.bodyLarge!.color,
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
         ),
         Text(
           'by',
-          style: TextStyle(color: AppColors.footerConnectors, fontSize: 18.0),
+          style: TextStyle(
+            color: theme.textTheme.bodyLarge!.color!.withValues(alpha: 0.8),
+            fontSize: 18.0,
+          ),
         ),
         Image.asset(
           'assets/images/hat.png',
           height: 42,
           errorBuilder:
-              (c, e, s) => const Icon(Icons.person, color: Colors.white70),
+              (c, e, s) =>
+                  Icon(Icons.person, color: theme.textTheme.bodyLarge!.color!),
         ),
         Text(
           'for',
-          style: TextStyle(color: AppColors.footerConnectors, fontSize: 18.0),
+          style: TextStyle(
+            color: theme.textTheme.bodyLarge!.color!.withValues(alpha: 0.8),
+            fontSize: 18.0,
+          ),
         ),
         Image.asset(
           'assets/images/flutter_community.png',
           height: 56,
           errorBuilder:
-              (c, e, s) => const Icon(Icons.groups, color: Colors.white70),
+              (c, e, s) =>
+                  Icon(Icons.groups, color: theme.textTheme.bodyLarge!.color),
         ),
       ],
     );

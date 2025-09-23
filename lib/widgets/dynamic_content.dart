@@ -11,7 +11,10 @@ class DynamicContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dataItem = focusedItem;
+    // no data - no show
     if (dataItem == null) return const SizedBox.shrink();
+
+    // real data from slides
     if (dataItem.slideAssetPath.isNotEmpty) {
       return AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
@@ -21,6 +24,8 @@ class DynamicContent extends StatelessWidget {
         ),
       );
     }
+    // fake rails data - just to show how nav works
+    final theme = Theme.of(context);
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -74,11 +79,10 @@ class DynamicContent extends StatelessWidget {
                 children: [
                   Text(
                     item.title,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      shadows: [Shadow(blurRadius: 4, color: Colors.black54)],
+                      color: theme.textTheme.headlineLarge!.color!,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -87,10 +91,9 @@ class DynamicContent extends StatelessWidget {
                     maxLines: 3,
                     style: TextStyle(
                       fontSize: 20,
-                      color: Colors.white.withValues(alpha: 0.9),
-                      shadows: const [
-                        Shadow(blurRadius: 2, color: Colors.black54),
-                      ],
+                      color: theme.textTheme.headlineLarge!.color!.withValues(
+                        alpha: 0.9,
+                      ),
                     ),
                   ),
                 ],

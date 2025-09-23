@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/background_reverse_gradient_theme.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/blue_grey_theme.dart';
 
 import 'background_gradient_theme.dart';
 
@@ -111,14 +113,14 @@ final ThemeData beigeTheme = ThemeData(
   // --- Other Visual Properties ---
   cardTheme: CardTheme(
     elevation: 1,
-    color: neutralBeige.shade500,
+    color: neutralBeige.shade600,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
   ),
 
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(color: neutralBeige.shade500),
+      borderSide: BorderSide(color: neutralBeige.shade600),
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
@@ -136,7 +138,15 @@ final ThemeData beigeTheme = ThemeData(
 
   extensions: <ThemeExtension<dynamic>>[
     BackgroundGradientTheme(
-      colors: [neutralBeige[500]!, neutralBeige[200]!, neutralBeige[400]!],
+      colors: [
+        neutralBeige[500]!,
+        neutralBeige[500]!,
+        neutralBeige[100]!,
+        neutralBeige[400]!,
+      ],
+    ),
+    BackgroundReverseGradientTheme(
+      colors: [blueGrey[900]!, blueGrey[900]!, blueGrey[700]!, blueGrey[900]!],
     ),
   ],
 );

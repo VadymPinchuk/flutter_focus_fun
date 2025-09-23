@@ -5,6 +5,8 @@ import 'package:flutter_focus_fun_tv_demo/responsive/rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/responsive/responsive_data_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/background_reverse_gradient_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/theme/blue_grey_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/tools/focus_debugger.dart';
@@ -58,7 +60,7 @@ class _PresentationAppState extends State<PresentationApp> {
                       child: ValueListenableBuilder(
                         valueListenable: settingsModel.useLightTheme,
                         builder:
-                            (_, isLightTheme, _) => MaterialApp(
+                            (ctx, isLightTheme, _) => MaterialApp(
                               title: 'Flutter Focus Fun',
                               debugShowCheckedModeBanner: false,
                               shortcuts: KeyboardShortcuts.shortcuts(),
@@ -70,9 +72,9 @@ class _PresentationAppState extends State<PresentationApp> {
                               darkTheme: blueGreyTheme,
                               home: Material(
                                 color: Colors.transparent,
-                                child: const Stack(
+                                child: Stack(
                                   children: [
-                                    BackgroundImage(),
+                                    BackgroundImage(colors: ctx.backGradient),
                                     ScreenScaffold(),
                                   ],
                                 ),
@@ -85,4 +87,9 @@ class _PresentationAppState extends State<PresentationApp> {
       ),
     );
   }
+}
+
+extension on BuildContext {
+  List<Color>? get backGradient =>
+      Theme.of(this).extension<BackgroundGradientTheme>()?.colors;
 }

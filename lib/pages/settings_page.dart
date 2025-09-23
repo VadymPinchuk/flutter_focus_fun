@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/constants.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
+import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -11,16 +12,28 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ValueListenableBuilder<UserExperience>(
-        valueListenable: context.settingsModel.experience,
-        builder:
-            (_, experience, _) => switch (experience) {
-              UserExperience.tv => const _TvSettingsLayout(),
-              UserExperience.mobile => const _MobileSettingsLayout(),
-            },
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          BackgroundImage(colors: context.backGradient),
+
+          ValueListenableBuilder<UserExperience>(
+            valueListenable: context.settingsModel.experience,
+            builder:
+                (_, experience, _) => switch (experience) {
+                  UserExperience.tv => const _TvSettingsLayout(),
+                  UserExperience.mobile => const _MobileSettingsLayout(),
+                },
+          ),
+        ],
       ),
     );
   }
+}
+
+extension on BuildContext {
+  List<Color>? get backGradient =>
+      Theme.of(this).extension<BackgroundGradientTheme>()?.colors;
 }
 
 // --- Mobile Layout ---
@@ -199,9 +212,9 @@ class _TvSettingTileState extends State<_TvSettingTile> {
                   border: Border.all(
                     color:
                         _isFocused
-                            ? AppColors.settingsTileFocused
-                            : AppColors.settingsTileUnfocused,
-                    width: _isFocused ? 2.0 : 1.0,
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.secondary,
+                    width: _isFocused ? 3.0 : 1.0,
                     strokeAlign: BorderSide.strokeAlignCenter,
                   ),
                 ),

@@ -44,7 +44,7 @@ class TvRail extends StatelessWidget {
                     data.title,
                     style: TextStyle(
                       fontSize: 20.0,
-                      color: AppColors.railTitle,
+                      color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
