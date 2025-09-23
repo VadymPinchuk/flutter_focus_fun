@@ -5,6 +5,8 @@ import 'package:flutter_focus_fun_tv_demo/responsive/rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/responsive/responsive_data_widget.dart';
 import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
+import 'package:flutter_focus_fun_tv_demo/theme/blue_grey_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/tools/focus_debugger.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
@@ -53,29 +55,29 @@ class _PresentationAppState extends State<PresentationApp> {
                           FocusDebugger.instance.toggleIt();
                         },
                       },
-                      child: MaterialApp(
-                        title: 'Flutter Focus Fun',
-                        debugShowCheckedModeBanner: false,
-                        shortcuts: KeyboardShortcuts.shortcuts(),
-                        theme: ThemeData(
-                          brightness: Brightness.dark,
-                          primaryColor: Colors.blueGrey.shade900,
-                          colorScheme: ColorScheme.fromSeed(
-                            seedColor: Colors.blueGrey,
-                            brightness: Brightness.dark,
-                          ),
-                          scaffoldBackgroundColor: Colors.transparent,
-                          textTheme: const TextTheme(
-                            bodyLarge: TextStyle(color: Colors.white),
-                            bodyMedium: TextStyle(color: Colors.white70),
-                          ),
-                        ),
-                        home: Material(
-                          color: Colors.transparent,
-                          child: const Stack(
-                            children: [BackgroundImage(), ScreenScaffold()],
-                          ),
-                        ),
+                      child: ValueListenableBuilder(
+                        valueListenable: settingsModel.useLightTheme,
+                        builder:
+                            (_, isLightTheme, _) => MaterialApp(
+                              title: 'Flutter Focus Fun',
+                              debugShowCheckedModeBanner: false,
+                              shortcuts: KeyboardShortcuts.shortcuts(),
+                              themeMode:
+                                  isLightTheme
+                                      ? ThemeMode.light
+                                      : ThemeMode.dark,
+                              theme: beigeTheme,
+                              darkTheme: blueGreyTheme,
+                              home: Material(
+                                color: Colors.transparent,
+                                child: const Stack(
+                                  children: [
+                                    BackgroundImage(),
+                                    ScreenScaffold(),
+                                  ],
+                                ),
+                              ),
+                            ),
                       ),
                     ),
               ),

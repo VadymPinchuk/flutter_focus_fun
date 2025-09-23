@@ -35,6 +35,7 @@ class _MobileNavBarState extends State<MobileNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return ClipRect(
       child: ClipRect(
         child: ColoredBox(
@@ -53,6 +54,10 @@ class _MobileNavBarState extends State<MobileNavBar> {
                     selectedIndex == 0
                         ? Icons.home_rounded
                         : Icons.home_outlined,
+                    color:
+                        selectedIndex == 0
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.secondary,
                   ),
                   label: 'Home',
                 ),
@@ -61,6 +66,10 @@ class _MobileNavBarState extends State<MobileNavBar> {
                     selectedIndex == 1
                         ? Icons.info_rounded
                         : Icons.info_outline_rounded,
+                    color:
+                        selectedIndex == 1
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.secondary,
                   ),
                   label: 'Info',
                 ),
@@ -69,6 +78,10 @@ class _MobileNavBarState extends State<MobileNavBar> {
                     selectedIndex == 2
                         ? Icons.question_mark_sharp
                         : Icons.question_mark_rounded,
+                    color:
+                        selectedIndex == 2
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.secondary,
                   ),
                   label: 'About',
                 ),
@@ -77,6 +90,10 @@ class _MobileNavBarState extends State<MobileNavBar> {
                     selectedIndex == 3
                         ? Icons.settings
                         : Icons.settings_rounded,
+                    color:
+                        selectedIndex == 3
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.secondary,
                   ),
                   label: 'Settings',
                 ),

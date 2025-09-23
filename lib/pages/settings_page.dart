@@ -30,14 +30,31 @@ class _MobileSettingsLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return Center(
-      child: SwitchListTile(
-        title: const Text('Use TV Navigation'),
-        subtitle: const Text(
-          'Switches between a side rail and a bottom navigation bar.',
-        ),
-        value: context.settingsModel.experience.value.isTv,
-        onChanged: (_) => context.settingsModel.toggleUiExperience(),
+      child: ListView(
+        padding: const EdgeInsets.all(32.0),
+        children: [
+          SwitchListTile(
+            title: Text('Use Light Theme', style: theme.headlineMedium),
+            subtitle: Text(
+              'Switches between dark and light color scheme',
+              style: theme.bodyMedium,
+            ),
+            value: context.settingsModel.useLightTheme.value,
+            onChanged: (_) => context.settingsModel.toggleThemeSwitch(),
+          ),
+          const SizedBox(height: 24.0),
+          SwitchListTile(
+            title: Text('Use TV Navigation', style: theme.headlineMedium),
+            subtitle: Text(
+              'Switches between a side rail and a bottom navigation bar.',
+              style: theme.bodyMedium,
+            ),
+            value: context.settingsModel.experience.value.isTv,
+            onChanged: (_) => context.settingsModel.toggleUiExperience(),
+          ),
+        ],
       ),
     );
   }
@@ -56,6 +73,13 @@ class _TvSettingsLayout extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(32.0),
           children: [
+            _TvSettingTile(
+              title: 'Use Light Theme',
+              subtitle: 'Switches between dark and light color scheme',
+              valueListenable: context.settingsModel.useLightTheme,
+              onPressed: context.settingsModel.toggleThemeSwitch,
+            ),
+            getSpacer,
             _TvSettingTile(
               title: 'Use TV Navigation',
               subtitle:
@@ -137,6 +161,8 @@ class _TvSettingTileState extends State<_TvSettingTile> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
     return Focus(
       autofocus: widget.autofocus,
       onFocusChange: (hasFocus) {
@@ -157,73 +183,77 @@ class _TvSettingTileState extends State<_TvSettingTile> {
         }
         return KeyEventResult.ignored;
       },
-      child: InkWell(
-        onTap: widget.onPressed,
-        child: ValueListenableBuilder<bool>(
-          valueListenable: widget.valueListenable,
-          builder: (_, value, _) {
-            return AnimatedContainer(
-              duration: kAnimationDuration,
-              padding: const EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: value ? Colors.white12 : Colors.transparent,
-                borderRadius: BorderRadius.circular(8.0),
-                border: Border.all(
-                  color:
-                      _isFocused
-                          ? AppColors.settingsTileFocused
-                          : AppColors.settingsTileUnfocused,
-                  width: _isFocused ? 2.0 : 1.0,
-                  strokeAlign: BorderSide.strokeAlignCenter,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: InkWell(
+          onTap: widget.onPressed,
+          child: ValueListenableBuilder<bool>(
+            valueListenable: widget.valueListenable,
+            builder: (_, value, _) {
+              return AnimatedContainer(
+                duration: kAnimationDuration,
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  color: value ? theme.cardTheme.color : Colors.transparent,
+                  borderRadius: BorderRadius.circular(8.0),
+                  border: Border.all(
+                    color:
+                        _isFocused
+                            ? AppColors.settingsTileFocused
+                            : AppColors.settingsTileUnfocused,
+                    width: _isFocused ? 2.0 : 1.0,
+                    strokeAlign: BorderSide.strokeAlignCenter,
+                  ),
                 ),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.title,
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: AppColors.settingsTileFocused.withValues(
-                              alpha: _isFocused ? 1.0 : 0.7,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.title,
+                            style: textTheme.headlineMedium!.copyWith(
+                              color: textTheme.headlineMedium!.color!
+                                  .withValues(alpha: _isFocused ? 1.0 : 0.7),
+                              fontWeight:
+                                  _isFocused
+                                      ? FontWeight.w500
+                                      : FontWeight.w400,
                             ),
-                            fontWeight:
-                                _isFocused ? FontWeight.w500 : FontWeight.w400,
                           ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          widget.subtitle,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: AppColors.settingsTileFocused.withValues(
-                              alpha: _isFocused ? 1.0 : 0.7,
+                          const SizedBox(height: 4),
+                          Text(
+                            widget.subtitle,
+                            style: textTheme.bodyMedium!.copyWith(
+                              color: textTheme.bodyMedium!.color!.withValues(
+                                alpha: _isFocused ? 1.0 : 0.7,
+                              ),
+                              fontWeight:
+                                  _isFocused
+                                      ? FontWeight.w500
+                                      : FontWeight.w400,
                             ),
-                            fontWeight:
-                                _isFocused ? FontWeight.w500 : FontWeight.w400,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 16),
-                  // Visual indicator for the "on" state
-                  AnimatedOpacity(
-                    duration: kAnimationDuration,
-                    opacity: value ? 1.0 : 0.0,
-                    child: Icon(
-                      Icons.check_circle,
-                      color: context.colors.primary,
-                      size: 32,
+                    const SizedBox(width: 16),
+                    // Visual indicator for the "on" state
+                    AnimatedOpacity(
+                      duration: kAnimationDuration,
+                      opacity: value ? 1.0 : 0.0,
+                      child: Icon(
+                        Icons.check_circle,
+                        color: context.colors.primary,
+                        size: 32,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
+                  ],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -239,6 +269,7 @@ class _TextScaleSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return ValueListenableBuilder<double>(
       valueListenable: context.settingsModel.textScaleFactor,
       builder: (_, currentTextScale, child) {
@@ -257,20 +288,11 @@ class _TextScaleSlider extends StatelessWidget {
             ),
             Column(
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: AppColors.settingsTextUnfocused,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                Text(title, style: theme.headlineMedium),
                 const SizedBox(height: 4),
                 Text(
                   '${(currentTextScale * 100).toStringAsFixed(0)}%',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: AppColors.settingsTextFocused,
+                  style: theme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -301,6 +323,7 @@ class _TileCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
     return ValueListenableBuilder<double>(
       valueListenable: context.settingsModel.tilesPerRowCount,
       builder: (_, currentTileCount, child) {
@@ -319,20 +342,11 @@ class _TileCountWidget extends StatelessWidget {
             ),
             Column(
               children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: AppColors.settingsTextUnfocused,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                Text(title, style: theme.headlineMedium),
                 const SizedBox(height: 4),
                 Text(
                   '$currentTileCount tiles per row',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: AppColors.settingsTextFocused,
+                  style: theme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -362,6 +376,7 @@ class _SettingsIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Focus(
       canRequestFocus: false,
       descendantsAreFocusable: true,
@@ -382,7 +397,7 @@ class _SettingsIconButton extends StatelessWidget {
       },
       child: IconButton(
         icon: Icon(icon, size: 24.0 * context.textScale),
-        color: Colors.white,
+        color: theme.colorScheme.primary,
         onPressed: onPressed,
       ),
     );

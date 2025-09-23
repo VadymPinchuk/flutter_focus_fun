@@ -37,7 +37,7 @@ class BulletListWidget extends StatelessWidget {
                     children: [
                       MarkdownBody(
                         data: bullet.title,
-                        styleSheet: _headerStyle,
+                        styleSheet: context.headerStyle,
                       ),
                       if (bullet.description != null)
                         Padding(
@@ -54,19 +54,26 @@ class BulletListWidget extends StatelessWidget {
   }
 }
 
-final _headerStyle = MarkdownStyleSheet(
-  p: TextStyle(
-    fontSize: 28.0,
-    color: AppColors.golden,
-    fontWeight: FontWeight.bold,
-    height: 1.5,
-    shadows: [Shadow(blurRadius: 2.0, color: AppColors.textShadow)],
-  ),
-  code: TextStyle(
-    fontSize: 26.0,
-    color: AppColors.golden,
-    backgroundColor: AppColors.contentBody.withValues(alpha: 0.2),
-    fontWeight: FontWeight.bold,
-    fontFamily: 'monospace',
-  ),
-);
+extension on BuildContext {
+  MarkdownStyleSheet get headerStyle {
+    final theme = Theme.of(this);
+    return MarkdownStyleSheet(
+      p: TextStyle(
+        fontSize: 28.0,
+        color: theme.colorScheme.primary,
+        fontWeight: FontWeight.bold,
+        height: 1.5,
+        shadows: [Shadow(blurRadius: 2.0, color: AppColors.textShadow)],
+      ),
+      code: TextStyle(
+        fontSize: 26.0,
+        color: theme.colorScheme.primary.withValues(alpha: 0.7),
+        backgroundColor: theme.textTheme.bodyLarge!.color!.withValues(
+          alpha: 0.1,
+        ),
+        fontWeight: FontWeight.bold,
+        fontFamily: 'monospace',
+      ),
+    );
+  }
+}

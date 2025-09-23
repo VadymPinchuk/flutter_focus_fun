@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/footer_widget.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -63,7 +62,10 @@ class _SlideTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use MarkdownBody for rendering without extra padding or scrolling.
     // This is ideal for embedding within a slide layout.
-    return MarkdownBody(data: text, styleSheet: _templateTextStyle(64.0, 1.0));
+    return MarkdownBody(
+      data: text,
+      styleSheet: context.templateTextStyle(64.0, 1.0),
+    );
   }
 }
 
@@ -76,28 +78,38 @@ class _SlideSubTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     // Use MarkdownBody for rendering without extra padding or scrolling.
     // This is ideal for embedding within a slide layout.
-    return MarkdownBody(data: text, styleSheet: _templateTextStyle(50.0, 0.7));
+    return MarkdownBody(
+      data: text,
+      styleSheet: context.templateTextStyle(50.0, 0.7),
+    );
   }
 }
 
-MarkdownStyleSheet _templateTextStyle(double size, double alpha) =>
-    MarkdownStyleSheet(
+extension on BuildContext {
+  MarkdownStyleSheet templateTextStyle(double size, double alpha) {
+    final theme = Theme.of(this);
+    return MarkdownStyleSheet(
       p: TextStyle(
         fontSize: size,
-        color: AppColors.contentTitle.withValues(alpha: alpha),
+        color: theme.textTheme.headlineLarge!.color!.withValues(alpha: alpha),
         fontWeight: FontWeight.bold,
         height: 1.5,
       ),
-      em:  TextStyle(
+      em: TextStyle(
         fontSize: size,
-        color: AppColors.emerald1.withValues(alpha: alpha),
+        color: theme.colorScheme.primary.withValues(alpha: alpha),
         fontStyle: FontStyle.italic,
         height: 1.5,
       ),
       code: TextStyle(
         fontSize: size,
-        color: Colors.amber.shade200.withValues(alpha: alpha),
+        color: theme.colorScheme.primary.withValues(alpha: alpha),
         fontWeight: FontWeight.bold,
         fontFamily: 'monospace',
+        // backgroundColor: theme.textTheme.bodyLarge!.color!.withValues(
+        //   alpha: 0.1,
+        // ),
       ),
     );
+  }
+}

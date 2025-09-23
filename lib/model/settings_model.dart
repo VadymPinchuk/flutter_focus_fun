@@ -20,6 +20,13 @@ class SettingsModel {
         experience.value.isMobile ? UserExperience.tv : UserExperience.mobile;
   }
 
+  /// Determines if a custom focus traversal policy should be used
+  final ValueNotifier<bool> useLightTheme = ValueNotifier(true);
+
+  void toggleThemeSwitch() {
+    useLightTheme.value = !useLightTheme.value;
+  }
+
   /// Determines if a visual decoration (e.g., a border or scale effect)
   /// should be shown on the currently focused item.
   final ValueNotifier<bool> useFocusDecoration = ValueNotifier(false);
