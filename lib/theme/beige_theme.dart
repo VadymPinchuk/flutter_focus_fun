@@ -29,6 +29,8 @@ const MaterialColor neutralBeige = MaterialColor(
 /// A rich, deep purple for primary actions and high-contrast elements.
 const Color primaryPurple = Colors.deepPurple;
 
+const Color limeGreen = Color(0xFF98C548);
+
 /// A muted, earthy sage green for secondary elements.
 const Color secondarySage = Color(0xFF8FBC8F);
 
@@ -64,6 +66,8 @@ final ThemeData beigeTheme = ThemeData(
     // Tertiary colors
     tertiary: tertiaryAmber,
     onTertiary: textBlack,
+
+    inversePrimary: limeGreen,
 
     // Neutral colors
     background: backgroundLight,

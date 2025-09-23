@@ -25,6 +25,9 @@ const int _blueGreyPrimaryValue = 0xFF607D8B;
 /// A vibrant, cool teal for primary actions and highlights in the dark theme.
 const Color primaryAmber = Color(0xFFFFC107);
 
+// Inverse Color
+const Color deepBlue = Color(0xFF003EF8);
+
 /// A warm, bright amber for secondary elements and accents.
 const Color secondaryLavender = Color(0xFFB39DDB);
 
@@ -58,6 +61,8 @@ final ThemeData blueGreyTheme = ThemeData(
 
     tertiary: tertiaryTeal,
     onTertiary: Colors.black,
+
+    inversePrimary: deepBlue,
 
     // Neutral colors
     background: const Color(0xFF263238),
