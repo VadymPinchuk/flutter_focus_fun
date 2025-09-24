@@ -21,7 +21,7 @@
     },
     {
       "title": "The `Action`",
-      "description": "A class containing the logic for *how* to execute a specific `Intent`."
+      "description": "A class containing the logic for *how* to execute an `Intent`."
     }
   ],
   "codeSamples": [

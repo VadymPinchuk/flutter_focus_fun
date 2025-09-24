@@ -21,7 +21,7 @@
     },
     {
       "title": "Programmatic Control",
-      "description": "Gives you direct control with methods like `requestFocus()` and `unfocus()`."
+      "description": "Gives direct control with `requestFocus()` / `unfocus()`."
     }
   ],
   "codeSamples": [

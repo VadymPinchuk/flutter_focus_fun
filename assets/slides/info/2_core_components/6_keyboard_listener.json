@@ -17,7 +17,7 @@
     },
     {
       "title": "Bypasses Actions",
-      "description": "This is the low-level alternative and does not use the `Intents` system."
+      "description": "This is the low-level alternative and does not use `Intents`."
     },
     {
       "title": "Wrapper over Focus",
