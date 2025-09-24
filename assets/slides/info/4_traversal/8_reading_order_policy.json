@@ -24,6 +24,7 @@
       "description": "This failure is the primary reason we need to create our own custom traversal policies for TV applications."
     }
   ],
-  "rightImagePath": "assets/images/slides/4_8_default_problem.png"
+  "rightImagePath": "assets/images/slides/4_8_default_problem.png",
+  "rightImageInverted": true
 }
 

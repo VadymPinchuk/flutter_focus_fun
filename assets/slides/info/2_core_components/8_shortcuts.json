@@ -20,5 +20,6 @@
       "description": "It finds the nearest `Actions` widget that maps the `ActivateIntent` to a `ActivateAction` and calls its `invoke` method."
     }
   ],
-  "rightImagePath": "assets/images/slides/2_8_shortcuts.png"
+  "rightImagePath": "assets/images/slides/2_8_shortcuts.png",
+  "rightImageInverted": true
 }

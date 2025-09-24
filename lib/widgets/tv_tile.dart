@@ -66,7 +66,7 @@ class _TvTileState extends State<TvTile> {
               duration: kAnimationDuration,
               // Conditionally apply the scale transform.
               transform:
-                  Matrix4.identity()..scale(applyFocusEffects ? 1.1 : 1.0),
+                  Matrix4.identity()..scale(applyFocusEffects ? 1.2 : 1.0),
               transformAlignment: Alignment.center,
               // Conditionally apply the padding for the border.
               padding: EdgeInsets.all(applyFocusEffects ? 3.0 : 0.0),

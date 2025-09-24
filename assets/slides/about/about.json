@@ -3,6 +3,7 @@
   "subtitle": "A brief introduction to your presenter.",
   "slideType": "SPEAKER_INTRO",
   "leftImagePath": "assets/images/slides/0_1_qr_code.png",
+  "leftImageInverted": true,
   "rightImagePath": "assets/images/slides/0_2_speaker_photo.png",
   "leftBullets": [
     {

@@ -107,7 +107,12 @@ class LeftTextRightImageLayout extends StatelessWidget {
           ),
         ),
         const Separator(),
-        Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
+        Expanded(
+          child: ImageWidget(
+            imagePath: data.rightImagePath ?? '',
+            useDarkVersion: data.rightImageInverted,
+          ),
+        ),
       ],
     );
   }
@@ -124,7 +129,12 @@ class LeftImageRightTextLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
+        Expanded(
+          child: ImageWidget(
+            imagePath: data.leftImagePath ?? '',
+            useDarkVersion: data.leftImageInverted,
+          ),
+        ),
         const Separator(),
         Expanded(
           child: BodyTextWidget(
@@ -148,7 +158,12 @@ class LeftImageRightCodeLayout extends StatelessWidget {
       title: data.title,
       subtitle: data.subtitle,
       children: [
-        Expanded(child: ImageWidget(imagePath: data.leftImagePath ?? '')),
+        Expanded(
+          child: ImageWidget(
+            imagePath: data.leftImagePath ?? '',
+            useDarkVersion: data.leftImageInverted,
+          ),
+        ),
         const Separator(),
         Expanded(
           child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
@@ -173,7 +188,12 @@ class LeftCodeRightImageLayout extends StatelessWidget {
           child: CodeSnippetsWidget(codeSnippets: data.codeSamples ?? []),
         ),
         const Separator(),
-        Expanded(child: ImageWidget(imagePath: data.rightImagePath ?? '')),
+        Expanded(
+          child: ImageWidget(
+            imagePath: data.rightImagePath ?? '',
+            useDarkVersion: data.rightImageInverted,
+          ),
+        ),
       ],
     );
   }
@@ -204,7 +224,12 @@ class SingleImageLayout extends StatelessWidget {
     return TemplateSlide(
       title: data.title,
       subtitle: data.subtitle,
-      child: Center(child: ImageWidget(imagePath: data.imagePath ?? '')),
+      child: Center(
+        child: ImageWidget(
+          imagePath: data.imagePath ?? '',
+          useDarkVersion: data.imageInverted,
+        ),
+      ),
     );
   }
 }
@@ -282,14 +307,20 @@ class SpeakerIntroLayout extends StatelessWidget {
       children: [
         Expanded(
           flex: 2,
-          child: ImageWidget(imagePath: data.leftImagePath ?? ''),
+          child: ImageWidget(
+            imagePath: data.leftImagePath ?? '',
+            useDarkVersion: data.leftImageInverted,
+          ),
         ),
         const SizedBox(width: 32),
         Expanded(flex: 3, child: BodyTextWidget(bullets: data.leftBullets)),
         const SizedBox(width: 32),
         Expanded(
           flex: 2,
-          child: ImageWidget(imagePath: data.rightImagePath ?? ''),
+          child: ImageWidget(
+            imagePath: data.rightImagePath ?? '',
+            useDarkVersion: data.rightImageInverted,
+          ),
         ),
       ],
     );

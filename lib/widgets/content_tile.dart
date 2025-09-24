@@ -7,8 +7,14 @@ import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
 class ContentTile extends StatelessWidget {
   final String index;
   final ContentItem item;
+  final double padding;
 
-  const ContentTile({super.key, required this.index, required this.item});
+  const ContentTile({
+    super.key,
+    required this.index,
+    required this.item,
+    this.padding = 8.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class ContentTile extends StatelessWidget {
           },
           child: Container(
             color: item.color,
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(padding),
             child: Stack(
               children: [
                 Align(
@@ -75,7 +81,7 @@ class ContentTile extends StatelessWidget {
                       style: const TextStyle(
                         color: AppColors.tileTitle,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 14,
                         shadows: [
                           Shadow(blurRadius: 2.0, color: AppColors.tileShadow),
                         ],

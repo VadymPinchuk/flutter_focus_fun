@@ -3,6 +3,7 @@
   "subtitle": "Why a BottomNavBar fails on TV? How to adapt?",
   "slideType": "LEFT_IMAGE_RIGHT_TEXT",
   "leftImagePath": "assets/images/slides/1_5_navigation.png",
+  "leftImageInverted": true,
   "rightBullets": [
     {
       "title": "Designed for Thumbs",

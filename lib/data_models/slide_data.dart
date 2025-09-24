@@ -11,8 +11,11 @@ class SlideData {
   final List<BulletPoint>? leftBullets;
   final List<BulletPoint>? rightBullets;
   final String? imagePath;
+  final bool imageInverted;
   final String? rightImagePath;
+  final bool rightImageInverted;
   final String? leftImagePath;
+  final bool leftImageInverted;
   final String? fullWidthImagePath;
   final List<CodeSnippet>? codeSamples;
   final List<TextCodePair>? textWithCodePairs; // New field
@@ -25,8 +28,11 @@ class SlideData {
     this.leftBullets,
     this.rightBullets,
     this.imagePath,
+    required this.imageInverted,
     this.rightImagePath,
+    required this.rightImageInverted,
     this.leftImagePath,
+    required this.leftImageInverted,
     this.fullWidthImagePath,
     this.codeSamples,
     this.textWithCodePairs,
@@ -50,8 +56,11 @@ class SlideData {
               ?.map((e) => BulletPoint.fromJson(e as Map<String, dynamic>))
               .toList(),
       imagePath: json['imagePath'] as String?,
+      imageInverted: json['imageInverted'] as bool? ?? false,
       rightImagePath: json['rightImagePath'] as String?,
+      rightImageInverted: json['rightImageInverted'] as bool? ?? false,
       leftImagePath: json['leftImagePath'] as String?,
+      leftImageInverted: json['leftImageInverted'] as bool? ?? false,
       fullWidthImagePath: json['fullWidthImagePath'] as String?,
       codeSamples:
           (json['codeSamples'] as List<dynamic>?)

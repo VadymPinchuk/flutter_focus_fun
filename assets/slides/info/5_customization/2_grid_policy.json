@@ -3,6 +3,7 @@
   "subtitle": "Implementing a `GridFocusTraversalPolicy`.",
   "slideType": "LEFT_IMAGE_RIGHT_CODE",
   "leftImagePath": "assets/images/slides/5_2_grid_policy_example.png",
+  "leftImageInverted": true,
   "codeSamples": [
     {
       "title": "line 24: grid_row_traversal_policy.dart",

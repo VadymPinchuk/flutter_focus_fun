@@ -20,5 +20,6 @@
       "description": "This tree structure is what Flutter uses to determine the default navigation order."
     }
   ],
-  "rightImagePath": "assets/images/slides/3_2_focus_tree.png"
+  "rightImagePath": "assets/images/slides/3_2_focus_tree.png",
+  "rightImageInverted": true
 }

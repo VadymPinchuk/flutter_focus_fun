@@ -50,30 +50,36 @@ final ThemeData blueGreyTheme = ThemeData(
   // This is blueGrey.shade900
 
   // Modern Material 3 ColorScheme
-  colorScheme: ColorScheme.dark(
-    // Primary colors
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: blueGrey,
+    brightness: Brightness.dark,
     primary: primaryAmber,
-    onPrimary: Colors.black,
-
-    // Secondary colors
-    secondary: secondaryLavender,
-    onSecondary: Colors.black,
-
     tertiary: tertiaryTeal,
-    onTertiary: Colors.black,
-
-    inversePrimary: deepBlue,
-
-    // Neutral colors
-    background: const Color(0xFF263238),
-    onBackground: textLight,
-    surface: blueGrey.shade800,
-    onSurface: textLight,
-
-    // Error colors
-    error: Colors.redAccent.shade400,
-    onError: Colors.black,
   ),
+  // colorScheme: ColorScheme.dark(
+  //   // Primary colors
+  //   primary: primaryAmber,
+  //   onPrimary: Colors.black,
+  //
+  //   // Secondary colors
+  //   secondary: secondaryLavender,
+  //   onSecondary: Colors.black,
+  //
+  //   tertiary: tertiaryTeal,
+  //   onTertiary: Colors.black,
+  //
+  //   inversePrimary: deepBlue,
+  //
+  //   // Neutral colors
+  //   background: const Color(0xFF263238),
+  //   onBackground: textLight,
+  //   surface: blueGrey.shade800,
+  //   onSurface: textLight,
+  //
+  //   // Error colors
+  //   error: Colors.redAccent.shade400,
+  //   onError: Colors.black,
+  // ),
 
   // --- Component Theming ---
   scaffoldBackgroundColor: const Color(0xFF263238),

@@ -51,35 +51,41 @@ final ThemeData beigeTheme = ThemeData(
   brightness: Brightness.light,
 
   // Modern Material 3 ColorScheme
-  colorScheme: const ColorScheme(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: neutralBeige,
     brightness: Brightness.light,
-
-    // Primary colors
     primary: primaryPurple,
-    onPrimary: Colors.white,
-    // Text/icons on top of the primary color
-
-    // Secondary colors
-    secondary: secondarySage,
-    onSecondary: Colors.white,
-
-    // Tertiary colors
     tertiary: tertiaryAmber,
-    onTertiary: textBlack,
-
-    inversePrimary: limeGreen,
-
-    // Neutral colors
-    background: backgroundLight,
-    onBackground: textBlack,
-    surface: backgroundLight,
-    // Use beige for cards, dialogs, etc.
-    onSurface: textBlack,
-
-    // Error colors
-    error: Color(0xFFB00020),
-    onError: Colors.white,
   ),
+  //colorScheme: const ColorScheme(
+  //   brightness: Brightness.light,
+  //
+  //   // Primary colors
+  //   primary: primaryPurple,
+  //   onPrimary: Colors.white,
+  //   // Text/icons on top of the primary color
+  //
+  //   // Secondary colors
+  //   secondary: secondarySage,
+  //   onSecondary: Colors.white,
+  //
+  //   // Tertiary colors
+  //   tertiary: tertiaryAmber,
+  //   onTertiary: textBlack,
+  //
+  //   inversePrimary: limeGreen,
+  //
+  //   // Neutral colors
+  //   background: backgroundLight,
+  //   onBackground: textBlack,
+  //   surface: backgroundLight,
+  //   // Use beige for cards, dialogs, etc.
+  //   onSurface: textBlack,
+  //
+  //   // Error colors
+  //   error: Color(0xFFB00020),
+  //   onError: Colors.white,
+  // )
 
   // --- Component Theming ---
   scaffoldBackgroundColor: backgroundLight,
