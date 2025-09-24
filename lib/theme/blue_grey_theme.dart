@@ -91,9 +91,9 @@ final ThemeData blueGreyTheme = ThemeData(
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: blueGrey.shade800,
-    selectedItemColor: Colors.tealAccent.shade200,
-    unselectedItemColor: Colors.white38,
+    backgroundColor: blueGrey.shade800.withValues(alpha: 0.75),
+    selectedItemColor: primaryAmber,
+    unselectedItemColor: secondaryLavender.withValues(alpha: 0.7),
   ),
 
   textTheme: const TextTheme(

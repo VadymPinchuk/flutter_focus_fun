@@ -3,9 +3,7 @@ import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
 import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
 import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
 import 'package:flutter_focus_fun_tv_demo/scroll/tv_rail_scroll_controller.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_content.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/rail_wrapper.dart';
 import 'package:flutter_focus_fun_tv_demo/widgets/tv_rail.dart';
@@ -81,7 +79,6 @@ class _BodyWidgetState extends State<BodyWidget> {
       builder: (ctx, useTvPageLayout, _) {
         return Stack(
           children: [
-            BackgroundImage(colors: ctx.backGradient),
             useTvPageLayout
                 ? ValueListenableBuilder(
                   valueListenable: context.pageUiModel.focusedItem,
@@ -143,11 +140,6 @@ class _BodyWidgetState extends State<BodyWidget> {
       },
     );
   }
-}
-
-extension on BuildContext {
-  List<Color>? get backGradient =>
-      Theme.of(this).extension<BackgroundGradientTheme>()?.colors;
 }
 
 class _ImageMask extends StatelessWidget {

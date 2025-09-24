@@ -37,68 +37,66 @@ class _MobileNavBarState extends State<MobileNavBar> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ClipRect(
-      child: ClipRect(
-        child: ColoredBox(
-          color: Colors.blueGrey[900]!.withValues(alpha: 0.75),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: BottomNavigationBar(
-              backgroundColor: Colors.transparent,
-              currentIndex: selectedIndex,
-              onTap: selectMenuItem,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.white70,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    selectedIndex == 0
-                        ? Icons.home_rounded
-                        : Icons.home_outlined,
-                    color:
-                        selectedIndex == 0
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.secondary,
-                  ),
-                  label: 'Home',
+      child: ColoredBox(
+        color: theme.bottomNavigationBarTheme.backgroundColor!.withValues(alpha: 0.75),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: BottomNavigationBar(
+            // backgroundColor: Colors.transparent,
+            currentIndex: selectedIndex,
+            onTap: selectMenuItem,
+            // selectedItemColor: theme.colorScheme.primary,
+            // unselectedItemColor: theme.colorScheme.secondary,
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  selectedIndex == 0
+                      ? Icons.home_rounded
+                      : Icons.home_outlined,
+                  color:
+                      selectedIndex == 0
+                          ? theme.colorScheme.primary
+                          : theme.colorScheme.secondary,
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    selectedIndex == 1
-                        ? Icons.info_rounded
-                        : Icons.info_outline_rounded,
-                    color:
-                        selectedIndex == 1
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.secondary,
-                  ),
-                  label: 'Info',
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  selectedIndex == 1
+                      ? Icons.info_rounded
+                      : Icons.info_outline_rounded,
+                  color:
+                      selectedIndex == 1
+                          ? theme.colorScheme.primary
+                          : theme.colorScheme.secondary,
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    selectedIndex == 2
-                        ? Icons.question_mark_sharp
-                        : Icons.question_mark_rounded,
-                    color:
-                        selectedIndex == 2
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.secondary,
-                  ),
-                  label: 'About',
+                label: 'Info',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  selectedIndex == 2
+                      ? Icons.question_mark_sharp
+                      : Icons.question_mark_rounded,
+                  color:
+                      selectedIndex == 2
+                          ? theme.colorScheme.primary
+                          : theme.colorScheme.secondary,
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    selectedIndex == 3
-                        ? Icons.settings
-                        : Icons.settings_rounded,
-                    color:
-                        selectedIndex == 3
-                            ? theme.colorScheme.primary
-                            : theme.colorScheme.secondary,
-                  ),
-                  label: 'Settings',
+                label: 'About',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  selectedIndex == 3
+                      ? Icons.settings
+                      : Icons.settings_rounded,
+                  color:
+                      selectedIndex == 3
+                          ? theme.colorScheme.primary
+                          : theme.colorScheme.secondary,
                 ),
-              ],
-            ),
+                label: 'Settings',
+              ),
+            ],
           ),
         ),
       ),

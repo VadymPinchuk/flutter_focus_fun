@@ -97,9 +97,9 @@ final ThemeData beigeTheme = ThemeData(
   ),
 
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: neutralBeige.shade700,
+    backgroundColor: neutralBeige.shade800.withValues(alpha: 0.75),
     selectedItemColor: primaryPurple,
-    unselectedItemColor: secondarySage.withOpacity(0.7),
+    unselectedItemColor: secondarySage.withValues(alpha: 0.7),
   ),
 
   textTheme: const TextTheme(
