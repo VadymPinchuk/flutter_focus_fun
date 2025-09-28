@@ -1,4 +1,4 @@
-import 'package:flutter_focus_fun_tv_demo/data_models/code_snippet.dart';
+import 'package:flutter_focus_fun/data_models/code_snippet.dart';
 
 /// A class to hold a text point and its associated code sample.
 class TextCodePair {

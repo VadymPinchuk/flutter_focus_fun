@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/slide_data.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/template_slide.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text_widget.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/code_snippets_widget.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/image_widget.dart';
+import 'package:flutter_focus_fun/data_models/slide_data.dart';
+import 'package:flutter_focus_fun/slides/template_slide.dart';
+import 'package:flutter_focus_fun/slides/widgets/body_text.dart';
+import 'package:flutter_focus_fun/slides/widgets/body_text_widget.dart';
+import 'package:flutter_focus_fun/slides/widgets/code_snippets_widget.dart';
+import 'package:flutter_focus_fun/slides/widgets/image_widget.dart';
 
 class Separator extends StatelessWidget {
   const Separator({super.key});

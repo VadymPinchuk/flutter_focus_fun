@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/detail_page.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
+import 'package:flutter_focus_fun/app_colors.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
+import 'package:flutter_focus_fun/pages/detail_page.dart';
+import 'package:flutter_focus_fun/utils/scope_functions.dart';
 
 class ContentTile extends StatelessWidget {
   final String index;

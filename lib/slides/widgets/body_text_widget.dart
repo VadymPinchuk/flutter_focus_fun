@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/body_text.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/bullet_list_widget.dart';
+import 'package:flutter_focus_fun/data_models/bullet_point.dart';
+import 'package:flutter_focus_fun/slides/widgets/body_text.dart';
+import 'package:flutter_focus_fun/slides/widgets/bullet_list_widget.dart';
 
 class BodyTextWidget extends StatelessWidget {
   final List<BulletPoint>? bullets;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/markdown_text.dart';
+import 'package:flutter_focus_fun/data_models/bullet_point.dart';
+import 'package:flutter_focus_fun/slides/widgets/markdown_text.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 /// A widget that renders a list of BulletPoint objects as a formatted list.

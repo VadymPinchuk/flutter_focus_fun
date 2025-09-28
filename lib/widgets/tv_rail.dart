@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
-import 'package:flutter_focus_fun_tv_demo/scroll/tv_rail_scroll_controller.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/tv_tile.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/data/content_rail_data.dart';
+import 'package:flutter_focus_fun/scroll/tv_rail_scroll_controller.dart';
+import 'package:flutter_focus_fun/widgets/tv_tile.dart';
 
 
 class TvRail extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
+import 'package:flutter_focus_fun/data/content_rail_data.dart';
 
 /// A view model (ChangeNotifier) to store and manage the scroll state
 /// for a single page that contains vertical and horizontal lists.

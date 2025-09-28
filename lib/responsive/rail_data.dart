@@ -1,6 +1,6 @@
 import 'package:flutter/painting.dart';
-import 'package:flutter_focus_fun_tv_demo/responsive/tile_measure_helper.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
+import 'package:flutter_focus_fun/responsive/tile_measure_helper.dart';
+import 'package:flutter_focus_fun/utils/user_experience.dart';
 
 const double kLandscapeAspectRatio = 16 / 9;
 

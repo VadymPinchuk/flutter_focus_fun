@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
+import 'package:flutter_focus_fun/app_colors.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
+import 'package:flutter_focus_fun/data/content_rail_data.dart';
 
 /// AboutPage data
 final List<ContentRailData> aboutPageRails = [

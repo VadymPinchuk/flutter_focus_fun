@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
 
 /// A wrapper that handles the fade-in/out animation for a single rail.
 class RailWrapper extends StatefulWidget {

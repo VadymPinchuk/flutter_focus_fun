@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_content.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
+import 'package:flutter_focus_fun/theme/background_gradient_theme.dart';
+import 'package:flutter_focus_fun/widgets/background_image.dart';
+import 'package:flutter_focus_fun/widgets/dynamic_content.dart';
 
 class DetailPage extends StatelessWidget {
   final ContentItem item;

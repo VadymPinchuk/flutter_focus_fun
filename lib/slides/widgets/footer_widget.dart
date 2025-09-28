@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app_strings.dart';
+import 'package:flutter_focus_fun/app_strings.dart';
 
 class FooterWidget extends StatelessWidget {
   const FooterWidget({super.key});

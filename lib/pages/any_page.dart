@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
-import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/body_widget.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/mobile_rail.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/data/content_rail_data.dart';
+import 'package:flutter_focus_fun/model/page_ui_model.dart';
+import 'package:flutter_focus_fun/theme/background_gradient_theme.dart';
+import 'package:flutter_focus_fun/utils/user_experience.dart';
+import 'package:flutter_focus_fun/widgets/background_image.dart';
+import 'package:flutter_focus_fun/widgets/body_widget.dart';
+import 'package:flutter_focus_fun/widgets/mobile_rail.dart';
 
 class AnyPage extends StatefulWidget {
   const AnyPage({super.key});

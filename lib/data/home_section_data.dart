@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
+import 'package:flutter_focus_fun/data/content_rail_data.dart';
 
 // Generates a large set of mock data for the UI.
 final List<ContentRailData> mockHomeData = List.generate(20, (railIndex) {

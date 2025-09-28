@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/responsive/rail_data.dart';
+import 'package:flutter_focus_fun/responsive/rail_data.dart';
 
 class RailDataProvider extends InheritedWidget {
   final RailData themeData;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/detail_page.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/content_tile.dart';
+import 'package:flutter_focus_fun/constants.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
+import 'package:flutter_focus_fun/pages/detail_page.dart';
+import 'package:flutter_focus_fun/widgets/content_tile.dart';
 
 class TvTile extends StatefulWidget {
   final bool autofocus;

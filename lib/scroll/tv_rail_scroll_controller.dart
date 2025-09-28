@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
+import 'package:flutter_focus_fun/constants.dart';
 
 /// A custom scroll controller that handles precise scrolling for a horizontal TV rail.
 /// It accounts for list padding to ensure focused items are correctly positioned.

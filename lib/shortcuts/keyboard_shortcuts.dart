@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/shortcuts/activate_secondary_intent.dart';
-import 'package:flutter_focus_fun_tv_demo/shortcuts/long_press_activator.dart';
+import 'package:flutter_focus_fun/shortcuts/activate_secondary_intent.dart';
+import 'package:flutter_focus_fun/shortcuts/long_press_activator.dart';
 
 class KeyboardShortcuts {
   static Map<ShortcutActivator, Intent>? shortcuts() => {

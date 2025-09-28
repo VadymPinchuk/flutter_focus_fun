@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_rail_data.dart';
-import 'package:flutter_focus_fun_tv_demo/model/page_ui_model.dart';
-import 'package:flutter_focus_fun_tv_demo/scroll/tv_rail_scroll_controller.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/dynamic_content.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/rail_wrapper.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/tv_rail.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/data/content_rail_data.dart';
+import 'package:flutter_focus_fun/model/page_ui_model.dart';
+import 'package:flutter_focus_fun/scroll/tv_rail_scroll_controller.dart';
+import 'package:flutter_focus_fun/utils/scope_functions.dart';
+import 'package:flutter_focus_fun/widgets/dynamic_content.dart';
+import 'package:flutter_focus_fun/widgets/rail_wrapper.dart';
+import 'package:flutter_focus_fun/widgets/tv_rail.dart';
 
 class BodyWidget extends StatefulWidget {
   final List<ContentRailData> rails;

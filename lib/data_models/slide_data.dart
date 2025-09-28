@@ -1,7 +1,7 @@
-import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/code_snippet.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/slide_types.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/text_code_pair.dart';
+import 'package:flutter_focus_fun/data_models/bullet_point.dart';
+import 'package:flutter_focus_fun/data_models/code_snippet.dart';
+import 'package:flutter_focus_fun/data_models/slide_types.dart';
+import 'package:flutter_focus_fun/data_models/text_code_pair.dart';
 
 class SlideData {
   final String title;

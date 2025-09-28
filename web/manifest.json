@@ -1,6 +1,6 @@
 {
-    "name": "flutter_focus_fun_tv_demo",
-    "short_name": "flutter_focus_fun_tv_demo",
+    "name": "flutter_focus_fun",
+    "short_name": "flutter_focus_fun",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

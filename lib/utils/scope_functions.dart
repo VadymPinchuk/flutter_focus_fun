@@ -1,6 +1,6 @@
 // please no flutter dependencies here, only dart
 
-import 'package:flutter_focus_fun_tv_demo/utils/functions.dart' show Predicate;
+import 'package:flutter_focus_fun/utils/functions.dart' show Predicate;
 
 /// Extensions that can be used on any type [T].
 extension ScopeFunctionExt<T> on T {

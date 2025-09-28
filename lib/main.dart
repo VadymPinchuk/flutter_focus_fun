@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/model/settings_model.dart';
-import 'package:flutter_focus_fun_tv_demo/responsive/rail_data.dart';
-import 'package:flutter_focus_fun_tv_demo/responsive/responsive_data_widget.dart';
-import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold.dart';
-import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/blue_grey_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/tools/focus_debugger.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
+import 'package:flutter_focus_fun/model/settings_model.dart';
+import 'package:flutter_focus_fun/responsive/rail_data.dart';
+import 'package:flutter_focus_fun/responsive/responsive_data_widget.dart';
+import 'package:flutter_focus_fun/scaffold/screen_scaffold.dart';
+import 'package:flutter_focus_fun/shortcuts/keyboard_shortcuts.dart';
+import 'package:flutter_focus_fun/theme/background_gradient_theme.dart';
+import 'package:flutter_focus_fun/theme/beige_theme.dart';
+import 'package:flutter_focus_fun/theme/blue_grey_theme.dart';
+import 'package:flutter_focus_fun/tools/focus_debugger.dart';
+import 'package:flutter_focus_fun/utils/user_experience.dart';
+import 'package:flutter_focus_fun/widgets/background_image.dart';
 import 'package:provider/provider.dart';
 
 // --- Main Application ---

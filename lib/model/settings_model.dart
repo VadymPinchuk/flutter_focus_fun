@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
+import 'package:flutter_focus_fun/utils/user_experience.dart';
 
 /// Defines the possible locations for the TV navigation bar.
 enum TvNavBarLocation { top, left }

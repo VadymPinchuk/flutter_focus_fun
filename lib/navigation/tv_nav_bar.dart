@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar_traversal_policy.dart';
+import 'package:flutter_focus_fun/constants.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/navigation/tv_nav_bar_traversal_policy.dart';
 
 class TvNavBar extends StatefulWidget {
   final int selectedIndex;

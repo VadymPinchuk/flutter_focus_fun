@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/navigation/mobile_nav_bar.dart';
-import 'package:flutter_focus_fun_tv_demo/navigation/mobile_status_bar_overlay.dart';
-import 'package:flutter_focus_fun_tv_demo/navigation/tv_nav_bar.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/about_page.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/home_page.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/info_page.dart';
-import 'package:flutter_focus_fun_tv_demo/pages/settings_page.dart';
-import 'package:flutter_focus_fun_tv_demo/policy/grid_row_traversal_policy.dart';
-import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/navigation/mobile_nav_bar.dart';
+import 'package:flutter_focus_fun/navigation/mobile_status_bar_overlay.dart';
+import 'package:flutter_focus_fun/navigation/tv_nav_bar.dart';
+import 'package:flutter_focus_fun/pages/about_page.dart';
+import 'package:flutter_focus_fun/pages/home_page.dart';
+import 'package:flutter_focus_fun/pages/info_page.dart';
+import 'package:flutter_focus_fun/pages/settings_page.dart';
+import 'package:flutter_focus_fun/policy/grid_row_traversal_policy.dart';
+import 'package:flutter_focus_fun/shortcuts/keyboard_shortcuts.dart';
+import 'package:flutter_focus_fun/utils/scope_functions.dart';
+import 'package:flutter_focus_fun/utils/user_experience.dart';
 
 class ScreenScaffold extends StatefulWidget {
   const ScreenScaffold({super.key});

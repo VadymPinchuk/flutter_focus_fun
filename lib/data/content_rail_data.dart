@@ -1,4 +1,4 @@
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
 import 'package:uuid/uuid.dart' show Uuid;
 
 const _uuid = Uuid();

@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/responsive/rail_data_provider.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/responsive/rail_data_provider.dart';
+import 'package:flutter_focus_fun/utils/user_experience.dart';
 
 import 'rail_data.dart';
 

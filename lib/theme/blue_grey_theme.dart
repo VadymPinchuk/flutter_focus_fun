@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_reverse_gradient_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
+import 'package:flutter_focus_fun/theme/background_reverse_gradient_theme.dart';
+import 'package:flutter_focus_fun/theme/beige_theme.dart';
 
 import 'background_gradient_theme.dart';
 

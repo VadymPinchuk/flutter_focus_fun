@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/constants.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/user_experience.dart';
-import 'package:flutter_focus_fun_tv_demo/widgets/background_image.dart';
+import 'package:flutter_focus_fun/constants.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/theme/background_gradient_theme.dart';
+import 'package:flutter_focus_fun/utils/user_experience.dart';
+import 'package:flutter_focus_fun/widgets/background_image.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

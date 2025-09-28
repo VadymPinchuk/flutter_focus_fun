@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/slide_data.dart';
-import 'package:flutter_focus_fun_tv_demo/data_models/slide_types.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/slide_layouts.dart';
+import 'package:flutter_focus_fun/data_models/slide_data.dart';
+import 'package:flutter_focus_fun/data_models/slide_types.dart';
+import 'package:flutter_focus_fun/slides/slide_layouts.dart';
 
 class SlideWidget extends StatelessWidget {
   final String jsonAssetPath;

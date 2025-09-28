@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
+import 'package:flutter_focus_fun/utils/scope_functions.dart';
 
 typedef Predicate<T> = bool Function(T arg);
 typedef Transformer<U, R> = R Function(U arg);

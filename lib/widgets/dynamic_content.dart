@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/data/content_item.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/slide_widget.dart';
-import 'package:flutter_focus_fun_tv_demo/utils/scope_functions.dart';
+import 'package:flutter_focus_fun/data/content_item.dart';
+import 'package:flutter_focus_fun/slides/slide_widget.dart';
+import 'package:flutter_focus_fun/utils/scope_functions.dart';
 
 class DynamicContent extends StatelessWidget {
   final ContentItem? focusedItem;

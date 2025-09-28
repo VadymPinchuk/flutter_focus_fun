@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
+import 'package:flutter_focus_fun/theme/background_gradient_theme.dart';
 
 /// A widget that displays a background gradient that adapts to the current theme.
 ///

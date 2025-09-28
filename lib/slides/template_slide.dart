@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/context_extensions.dart';
-import 'package:flutter_focus_fun_tv_demo/slides/widgets/footer_widget.dart';
+import 'package:flutter_focus_fun/context_extensions.dart';
+import 'package:flutter_focus_fun/slides/widgets/footer_widget.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 /// The base layout for all presentation slides.
