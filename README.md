@@ -1,15 +1,18 @@
-# flutter_focus_fun
+# Flutter Focus Fun
 
-A new Flutter project.
+A Flutter project demonstrating focus management in Flutter for TV.
+
+This project is a companion to a talk about Flutter's Focus system. It contains various examples and slides to help understand how Focus works in Flutter, especially in the context of building applications for television.
+
+## Created by
+
+This project was created by Vadym Pinchuk.
+
+Visit [vpinch.uk](https://vpinch.uk) for contacts
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+To get started with this project, simply clone the repository and run `flutter pub get` to install the dependencies. Then, you can run the app on any of your favorite devices.
 
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
