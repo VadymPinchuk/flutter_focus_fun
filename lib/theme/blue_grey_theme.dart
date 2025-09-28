@@ -4,19 +4,18 @@ import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
 
 import 'background_gradient_theme.dart';
 
-const MaterialColor blueGrey =
-    MaterialColor(_blueGreyPrimaryValue, <int, Color>{
-      50: Color(0xFFECEFF1),
-      100: Color(0xFFCFD8DC),
-      200: Color(0xFFB0BEC5),
-      300: Color(0xFF90A4AE),
-      400: Color(0xFF78909C),
-      500: Color(_blueGreyPrimaryValue),
-      600: Color(0xFF546E7A),
-      700: Color(0xFF455A64),
-      800: Color(0xFF37474F),
-      900: Color(0xFF263238),
-    });
+const MaterialColor blueGrey = MaterialColor(_blueGreyPrimaryValue, <int, Color>{
+  50: Color(0xFFECEFF1),
+  100: Color(0xFFCFD8DC),
+  200: Color(0xFFB0BEC5),
+  300: Color(0xFF90A4AE),
+  400: Color(0xFF78909C),
+  500: Color(_blueGreyPrimaryValue),
+  600: Color(0xFF546E7A),
+  700: Color(0xFF455A64),
+  800: Color(0xFF37474F),
+  900: Color(0xFF263238),
+});
 
 const int _blueGreyPrimaryValue = 0xFF607D8B;
 
@@ -35,9 +34,7 @@ const Color secondaryLavender = Color(0xFFB39DDB);
 const Color tertiaryTeal = Color(0xFF4DD0E1);
 
 /// The main background color, a deep and modern blue-grey.
-const Color backgroundBlueGrey = Color(
-  0xFF263238,
-); // This is Colors.blueGrey.shade900
+const Color backgroundBlueGrey = Color(0xFF263238); // This is Colors.blueGrey.shade900
 
 /// A light color for text to ensure high contrast and readability on dark surfaces.
 const Color textLight = Color(0xFFF5F5F5);
@@ -115,11 +112,12 @@ final ThemeData blueGreyTheme = ThemeData(
   ),
 
   // --- Other Visual Properties ---
-  cardTheme: CardTheme(
-    color: blueGrey.shade800,
-    elevation: 2,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-  ),
+  cardTheme:
+      CardTheme(
+        color: blueGrey.shade800,
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ).data,
 
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
@@ -145,12 +143,7 @@ final ThemeData blueGreyTheme = ThemeData(
       colors: [blueGrey[900]!, blueGrey[900]!, blueGrey[500]!, blueGrey[900]!],
     ),
     BackgroundReverseGradientTheme(
-      colors: [
-        neutralBeige[400]!,
-        neutralBeige[400]!,
-        neutralBeige[100]!,
-        neutralBeige[300]!,
-      ],
+      colors: [neutralBeige[400]!, neutralBeige[400]!, neutralBeige[100]!, neutralBeige[300]!],
     ),
   ],
 );

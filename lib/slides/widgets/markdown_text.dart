@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 /// A widget that renders a string of Markdown content with a

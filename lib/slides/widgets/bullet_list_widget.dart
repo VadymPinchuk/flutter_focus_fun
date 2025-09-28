@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_focus_fun_tv_demo/app_colors.dart';
 import 'package:flutter_focus_fun_tv_demo/data_models/bullet_point.dart';
 import 'package:flutter_focus_fun_tv_demo/slides/widgets/markdown_text.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';

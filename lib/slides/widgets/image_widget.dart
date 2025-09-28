@@ -5,11 +5,7 @@ class ImageWidget extends StatelessWidget {
   final String imagePath;
   final bool useDarkVersion;
 
-  const ImageWidget({
-    super.key,
-    required this.imagePath,
-    required this.useDarkVersion,
-  });
+  const ImageWidget({super.key, required this.imagePath, required this.useDarkVersion});
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +28,7 @@ class _InvertedImageWidget extends StatelessWidget {
   final double? height;
   final BoxFit? fit;
 
-  const _InvertedImageWidget({
-    super.key,
-    required this.imagePath,
-    this.width,
-    this.height,
-    this.fit,
-  });
+  const _InvertedImageWidget({required this.imagePath, this.width, this.height, this.fit});
 
   @override
   Widget build(BuildContext context) {

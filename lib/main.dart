@@ -6,7 +6,6 @@ import 'package:flutter_focus_fun_tv_demo/responsive/responsive_data_widget.dart
 import 'package:flutter_focus_fun_tv_demo/scaffold/screen_scaffold.dart';
 import 'package:flutter_focus_fun_tv_demo/shortcuts/keyboard_shortcuts.dart';
 import 'package:flutter_focus_fun_tv_demo/theme/background_gradient_theme.dart';
-import 'package:flutter_focus_fun_tv_demo/theme/background_reverse_gradient_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/theme/beige_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/theme/blue_grey_theme.dart';
 import 'package:flutter_focus_fun_tv_demo/tools/focus_debugger.dart';
@@ -44,9 +43,7 @@ class _PresentationAppState extends State<PresentationApp> {
         valueListenable: settingsModel.textScaleFactor,
         builder:
             (ctx, textScale, _) => MediaQuery(
-              data: MediaQuery.of(
-                ctx,
-              ).copyWith(textScaler: TextScaler.linear(textScale)),
+              data: MediaQuery.of(ctx).copyWith(textScaler: TextScaler.linear(textScale)),
               child: ResponsiveDataWidget(
                 experience: experience,
                 railData: RailData.forExperience,
@@ -64,10 +61,7 @@ class _PresentationAppState extends State<PresentationApp> {
                               title: 'Flutter Focus Fun',
                               debugShowCheckedModeBanner: false,
                               shortcuts: KeyboardShortcuts.shortcuts(),
-                              themeMode:
-                                  isLightTheme
-                                      ? ThemeMode.light
-                                      : ThemeMode.dark,
+                              themeMode: isLightTheme ? ThemeMode.light : ThemeMode.dark,
                               theme: beigeTheme,
                               darkTheme: blueGreyTheme,
                               home: Material(
@@ -90,6 +84,5 @@ class _PresentationAppState extends State<PresentationApp> {
 }
 
 extension on BuildContext {
-  List<Color>? get backGradient =>
-      Theme.of(this).extension<BackgroundGradientTheme>()?.colors;
+  List<Color>? get backGradient => Theme.of(this).extension<BackgroundGradientTheme>()?.colors;
 }
